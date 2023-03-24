@@ -5,9 +5,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
       rel="stylesheet"
-      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
       crossorigin="anonymous"
     />
     <style>
@@ -105,23 +105,23 @@
       </div>
       <h2 class="text-left mt-2 mb-4 welcome">Welcome! <span class="articles-text" >Articles</span></h2>
       <div id="datetime" class="text-muted mb-3"></div>
-      <div class="row mt-4
-      <div class="col-md-4">
-        {% for article in articles %}
-          <h5>
-            <i class="toggle-star bi bi-star" data-article-id="{{ article.id }}"></i>
-            {{ article.title }}
-          </h5>
-          <div class="card">
-            <img src="{{ article.image }}" class="card-img-top" alt="{{ article.title }}">
-            <div class="card-body">
-              <h5 class="card-title">{{ article.title }}</h5>
-              <p class="card-text">{{ article.summary }}</p>
-              <a href="{{ article.link }}" class="btn btn-primary">Read More</a>
+      {% extends "base.html" %}
+      {% block content %}
+        <div class="row">
+          {% for article in articles %}
+            <div class="col-md-4">
+              <div class="card mb-4">
+                <img src="{{ article.urlToImage }}" class="card-img-top">
+                <div class="card-body">
+                  <h5 class="card-title">{{ article.title }}</h5>
+                  <p class="card-text">{{ article.description }}</p>
+                  <a href="{{ article.url }}" class="btn btn-primary">Read more</a>
+                </div>
+              </div>
             </div>
-          </div>
-        {% endfor %}
-      </div>
+          {% endfor %}
+        </div>
+      {% endblock %}
     </div>
   </div>
   <script>
@@ -136,7 +136,6 @@
     let datetime = document.getElementById('datetime');
     datetime.innerHTML = `${date} ${time}`;
   </script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-7/zxcCOgEft6rXuJpU4DnE1c3/Jr59b6EGGoI1aFkw7cmDA6j6gDq9gfdFxjCUr5" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
 </body>
 </html>  
