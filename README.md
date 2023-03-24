@@ -20,3 +20,7 @@ Flask web framework
 HTML, CSS, and JavaScript + Frameworks for front-end design and interactivity
 Bootstrap front-end framework for responsive design
 News API for retrieving news articles based on user domain selection
+
+Required packages:
+pip install -U Flask
+pip install newsapi-python
