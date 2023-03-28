@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Byte Beat</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous" />
+    <style>
+        body {
+            background-image: url('https://your-background-image-url.com');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        #banner {
+            width: 25%;
+            object-fit: contain;
+        }
+
+        .centered-navbar {
+            display: flex;
+            justify-content: center;
+        }
+
+        .centered-title {
+            display: flex;
+            justify-content: center;
+        }
+
+        .navbar {
+            margin: 0 auto;
+            max-width: 800px;
+            /* You can adjust this value according to your preference */
+        }
+
+        .nav-item {
+            margin-left: 15px;
+            margin-right: 15px;
+        }
+
+        .nav-link {
+            font-size: 1.25rem;
+            color: #333333;
+            /* Light black color */
+            background-color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            border: 1px solid #333333;
+        }
+
+        .welcome {
+            font-size: 2rem;
+            color: #333333;
+            /* Light black color */
+        }
+
+        #datetime {
+            font-size: 1.5rem;
+            color: #333333;
+            /* Light black color */
+        }
+    </style>
+    <!-- javascript to store domain choices to local storage -->
+    <script>
+        const domain1 = localStorage.getItem('domain1');
+        const domain2 = localStorage.getItem('domain2');
+        const domain3 = localStorage.getItem('domain3');
+
+        // Use the stored data
+        console.log(domain1, domain2, domain3);
+    </script>
+    <!-- javascript to store domain choices to local storage -->
+    <script>
+        // Get the form element
+        const userForm = document.getElementById('user-form');
+        // Listen for the domain selection 'submit' event
+        userForm.addEventListener('submit', function (event) {
+            // Prevent the default form submission behavior
+            event.preventDefault();
+            // Get user domain choices
+            const domain1 = document.getElementById('domain1').value;
+            const domain2 = document.getElementById('domain2').value;
+            const domain3 = document.getElementById('domain3').value;
+            // Save domain choices
+            localStorage.setItem('domain1', domain1);
+            localStorage.setItem('domain2', domain2);
+            localStorage.setItem('domain3', domain3);
+        });
+    </script>
+</head>
+
+<body>
+    <form id="user-form">
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="domain1">
+            <label class="form-check-label" for="domain1">Engadget</label>
+        </div>
+
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="domain2">
+            <label class="form-check-label" for="domain2">TechCrunch</label>
+        </div>
+
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="domain3">
+            <label class="form-check-label" for="domain3">Tech Site</label>
+        </div>
+    </form>
+
+    <script>
+        // Get the current date and time
+        let today = new Date();
+
+        // Format the date and time to display
+        let date = today.toLocaleDateString();
+        let time = today.toLocaleTimeString();
+
+        // Display the date and time
+        let datetime = document.getElementById('datetime');
+        datetime.innerHTML = `${date} ${time}`;
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
