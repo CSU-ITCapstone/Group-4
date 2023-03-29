@@ -64,13 +64,18 @@
   </style>
   <!--script loads the javascript to fetch local storage-->
   <script>
-    // Get the stored data from local storage
-    const domain1 = localStorage.getItem('domain1');
-    const domain2 = localStorage.getItem('domain2');
-    const domain3 = localStorage.getItem('domain3');
+    //checkboxes - looks for each .checkbox-input item
+    const checkboxes = document.querySelectorAll('.checkbox-input');
 
-    // Use the stored data
-    console.log(domain1, domain2, domain3);
+    //checks the local storage for checkbox values during page load
+    checkboxes.forEach(checkbox => {
+        const checkboxValue = checkbox.value;
+        const checkboxChecked = localStorage.getItem(checkboxValue);
+
+        if (checkboxChecked !== null) {
+            checkbox.checked = JSON.parse(checkboxChecked);
+        }
+    });
   </script>
 </head>
 

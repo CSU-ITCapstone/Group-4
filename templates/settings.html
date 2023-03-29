@@ -95,35 +95,30 @@
         </div>
         <h2 class="text-left mt-2 mb-4 welcome">Welcome! <span class="articles-text">Articles</span></h2>
         <div id="datetime" class="text-muted mb-3"></div>
-        \
-    </div>
-    <form id="user-form">
+
+        <!--    class="checkbox-input" is used as identifier for local storage script
+                value="option1"... is used as local storage key
+                We can add as many checkbox options as needed
+        -->
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="domain1">
-            <label class="form-check-label" for="domain1">
-                Engadget
+            <input class="form-check-input checkbox-input" type="checkbox" value="option1" id="checkbox1">
+            <label class="form-check-label" for="checkbox1">
+                Gizmodo
             </label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="domain2">
-            <label class="form-check-label" for="domain2">
+            <input class="form-check-input checkbox-input" type="checkbox" value="option2" id="checkbox2">
+            <label class="form-check-label" for="checkbox2">
                 TechCrunch
             </label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="domain3">
-            <label class="form-check-label" for="domain3">
-                Gizmodo
+            <input class="form-check-input checkbox-input" type="checkbox" value="option3" id="checkbox3">
+            <label class="form-check-label" for="checkbox3">
+                Engadget
             </label>
         </div>
-        <button type="button" class="btn btn-primary" id="saveBtn">Save</button>
-
-
-    </form>
     </div>
-    </div>
-
-
 
     <script>
         // Get the current date and time
@@ -141,40 +136,28 @@
         integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
         crossorigin="anonymous"></script>
 
-    <script>// Get all switch input elements
-        const loadswitches = document.querySelectorAll('.form-check-input[data-switch-id]');
+    <script>
+        //checkboxes - looks for each .checkbox-input item
+        const checkboxes = document.querySelectorAll('.checkbox-input');
 
-        // Load switch values from local storage and set initial values
-        loadswitches.forEach(switchElement => {
-            const switchId = switchElement.dataset.switchId;
-            const switchValue = localStorage.getItem(switchId);
-            if (switchValue !== null) {
-                switchElement.checked = switchValue === 'true';
+        //checks the local storage for checkbox values during page load
+        checkboxes.forEach(checkbox => {
+            const checkboxValue = checkbox.value;
+            const checkboxChecked = localStorage.getItem(checkboxValue);
+
+            if (checkboxChecked !== null) {
+                checkbox.checked = JSON.parse(checkboxChecked);
             }
         });
-    </script>
 
-    <script>
-        const domain1 = document.getElementById('domain1');
-        const domain2 = document.getElementById('domain2');
-        const domain3 = document.getElementById('domain3');
-        const saveBtn = document.getElementById('saveBtn');
-
-        // Check if there are stored values for the checkboxes
-        if (localStorage.getItem('domain1') === 'true') {
-            domain1.checked = true;
-        }
-        if (localStorage.getItem('domain2') === 'true') {
-            domain2.checked = true;
-        }
-        if (localStorage.getItem('domain3') === 'true') {
-            domain3.checked = true;
-        }
-        // Save the values of the checkboxes to local storage when the "Save" button is clicked
-        saveBtn.addEventListener('click', () => {
-            localStorage.setItem('domain1', domain1.checked);
-            localStorage.setItem('domain2', domain2.checked);
-            localStorage.setItem('domain3', domain2.checked);
+        //adds a listen event for each checkbox item to update local storage value
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', event => {
+                const checkboxValue = event.target.value;
+                const checkboxChecked = event.target.checked;
+                //example:(checkboxValue, checkboxChecked) will store as (option1, true)
+                localStorage.setItem(checkboxValue, checkboxChecked);
+            });
         });
     </script>
 
