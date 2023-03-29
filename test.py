@@ -144,5 +144,9 @@ def home():
 def settings():
         return render_template('settings.html')
 
+@app.route("/favorites")
+def settings():
+        return render_template('favorites.html')
+
 if __name__ == "__main__":
     app.run(debug=True)
