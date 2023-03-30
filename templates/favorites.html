@@ -94,13 +94,12 @@
         </div>
         <h2 class="text-left mt-2 mb-4 welcome">Saved Articles <span class="articles-text">Articles</span></h2>
         <div id="datetime" class="text-muted mb-3"></div>
-
         <script>
-            const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+            const favorite = JSON.parse(localStorage.getItem('favoriteLinks')) || [];
 
             const container = document.createElement('div');
 
-            favorites.forEach(favoriteItem => {
+            favorite.forEach(favoriteItem => {
                 // Generate HTML code for the favorite card
                 const cardHtml = `
             <div class="card">
@@ -118,7 +117,8 @@
             // Append the container element to the page
             document.body.appendChild(container);
         </script>
-<!--
+
+        <!--
         {% extends "base.html" %}
         {% block content %}
         <div class="row">
@@ -143,21 +143,22 @@
     </div>
     </div>
     -->
-    <script>
-        // Get the current date and time
-        let today = new Date();
+        <script>
+            // Get the current date and time
+            let today = new Date();
 
-        // Format the date and time to display
-        let date = today.toLocaleDateString();
-        let time = today.toLocaleTimeString();
+            // Format the date and time to display
+            let date = today.toLocaleDateString();
+            let time = today.toLocaleTimeString();
 
-        // Display the date and time
-        let datetime = document.getElementById('datetime');
-        datetime.innerHTML = `${date} ${time}`;
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
-        crossorigin="anonymous"></script>
+            // Display the date and time
+            let datetime = document.getElementById('datetime');
+            datetime.innerHTML = `${date} ${time}`;
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+            crossorigin="anonymous"></script>
 </body>
+
 
 </html>

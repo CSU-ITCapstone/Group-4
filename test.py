@@ -145,7 +145,7 @@ def settings():
         return render_template('settings.html')
 
 @app.route("/favorites")
-def settings():
+def favorites():
         return render_template('favorites.html')
 
 if __name__ == "__main__":
