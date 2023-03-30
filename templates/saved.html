@@ -81,7 +81,7 @@
                                 <a class="nav-link active" aria-current="page" href="#">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Saved Articles</a>
+                                <a class="nav-link" href="#">saved Articles</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Options</a>
@@ -92,20 +92,20 @@
                 </div>
             </nav>
         </div>
-        <h2 class="text-left mt-2 mb-4 welcome">Saved Articles <span class="articles-text">Articles</span></h2>
+        <h2 class="text-left mt-2 mb-4 welcome">saved Articles <span class="articles-text">Articles</span></h2>
         <div id="datetime" class="text-muted mb-3"></div>
         <script>
-            const favorite = JSON.parse(localStorage.getItem('favoriteLinks')) || [];
+            const saved = JSON.parse(localStorage.getItem('savedArticles')) || [];
 
             const container = document.createElement('div');
 
-            favorite.forEach(favoriteItem => {
-                // Generate HTML code for the favorite card
+            saved.forEach(savedItem => {
+                // Generate HTML code for the saved card
                 const cardHtml = `
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">${favoriteItem.title}</h5>
-                <a href="${favoriteItem.url}" class="btn btn-primary">Link</a>
+                <h5 class="card-title">${savedItem.title}</h5>
+                <a href="${savedItem.url}" class="btn btn-primary">Link</a>
               </div>
             </div>
           `;
@@ -132,7 +132,7 @@
                         <a href="{{ article.url }}" class="btn btn-primary">Read more</a>
                         <button class="btn btn-outline-primary">
                             <i class="bi bi-bookmark"></i>
-                            Save as favorite
+                            Save as saved
                         </button>
                     </div>
                 </div>

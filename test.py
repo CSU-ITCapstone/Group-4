@@ -144,9 +144,9 @@ def home():
 def settings():
         return render_template('settings.html')
 
-@app.route("/favorites")
-def favorites():
-        return render_template('favorites.html')
+@app.route("/saved")
+def saved():
+        return render_template('saved.html')
 
 if __name__ == "__main__":
     app.run(debug=True)

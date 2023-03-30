@@ -100,30 +100,13 @@
     <div class="row">
       {% for article in articles %}
       <div class="col-md-4">
-        <div class="card mb-4">
+        <div class="card mb-4" id="{{article.index}}">
           <img src="{{ article.urlToImage }}" class="card-img-top">
-          <div class="card-body">
+          <div class="card-body" id="{{ loop.index }}">
             <h5 class="card-title">{{ article.title }}</h5>
             <p class="card-text">{{ article.description }}</p>
-            <a href="{{ article.url }}" class="btn btn-primary">Read more</a>
-            <button class="btn btn-outline-primary  favorite-button">
-              Favorite
-            </button>
-            <button onclick="addFavorite()">Favorite</button>
-            <script>
-              function addFavorite() {
-                const itemTitle = article.title; // Replace with your actual item ID
-                const itemUrl = article.url; // Replace with your actual item title
-                // Save the item as a favorite in local storage
-                const favoriteItem = {
-                  title: itemTitle,
-                  url: itemUrl,
-                };
-                const favorite = JSON.parse(localStorage.getItem('favoriteLinks')) || [];
-                favorite.push(favoriteItem);
-                localStorage.setItem('favoriteLinks', JSON.stringify(favorite));
-              }
-            </script>
+            <a class="card-url" href="{{ article.url }}" class="btn btn-primary">Read more</a>
+            <button class="save-btn">Save Article</button>
           </div>
         </div>
       </div>
@@ -144,6 +127,29 @@
     let datetime = document.getElementById('datetime');
     datetime.innerHTML = `${date} ${time}`;
   </script>
+
+  <script>
+    // Get references to all the favorite buttons
+    const saveButtons = document.querySelectorAll('.save-btn');
+
+    // Loop through each favorite button and add an event listener
+    saveButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        
+        const saveTitle = button.closest('h5');
+        const saveUrl = button.closet('a');
+        
+        const favoriteItem = {
+          title: saveTitle,
+          url: saveUrl
+        };
+        const savedArticles = JSON.parse(localStorage.getItem('savedArticles')) || [];
+        savedArticles.push(savedArticles);
+        localStorage.setItem('savedArticles', JSON.stringify(savedArticles));
+      });
+    });
+  </script>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
     crossorigin="anonymous"></script>
