@@ -4,7 +4,7 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 
-@app.route("/hometest")
+@app.route("/home")
 def hometest():
     articles = [
         {
