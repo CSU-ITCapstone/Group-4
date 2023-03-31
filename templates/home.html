@@ -61,6 +61,12 @@
       color: #333333;
       /* Light black color */
     }
+
+    .articles-text{
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
   </style>
   <!--script loads the javascript to fetch local storage-->
   <script>
@@ -107,7 +113,7 @@
         </div>
       </nav>
     </div>
-    <h2 class="text-left mt-2 mb-4 welcome">Welcome! <span class="articles-text">Articles</span></h2>
+    <h2 class="articles-text">Welcome to Your Article Feed!</h2>
     <div id="datetime" class="text-muted mb-3"></div>
     {% extends "base.html" %}
     {% block content %}
