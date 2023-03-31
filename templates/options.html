@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Byte Beat</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous" />
+    <style>
+        body {
+            background-image: url('https://your-background-image-url.com');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        #banner {
+            width: 25%;
+            object-fit: contain;
+        }
+
+        .centered-navbar {
+            display: flex;
+            justify-content: center;
+        }
+
+        .centered-title {
+            display: flex;
+            justify-content: center;
+        }
+
+        .navbar {
+            margin: 0 auto;
+            max-width: 800px;
+            /* You can adjust this value according to your preference */
+        }
+
+        .nav-item {
+            margin-left: 15px;
+            margin-right: 15px;
+        }
+
+        .nav-link {
+            font-size: 1.25rem;
+            color: #333333;
+            /* Light black color */
+            background-color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            border: 1px solid #333333;
+        }
+
+        .welcome {
+            font-size: 2rem;
+            color: #333333;
+            /* Light black color */
+        }
+
+        #datetime {
+            font-size: 1.5rem;
+            color: #333333;
+            /* Light black color */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <img class="img-fluid align-top align-left" id="banner" src="http://127.0.0.1:5000/static/BB Logo.png" alt="img not found"/>
+        <div class="centered-navbar">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5000/home">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="http://127.0.0.1:5000/saved">Saved Articles</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="http://127.0.0.1:5000/options">Options</a>
+                            </li>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <h2 class="text-left mt-2 mb-4 welcome">Welcome! <span class="articles-text">Articles</span></h2>
+        <div id="datetime" class="text-muted mb-3"></div>
+
+        <!--    class="checkbox-input" is used as identifier for local storage script
+                value="option1"... is used as local storage key
+                We can add as many checkbox options as needed
+        -->
+        <div class="form-check">
+            <input class="form-check-input checkbox-input" type="checkbox" value="option1" id="checkbox1" checked>
+            <label class="form-check-label" for="checkbox1">
+                Gizmodo
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input checkbox-input" type="checkbox" value="option2" id="checkbox2" checked>
+            <label class="form-check-label" for="checkbox2">
+                TechCrunch
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input checkbox-input" type="checkbox" value="option3" id="checkbox3" checked>
+            <label class="form-check-label" for="checkbox3">
+                Engadget
+            </label>
+        </div>
+    </div>
+
+    <script>
+        // Get the current date and time
+        let today = new Date();
+
+        // Format the date and time to display
+        let date = today.toLocaleDateString();
+        let time = today.toLocaleTimeString();
+
+        // Display the date and time
+        let datetime = document.getElementById('datetime');
+        datetime.innerHTML = `${date} ${time}`;
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+        crossorigin="anonymous"></script>
+
+    <script>
+        //checkboxes - looks for each .checkbox-input item
+        const checkboxes = document.querySelectorAll('.checkbox-input');
+
+        //checks the local storage for checkbox values during page load
+        checkboxes.forEach(checkbox => {
+            //gets the value attribute of the checkbox, i.e. option1
+            const checkboxValue = checkbox.value;
+            //looks for the local storage object where the key=value
+            const checkboxChecked = localStorage.getItem(checkboxValue);
+            //the form checkbox will be set to the stored value, true or false
+            if (checkboxChecked !== null) {
+                checkbox.checked = JSON.parse(checkboxChecked);
+            }
+        });
+
+        //adds a listen event for each checkbox item to update local storage value
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', event => {
+                const checkboxValue = event.target.value;
+                const checkboxChecked = event.target.checked;
+                //example:(checkboxValue, checkboxChecked) will store as (option1, true)
+                localStorage.setItem(checkboxValue, checkboxChecked);
+            });
+        });
+    </script>
+
+</body>
+
+</html>

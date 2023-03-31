@@ -65,10 +65,10 @@
 </head>
 
 <body>
-
     <div class="container">
 
-        <img class="img-fluid align-top align-left" id="banner" src="http://127.0.0.1:5000/static/BB Logo.png" />
+        <img class="img-fluid align-top align-left" id="banner" src="http://127.0.0.1:5000/static/BB Logo.png"
+            alt="img not found" />
         <div class="centered-navbar">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
@@ -79,13 +79,13 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                                <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5000/home">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Saved Articles</a>
+                                <a class="nav-link" href="http://127.0.0.1:5000/saved">Saved Articles</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Options</a>
+                                <a class="nav-link" href="http://127.0.0.1:5000/options">Options</a>
                             </li>
                             </li>
                         </ul>
@@ -93,74 +93,34 @@
                 </div>
             </nav>
         </div>
-        <h2 class="text-left mt-2 mb-4 welcome">Welcome! <span class="articles-text">Articles</span></h2>
-        <div id="datetime" class="text-muted mb-3"></div>
 
-        <!--    class="checkbox-input" is used as identifier for local storage script
-                value="option1"... is used as local storage key
-                We can add as many checkbox options as needed
-        -->
-        <div class="form-check">
-            <input class="form-check-input checkbox-input" type="checkbox" value="option1" id="checkbox1">
-            <label class="form-check-label" for="checkbox1">
-                Gizmodo
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input checkbox-input" type="checkbox" value="option2" id="checkbox2">
-            <label class="form-check-label" for="checkbox2">
-                TechCrunch
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input checkbox-input" type="checkbox" value="option3" id="checkbox3">
-            <label class="form-check-label" for="checkbox3">
-                Engadget
-            </label>
-        </div>
+        <!--Loads all the saved articles-->
+        <script>
+            const saved = JSON.parse(localStorage.getItem('savedArticles')) || [];
+            const container = document.createElement('div');
+
+            saved.forEach(savedItem => {
+                // Generate HTML code for the saved card
+                const cardHtml = `
+                        <div class="col-md-4">
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <h5 class="card-title">${savedItem.title}</h5>
+                                    <a href="${savedItem.url}" class="btn btn-primary" target="_blank">Link</a>
+                                </div>
+                            </div>
+                        </div>
+                        `;
+                // Append the HTML code to the container element
+                container.innerHTML += cardHtml;
+            });
+            // Append the container element to the page
+            document.body.appendChild(container);
+        </script>
     </div>
-
-    <script>
-        // Get the current date and time
-        let today = new Date();
-
-        // Format the date and time to display
-        let date = today.toLocaleDateString();
-        let time = today.toLocaleTimeString();
-
-        // Display the date and time
-        let datetime = document.getElementById('datetime');
-        datetime.innerHTML = `${date} ${time}`;
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
         crossorigin="anonymous"></script>
-
-    <script>
-        //checkboxes - looks for each .checkbox-input item
-        const checkboxes = document.querySelectorAll('.checkbox-input');
-
-        //checks the local storage for checkbox values during page load
-        checkboxes.forEach(checkbox => {
-            const checkboxValue = checkbox.value;
-            const checkboxChecked = localStorage.getItem(checkboxValue);
-
-            if (checkboxChecked !== null) {
-                checkbox.checked = JSON.parse(checkboxChecked);
-            }
-        });
-
-        //adds a listen event for each checkbox item to update local storage value
-        checkboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', event => {
-                const checkboxValue = event.target.value;
-                const checkboxChecked = event.target.checked;
-                //example:(checkboxValue, checkboxChecked) will store as (option1, true)
-                localStorage.setItem(checkboxValue, checkboxChecked);
-            });
-        });
-    </script>
-
 </body>
 
 </html>

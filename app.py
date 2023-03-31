@@ -13,6 +13,5 @@ def home():
     articles = top_headlines['articles']
     return render_template('home.html', articles=articles)
 
-
 if __name__ == "__main__":
     app.run(debug=True)
