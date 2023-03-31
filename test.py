@@ -4,8 +4,8 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 
-@app.route("/home")
-def home():
+@app.route("/hometest")
+def hometest():
     articles = [
         {
             "source": {
@@ -138,7 +138,7 @@ def home():
             "content": "More posts by this contributor\r\nOne of the main criticisms leveled against ESG investing is that the movement is all talk, no action. The main reason for this is that there simply arent enough entrep… [+3220 chars]"
         }
     ]
-    return render_template('home.html', articles=articles)
+    return render_template('hometest.html', articles=articles)
 
 @app.route("/settings")
 def settings():
