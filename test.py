@@ -3,6 +3,9 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
+@app.route("/")
+def front():
+        return render_template('index.html')
 
 @app.route("/home")
 def hometest():
@@ -140,9 +143,9 @@ def hometest():
     ]
     return render_template('hometest.html', articles=articles)
 
-@app.route("/settings")
-def settings():
-        return render_template('settings.html')
+@app.route("/options")
+def options():
+        return render_template('options.html')
 
 @app.route("/saved")
 def saved():
