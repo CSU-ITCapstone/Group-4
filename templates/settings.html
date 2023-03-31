@@ -101,19 +101,19 @@
                 We can add as many checkbox options as needed
         -->
         <div class="form-check">
-            <input class="form-check-input checkbox-input" type="checkbox" value="option1" id="checkbox1">
+            <input class="form-check-input checkbox-input" type="checkbox" value="option1" id="checkbox1" checked>
             <label class="form-check-label" for="checkbox1">
                 Gizmodo
             </label>
         </div>
         <div class="form-check">
-            <input class="form-check-input checkbox-input" type="checkbox" value="option2" id="checkbox2">
+            <input class="form-check-input checkbox-input" type="checkbox" value="option2" id="checkbox2" checked>
             <label class="form-check-label" for="checkbox2">
                 TechCrunch
             </label>
         </div>
         <div class="form-check">
-            <input class="form-check-input checkbox-input" type="checkbox" value="option3" id="checkbox3">
+            <input class="form-check-input checkbox-input" type="checkbox" value="option3" id="checkbox3" checked>
             <label class="form-check-label" for="checkbox3">
                 Engadget
             </label>
@@ -142,9 +142,11 @@
 
         //checks the local storage for checkbox values during page load
         checkboxes.forEach(checkbox => {
+            //gets the value attribute of the checkbox, i.e. option1
             const checkboxValue = checkbox.value;
+            //looks for the local storage object where the key=value
             const checkboxChecked = localStorage.getItem(checkboxValue);
-
+            //the form checkbox will be set to the stored value, true or false
             if (checkboxChecked !== null) {
                 checkbox.checked = JSON.parse(checkboxChecked);
             }

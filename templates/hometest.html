@@ -108,7 +108,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ article.title }}</h5>
                         <p class="card-text">{{ article.description }}</p>
-                        <a class="card-url" href="{{ article.url }}" class="btn btn-primary">Read more</a>
+                        <a class="card-url" href="{{ article.url }}" class="btn btn-primary" target="_blank">Read more</a>
                         <!--The input button 'Save Article' will pass the id, title, and url to the saveArticle function.-->
                         <input type="button" onclick="saveArticle(this.id, '{{article.title}}', '{{article.url}}')"
                             id="card' + {{ article.index }} +'" value="Save Article" />
