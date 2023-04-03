@@ -62,10 +62,24 @@
             /* Light black color */
         }
     </style>
-
+    <script>
+        //checkSaved runs on page load
+        //pulls up local storage and disables 'save article' buttons
+        function checkSaved() {
+            const saved = JSON.parse(localStorage.getItem('savedArticles')) || [];
+            saved.forEach(savedItem => {
+                //looks through the saved article list for the 'title'
+                //the title is used as the input button's id
+                var savedButton = document.getElementById(savedItem.title);
+                savedButton.disabled = true;
+                savedButton.value = "Saved";
+            });
+        }
+    </script>
 </head>
 
-<body>
+<body onload="checkSaved()">
+
     <div class="container">
 
         <img class="img-fluid align-top align-left" id="banner" src="http://127.0.0.1:5000/static/BB Logo.png" />
@@ -79,7 +93,8 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5000/home">Home</a>
+                                <a class="nav-link active" aria-current="page"
+                                    href="http://127.0.0.1:5000/home">Home</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="http://127.0.0.1:5000/saved">Saved Articles</a>
@@ -108,15 +123,18 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ article.title }}</h5>
                         <p class="card-text">{{ article.description }}</p>
-                        <a class="card-url" href="{{ article.url }}" class="btn btn-primary" target="_blank">Read more</a>
+                        <a class="card-url" href="{{ article.url }}" class="btn btn-primary" target="_blank">Read
+                            more</a>
                         <!--The input button 'Save Article' will pass the id, title, and url to the saveArticle function.-->
-                        <input type="button" onclick="saveArticle(this.id, '{{article.title}}', '{{article.url}}')"
-                            id="card' + {{ article.index }} +'" value="Save Article" />
+                        <input type="button" id="{{article.title}}"
+                            onclick="saveArticle('{{article.title}}', '{{article.url}}'); this.disabled=true; this.value='Saved';"
+                            value="Save Article" />
+
                         <script>
                             //articleId = "card' + {{ article.index }} +'"
                             //articleTitle = the complete, verbatim title from the article
                             //articleUrl - the complete, verbatim URL of the article link
-                            function saveArticle(articleId, articleTitle, articleUrl) {
+                            function saveArticle(articleTitle, articleUrl) {
                                 //only the title and url of the article will be saved
                                 const articleToSave = {
                                     title: articleTitle,
@@ -136,6 +154,9 @@
         {% endblock %}
     </div>
     </div>
+
+
+
     <script>
         // Get the current date and time
         let today = new Date();
