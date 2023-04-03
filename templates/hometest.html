@@ -125,13 +125,13 @@
                         <p class="card-text">{{ article.description }}</p>
                         <a class="card-url" href="{{ article.url }}" class="btn btn-primary" target="_blank">Read
                             more</a>
-                        <!--The input button 'Save Article' will pass the id, title, and url to the saveArticle function.-->
+                        <!--The input button 'Save Article' will pass the title and url to the saveArticle function.
+                        The input 'id' is used during page load to identify saved articles.-->
                         <input type="button" id="{{article.title}}"
                             onclick="saveArticle('{{article.title}}', '{{article.url}}'); this.disabled=true; this.value='Saved';"
                             value="Save Article" />
 
                         <script>
-                            //articleId = "card' + {{ article.index }} +'"
                             //articleTitle = the complete, verbatim title from the article
                             //articleUrl - the complete, verbatim URL of the article link
                             function saveArticle(articleTitle, articleUrl) {
