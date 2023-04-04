@@ -76,6 +76,22 @@
             });
         }
     </script>
+    <script>
+        //articleTitle = the complete, verbatim title from the article
+        //articleUrl - the complete, verbatim URL of the article link
+        function saveArticle(articleTitle, articleUrl) {
+            //only the title and url of the article will be saved
+            var cleanTitle = articleTitle.replace(/'/g, " ");
+            const articleToSave = {
+                title: cleanTitle,
+                url: articleUrl
+            };
+            //the local storage item is called, then the new article is appended, finally the updated list is stored
+            const savedArticles = JSON.parse(localStorage.getItem('savedArticles')) || [];
+            savedArticles.push(articleToSave);
+            localStorage.setItem('savedArticles', JSON.stringify(savedArticles));
+        };
+    </script>
 </head>
 
 <body onload="checkSaved()">
@@ -116,6 +132,8 @@
         {% extends "base.html" %}
         {% block content %}
         <div class="row">
+            <!--'articles' is a list passed from app.py. Each article will be used to generate 
+            a card.-->
             {% for article in articles %}
             <div class="col-md-4">
                 <div class="card mb-4">
@@ -127,25 +145,9 @@
                             more</a>
                         <!--The input button 'Save Article' will pass the title and url to the saveArticle function.
                         The input 'id' is used during page load to identify saved articles.-->
-                        <input type="button" id="{{article.title}}"
-                            onclick="saveArticle('{{article.title}}', '{{article.url}}'); this.disabled=true; this.value='Saved';"
+                        <input type="button" id="{{article.title|e}}"
+                            onclick='saveArticle("{{article.title|e}}", "{{article.url|e}}"); this.disabled=true; this.value="Saved";'
                             value="Save Article" />
-
-                        <script>
-                            //articleTitle = the complete, verbatim title from the article
-                            //articleUrl - the complete, verbatim URL of the article link
-                            function saveArticle(articleTitle, articleUrl) {
-                                //only the title and url of the article will be saved
-                                const articleToSave = {
-                                    title: articleTitle,
-                                    url: articleUrl
-                                };
-                                //the local storage item is called, then the new article is appended, finally the updated list is stored
-                                const savedArticles = JSON.parse(localStorage.getItem('savedArticles')) || [];
-                                savedArticles.push(articleToSave);
-                                localStorage.setItem('savedArticles', JSON.stringify(savedArticles));
-                            };
-                        </script>
                     </div>
                 </div>
             </div>
