@@ -2,7 +2,6 @@
 from flask import Flask, render_template
 
 app = Flask(__name__)
-
 @app.route("/")
 def front():
         return render_template('index.html')
@@ -36,19 +35,7 @@ def hometest():
             "publishedAt": "2023-03-24T17:56:12Z",
             "content": "Framework is one of a few companies leading the charge against disposable electronics, in particular laptops. It just showed off some new models, but also a unique case that you can slot your old par… [+1511 chars]"
         },
-        {
-            "source": {
-                "id": "techcrunch",
-                "name": "TechCrunch"
-            },
-            "author": "Dominic-Madori Davis",
-            "title": "Threading the needle: Exploring 5 ideas with the founders of LGBT+ VC",
-            "description": "Silicon Valley’s full of people from all walks of life, but very little of its wealth is distributed evenly, especially so when it concerns the LGBTQ community.",
-            "url": "https://techcrunch.com/2023/03/24/threading-the-needle-exploring-5-ideas-with-the-founders-of-lgbt-vc/",
-            "urlToImage": "https://techcrunch.com/wp-content/uploads/2023/03/Jackson-Tiana.jpg?resize=1200,800",
-            "publishedAt": "2023-03-24T17:16:59Z",
-            "content": "Silicon Valleys full of people from all walks of life, but very little of its wealth is distributed evenly, especially when we’re talking about the LGBTQ+ community.\r\nCurrently, it’s estimated that l… [+3487 chars]"
-        },
+
         {
             "source": {
                 "id": "techcrunch",
