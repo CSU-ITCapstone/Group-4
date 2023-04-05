@@ -96,10 +96,39 @@
             color: white;
         }
     </style>
-
+    <script>
+        //checkSaved runs on page load
+        //pulls up local storage and disables 'save article' buttons
+        function checkSaved() {
+            const saved = JSON.parse(localStorage.getItem('savedArticles')) || [];
+            saved.forEach(savedItem => {
+                //looks through the saved article list for the 'title'
+                //the title is used as the input button's id
+                var savedButton = document.getElementById(savedItem.title);
+                savedButton.disabled = true;
+                savedButton.value = "Saved";
+            });
+        }
+    </script>
+    <script>
+        //articleTitle = the complete, verbatim title from the article
+        //articleUrl - the complete, verbatim URL of the article link
+        function saveArticle(articleTitle, articleUrl) {
+            //only the title and url of the article will be saved
+            var cleanTitle = articleTitle.replace(/'/g, " ");
+            const articleToSave = {
+                title: cleanTitle,
+                url: articleUrl
+            };
+            //the local storage item is called, then the new article is appended, finally the updated list is stored
+            const savedArticles = JSON.parse(localStorage.getItem('savedArticles')) || [];
+            savedArticles.push(articleToSave);
+            localStorage.setItem('savedArticles', JSON.stringify(savedArticles));
+        };
+    </script>
 </head>
 
-<body>
+<body onload="checkSaved()">
     {% extends "base.html" %}
     {% block content %}
     <div class="container">
@@ -114,7 +143,8 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5000/home">Home</a>
+                                <a class="nav-link active" aria-current="page"
+                                    href="http://127.0.0.1:5000/home">Home</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="http://127.0.0.1:5000/saved">Saved Articles</a>
@@ -131,7 +161,6 @@
         <div id="datetime" class="text-muted mb-3"></div>
 
         <div class="row">
-            <!-- Add the domain box here -->
             <div class="col-md-6 mb-4">
                 <div class="domain-box">
                     <div class="current-domain-text">Current Domain:</div>
@@ -141,7 +170,6 @@
                 </div>
 
             </div>
-
             {% for article in articles %}
             <!-- Change the column size from col-md-4 to col-md-6 for 2 articles in a row -->
             <div class="col-md-6">
@@ -150,32 +178,20 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ article.title }}</h5>
                         <p class="card-text">{{ article.description }}</p>
-                        <a class="card-url" href="{{ article.url }}" class="btn btn-primary" target="_blank">Read more</a>
-                        <!--The input button 'Save Article' will pass the id, title, and url to the saveArticle function.-->
-                        <input type="button" onclick="saveArticle(this.id, '{{article.title}}', '{{article.url}}')"
-                            id="card' + {{ article.index }} +'" value="Save Article" />
-                        <script>
-                            //articleId = "card' + {{ article.index }} +'"
-                            //articleTitle = the complete, verbatim title from the article
-                            //articleUrl - the complete, verbatim URL of the article link
-                            function saveArticle(articleId, articleTitle, articleUrl) {
-                                //only the title and url of the article will be saved
-                                const articleToSave = {
-                                    title: articleTitle,
-                                    url: articleUrl
-                                };
-                                //the local storage item is called, then the new article is appended, finally the updated list is stored
-                                const savedArticles = JSON.parse(localStorage.getItem('savedArticles')) || [];
-                                savedArticles.push(articleToSave);
-                                localStorage.setItem('savedArticles', JSON.stringify(savedArticles));
-                            };
-                        </script>
+                        <a class="card-url" href="{{ article.url }}" class="btn btn-primary" target="_blank">Read
+                            more</a>
+                        <!--The input button 'Save Article' will pass the title and url to the saveArticle function.
+                        The input 'id' is used during page load to identify saved articles.-->
+                        <input type="button" id="{{article.title|e}}"
+                            onclick='saveArticle("{{article.title|e}}", "{{article.url|e}}"); this.disabled=true; this.value="Saved";'
+                            value="Save Article" />
                     </div>
                 </div>
             </div>
             {% endfor %}
         </div>
 
+    </div>
     </div>
     {% endblock %}
     <script>
