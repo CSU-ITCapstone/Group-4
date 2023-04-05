@@ -65,7 +65,8 @@
 
     <script>
 
-
+        //Makes the API call then passes the article list to the function useArticleData(articleData)
+        //articleData = is the list of article data
         function getUSANews() {
             fetch('https://newsapi.org/v2/top-headlines?country=us&apiKey=a7ce5af704c4493584f1068248f3b540')
                 .then(response => response.json())
@@ -73,9 +74,13 @@
                     articleData = data.articles;
                     useArticleData(articleData);
                 })
-                //.catch(error => console.error(error));
+                .catch(error => console.error(error));
         };
-
+        //I didn't know of a better way to get the article list from getUSAnews().
+        //My solution is to chain useArticleData() at the end of getUSAnews(). 
+        //I've had a lot of trouble with the character " ' " in titles. As it is used
+        // in multiple situations it causes issues going between html and JS. 
+        //So I used .replace(/'/g, " "); to get rid of them.
         function useArticleData(data) {
             var container = document.createElement('div');
             //var filteredArticles = JSON.parse(data) || [];
@@ -105,10 +110,15 @@
             });
             // Append the container element to the page
             document.body.appendChild(container);
+            //another chained function, see next script
             checkSaved();
         };
     </script>
+    
     <script>
+        //This is another chained function, I think there was an issue with timing.
+        //The check needs to happen after the article cards are loaded. 
+        //  This works, I'm sure its not best practice.
         //checkSaved runs on page load
         //pulls up local storage and disables 'save article' buttons
         function checkSaved() {
