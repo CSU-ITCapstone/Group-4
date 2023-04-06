@@ -165,10 +165,12 @@
                     img.alt = "Image not found.";
                     title.innerText = article.title;
                     description.innerText = article.description;
+                    link.classList.add("card-url");
                     link.href = article.url;
                     link.target = "_blank";
                     link.innerText = "Link";
                     input.type = "button";
+                    input.classList.add("save-article-button");
                     input.id = article.title;
                     input.onclick = function () {saveArticle(article.title, article.url)};
                     input.value = "Save Article";
