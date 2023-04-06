@@ -98,7 +98,8 @@
         }
 
         .card-text {
-            height: 4.3em; /* 3 lines of text with 1.4em line height */
+            height: 4.3em;
+            /* 3 lines of text with 1.4em line height */
             overflow: hidden;
         }
 
@@ -159,6 +160,9 @@
             transform: translateY(2px);
         }
     </style>
+
+
+
     <script>
         //articleTitle = the complete, verbatim title from the article
         //articleUrl - the complete, verbatim URL of the article link
@@ -176,9 +180,32 @@
             var savedButton = document.getElementById(articleTitle);
             savedButton.disabled = true;
             savedButton.value = "Saved";
+            savedButton.classList.remove("btn-primary");
+            savedButton.classList.add("btn-success");
         };
     </script>
+    <script>
+        //pulls up local storage and disables "save article" buttons
+        function checkSaved() {
+            const saved = JSON.parse(localStorage.getItem("savedArticles")) || [];
+            saved.forEach(savedItem => {
+                //looks through the saved article list for the "title"
+                //the title is used as the input button"s id
+                var savedButton = document.getElementById(savedItem.title);
+                if (savedButton !== null) {
+                savedButton.disabled = true;
+                savedButton.value = "Saved";
+                savedButton.classList.remove("btn-primary");
+                savedButton.classList.add("btn-success");
+                };
+            });
+        }
+    </script>
 </head>
+<!--runs the main function when the page is loaded
+    defaulted to 'techcrunch'
+    Should it be changed to load with all domains active?
+-->
 
 <body onload="changeDomain('techcrunch')">
     <div class="container">
@@ -223,11 +250,11 @@
             </div>
         </div>
 
-        <div class="row container align-items-stretch" id="card-container">
-            <!-- This is where the cards are loaded -->                
+        <div class="row" id="card-container">
+            <!-- This is where the cards are loaded -->
         </div>
     </div>
-    
+
     <script>
         // Get the current date and
         let today = new Date();
@@ -281,34 +308,34 @@
                 const input = document.createElement("input");
 
                 // Set card classes
-                cardCol.classList.add("col-md-4");
-                card.classList.add("card");
+                cardCol.classList.add("col-md-6");
+                card.classList.add("card", "mb-4");
                 cardBody.classList.add("card-body");
-                img.classList.add("card-img-top");
                 // Set card content
+                img.classList.add("card-img-top");
                 img.src = article.urlToImage;
                 img.alt = "Image not found.";
-                title.classList.add("card-title", "text-center")
+                title.classList.add("card-title")
                 title.innerText = article.title;
                 description.classList.add("card-text")
                 description.innerText = article.description;
-                link.classList.add("card-link");
+                link.classList.add("card-link", "btn", "btn-primary");
                 link.href = article.url;
                 link.target = "_blank";
                 link.innerText = "Link";
-                input.classList.add("save-article-button", "card-link");
+                input.classList.add("card-link", "btn", "btn-primary");
                 input.type = "button";
                 input.id = article.title;
                 input.onclick = function () { saveArticle(article.title, article.url) };
                 input.value = "Save Article";
 
                 // Append card elements to parent
-                cardBody.appendChild(img);
                 cardBody.appendChild(title);
                 cardBody.appendChild(description);
                 cardBody.appendChild(link);
                 cardBody.appendChild(input);
                 // Append cardBody elements to card
+                card.appendChild(img);
                 card.appendChild(cardBody);
                 cardCol.appendChild(card);
                 // Append card elements to the main card-container div
@@ -316,25 +343,8 @@
             });
             checkSaved();
         }
-
     </script>
-    <script>
-        //This is another chained function, I think there was an issue with timing.
-        //The check needs to happen after the article cards are loaded. 
-        //  This works, I'm sure its not best practice.
-        //checkSaved runs on page load
-        //pulls up local storage and disables "save article" buttons
-        function checkSaved() {
-            const saved = JSON.parse(localStorage.getItem("savedArticles")) || [];
-            saved.forEach(savedItem => {
-                //looks through the saved article list for the "title"
-                //the title is used as the input button"s id
-                var savedButton = document.getElementById(savedItem.title);
-                savedButton.disabled = true;
-                savedButton.value = "Saved";
-            });
-        }
-    </script>
+    
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
