@@ -97,6 +97,17 @@
             transition: all 0.3s;
         }
 
+        .card-text {
+            height: 4.3em; /* 3 lines of text with 1.4em line height */
+            overflow: hidden;
+        }
+
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+            width: 100%;
+        }
+
         .card:hover {
             transform: translateY(-5px);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
@@ -212,13 +223,11 @@
             </div>
         </div>
 
-        <div class="container-fluid">
-            <div class="row" id="card-container">
-                <!-- This is where the cards are loaded -->                
-            </div>
+        <div class="row container align-items-stretch" id="card-container">
+            <!-- This is where the cards are loaded -->                
         </div>
-
     </div>
+    
     <script>
         // Get the current date and
         let today = new Date();
@@ -272,20 +281,22 @@
                 const input = document.createElement("input");
 
                 // Set card classes
-                cardCol.classList.add("col-sm-6", "col-md-4", "col-lg-3");
-                card.classList.add("card", "h-100", "d-flex", "flex-column", "align-items-stretch");
+                cardCol.classList.add("col-md-4");
+                card.classList.add("card");
                 cardBody.classList.add("card-body");
-                img.classList.add("img-fluid", "card-img-top");
+                img.classList.add("card-img-top");
                 // Set card content
                 img.src = article.urlToImage;
                 img.alt = "Image not found.";
+                title.classList.add("card-title", "text-center")
                 title.innerText = article.title;
+                description.classList.add("card-text")
                 description.innerText = article.description;
-                link.classList.add("card-url");
+                link.classList.add("card-link");
                 link.href = article.url;
                 link.target = "_blank";
                 link.innerText = "Link";
-                input.classList.add("save-article-button");
+                input.classList.add("save-article-button", "card-link");
                 input.type = "button";
                 input.id = article.title;
                 input.onclick = function () { saveArticle(article.title, article.url) };
