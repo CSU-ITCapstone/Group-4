@@ -9,6 +9,14 @@ def home():
     articles = fetch_articles('engadget')
     return render_template('home4.html', articles=articles)
 
+@app.route("/options")
+def options():
+        return render_template('options.html')
+
+@app.route("/saved")
+def saved():
+        return render_template('saved.html')
+
 def fetch_articles(domain):
     if domain not in ['techcrunch', 'engadget', 'gizmodo']:
         return []
