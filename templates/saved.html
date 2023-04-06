@@ -111,19 +111,18 @@
                 </div>
             </nav>
         </div>
-        <div class="container" id="card-container">
+        <div class="row" id="card-container">
 
         </div>
         <!--Loads all the saved articles-->
         <script>
             const saved = JSON.parse(localStorage.getItem("savedArticles")) || [];
-
             // Generate HTML code for the saved card
             const articleBody = document.querySelector("#card-container");
-
             // Loop through data and create cards
             saved.forEach((article) => {
                 // Create card elements
+                const cardCol = document.createElement("div");
                 const card = document.createElement("div");
                 const cardBody = document.createElement("div");
                 const title = document.createElement("h5");
@@ -131,6 +130,7 @@
                 const input = document.createElement("input");
 
                 // Set card classes
+                cardCol.classList.add("col-md-8");
                 card.classList.add("card", "mb-3");
                 cardBody.classList.add("card-body");
 
@@ -152,7 +152,8 @@
                 cardBody.appendChild(input);
 
                 card.appendChild(cardBody);
-                articleBody.appendChild(card);
+                cardCol.appendChild(card);
+                articleBody.appendChild(cardCol);
             });
         </script>
     </div>
