@@ -78,9 +78,6 @@
         };
         //I didn't know of a better way to get the article list from getUSAnews().
         //My solution is to chain useArticleData() at the end of getUSAnews(). 
-        //I've had a lot of trouble with the character " ' " in titles. As it is used
-        // in multiple situations it causes issues going between html and JS. 
-        //So I used .replace(/'/g, " "); to get rid of them.
         function useArticleData(articleData) {
             // Get reference to the parent element
             const articleBody = document.querySelector('#card-container');
@@ -119,9 +116,9 @@
                 cardBody.appendChild(description);
                 cardBody.appendChild(link);
                 cardBody.appendChild(input);
-
+                // Append cardBody elements to card
                 card.appendChild(cardBody);
-
+                // Append card elements to the main card-container div
                 articleBody.appendChild(card);
             });
         };
@@ -138,7 +135,6 @@
             saved.forEach(savedItem => {
                 //looks through the saved article list for the 'title'
                 //the title is used as the input button's id
-                //var cleanTitle = savedItem.title.replace(/'/g, " ");
                 var savedButton = document.getElementById(savedItem.title);
                 savedButton.disabled = true;
                 savedButton.value = "Saved";
@@ -150,7 +146,6 @@
         //articleUrl - the complete, verbatim URL of the article link
         function saveArticle(articleTitle, articleUrl) {
             //only the title and url of the article will be saved
-            //var cleanTitle = articleTitle.replace(/'/g, " ");
             const articleToSave = {
                 title: articleTitle,
                 url: articleUrl
@@ -159,7 +154,7 @@
             const savedArticles = JSON.parse(localStorage.getItem('savedArticles')) || [];
             savedArticles.push(articleToSave);
             localStorage.setItem('savedArticles', JSON.stringify(savedArticles));
-
+            //disable the button and change the text
             var savedButton = document.getElementById(articleTitle);
                 savedButton.disabled = true;
                 savedButton.value = "Saved";
@@ -201,7 +196,7 @@
         <div id="datetime" class="text-muted mb-3"></div>
 
         <div class="container" id="card-container">
-
+            <!-- This is where the cards are loaded -->
         </div>
 
         <script>
