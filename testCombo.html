@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Byte Beat</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5/Qzj62A4s8ti6G2wn30S2l35F2y935J2F3fUjD/" crossorigin="anonymous" />
+    <style>
+        body {
+            background-image: url('https://your-background-image-url.com');
+            background-repeat: no-repeat;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+        }
+
+        #banner {
+            width: 25%;
+            object-fit: contain;
+        }
+
+        .navbar {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: white !important;
+        }
+
+        .nav-link {
+            font-size: 1.25rem;
+            color: #333333;
+            background-color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            border: 1px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .nav-link:hover {
+            color: white;
+            background-color: #333333;
+            border: 1px solid #333333;
+        }
+
+        .welcome {
+            font-size: 2rem;
+            color: #333333;
+        }
+
+        #datetime {
+            font-size: 1.5rem;
+            color: #333333;
+        }
+
+        .domain-box {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            flex-wrap: nowrap;
+            gap: 1rem;
+            position: sticky;
+            top: 0;
+            background-color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+
+        .domain-button {
+            cursor: pointer;
+            /* Add this to show a hand with a finger(selector) when hovering over the buttons */
+            font-size: 1.25rem;
+            color: #333333;
+            background-color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            border: 1px solid transparent;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .domain-button:hover {
+            color: white;
+            background-color: #333333;
+            border: 1px solid #333333;
+        }
+
+        .current-domain {
+            background-color: blue;
+            color: white;
+        }
+
+        .card {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .card-text {
+            height: 4.3em; /* 3 lines of text with 1.4em line height */
+            overflow: hidden;
+        }
+
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-url {
+            background-color: #333333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .card-url:hover {
+            background-color: #666666;
+        }
+
+        .save-article-button {
+            background-color: #333333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .save-article-button:hover {
+            background-color: #666666;
+        }
+
+        .articles-text {
+            font-weight: bold;
+        }
+
+        .current-domain-text {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .selected-domain {
+            background-color: #333333;
+            color: white;
+            border: 1px solid #333333;
+        }
+
+        .domain-button:active {
+            transform: translateY(2px);
+        }
+    </style>
+    <script>
+        //articleTitle = the complete, verbatim title from the article
+        //articleUrl - the complete, verbatim URL of the article link
+        function saveArticle(articleTitle, articleUrl) {
+            //only the title and url of the article will be saved
+            const articleToSave = {
+                title: articleTitle,
+                url: articleUrl
+            };
+            //the local storage item is called, then the new article is appended, finally the updated list is stored
+            const savedArticles = JSON.parse(localStorage.getItem("savedArticles")) || [];
+            savedArticles.push(articleToSave);
+            localStorage.setItem("savedArticles", JSON.stringify(savedArticles));
+            //disable the button and change the text
+            var savedButton = document.getElementById(articleTitle);
+            savedButton.disabled = true;
+            savedButton.value = "Saved";
+        };
+    </script>
+</head>
+
+<body onload="changeDomain('techcrunch')">
+    <div class="container">
+        <img class="img-fluid align-top align-left" id="banner" src="http://127.0.0.1:5000/static/BB Logo.png" />
+        <div class="centered-navbar">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5000/">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="http://127.0.0.1:5000/saved">Saved Articles</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="http://127.0.0.1:5000/options">Options</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <h2 class="text-left mt-2 mb-4 welcome">Welcome! <span class="articles-text">Articles</span></h2>
+        <div id="datetime" class="text-muted mb-3"></div>
+        <!-- Move the domain box code here -->
+        <div class="row">
+            <div class="col-md-6">
+                <div id="datetime" class="text-muted mb-3"></div>
+            </div>
+            <div class="col-md-6">
+                <div class="domain-box">
+                    <div class="current-domain-text">Current Domain:</div>
+                    <a class="domain-button" id="changeDomain1" onclick="changeDomain('techcrunch')">TechCrunch</a>
+                    <a class="domain-button" id="changeDomain2" onclick="changeDomain('engadget')">Engadget</a>
+                    <a class="domain-button" id="changeDomain3" onclick="changeDomain('gizmodo')">Gizmodo</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row container align-items-stretch" id="card-container">
+            <!-- This is where the cards are loaded -->                
+        </div>
+    </div>
+    
+    <script>
+        // Get the current date and
+        let today = new Date();
+        // Format the date and time to display
+        let date = today.toLocaleDateString();
+        let time = today.toLocaleTimeString();
+
+        // Display the date and time
+        let datetime = document.getElementById('datetime');
+        datetime.innerHTML = `${date} ${time}`;
+
+    </script>
+    <script>
+        // Add this function to handle the domain change
+        function changeDomain(newDomain) {
+            const domainButtons = document.getElementsByClassName('domain-button');
+            for (let button of domainButtons) {
+                if (button.innerText.toLowerCase() === newDomain) {
+                    button.classList.add('selected-domain');
+                } else {
+                    button.classList.remove('selected-domain');
+                }
+            }
+
+            // Fetch new articles based on the selected domain
+            fetch('/fetch_articles', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: new URLSearchParams({ domain: newDomain })
+            }).then(response => response.json()).then(articles => {
+                updateArticles(articles);
+            });
+        }
+
+
+        function updateArticles(articles) {
+            const articleBody = document.querySelector("#card-container");
+            articleBody.innerHTML = "";//clear out container
+            // Loop through data and create cards
+            articles.forEach((article) => {
+                // Create card elements
+                const cardCol = document.createElement("div");
+                const card = document.createElement("div");
+                const cardBody = document.createElement("div");
+                const img = document.createElement("img");
+                const title = document.createElement("h5");
+                const description = document.createElement("p");
+                const link = document.createElement("a");
+                const input = document.createElement("input");
+
+                // Set card classes
+                cardCol.classList.add("col-md-4");
+                card.classList.add("card");
+                cardBody.classList.add("card-body");
+                img.classList.add("card-img-top");
+                // Set card content
+                img.src = article.urlToImage;
+                img.alt = "Image not found.";
+                title.classList.add("card-title", "text-center")
+                title.innerText = article.title;
+                description.classList.add("card-text")
+                description.innerText = article.description;
+                link.classList.add("card-link");
+                link.href = article.url;
+                link.target = "_blank";
+                link.innerText = "Link";
+                input.classList.add("save-article-button", "card-link");
+                input.type = "button";
+                input.id = article.title;
+                input.onclick = function () { saveArticle(article.title, article.url) };
+                input.value = "Save Article";
+
+                // Append card elements to parent
+                cardBody.appendChild(img);
+                cardBody.appendChild(title);
+                cardBody.appendChild(description);
+                cardBody.appendChild(link);
+                cardBody.appendChild(input);
+                // Append cardBody elements to card
+                card.appendChild(cardBody);
+                cardCol.appendChild(card);
+                // Append card elements to the main card-container div
+                articleBody.appendChild(cardCol);
+            });
+            checkSaved();
+        }
+
+    </script>
+    <script>
+        //This is another chained function, I think there was an issue with timing.
+        //The check needs to happen after the article cards are loaded. 
+        //  This works, I'm sure its not best practice.
+        //checkSaved runs on page load
+        //pulls up local storage and disables "save article" buttons
+        function checkSaved() {
+            const saved = JSON.parse(localStorage.getItem("savedArticles")) || [];
+            saved.forEach(savedItem => {
+                //looks through the saved article list for the "title"
+                //the title is used as the input button"s id
+                var savedButton = document.getElementById(savedItem.title);
+                savedButton.disabled = true;
+                savedButton.value = "Saved";
+            });
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
