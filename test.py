@@ -74,6 +74,32 @@ def fetch_articles(domain):
                     "id": "techcrunch",
                     "name": "TechCrunch"
                 },
+                "author": "Aisha Malik",
+                "title": "FTC proposes new rule to make it easier to cancel free trials and subscriptions",
+                "description": "The Federal Trade Commission has proposed a new rule that would make it easier for consumers to cancel free trials and subscriptions.",
+                "url": "https://techcrunch.com/2023/03/24/ftc-proposes-rule-easier-cancel-free-trials-subscriptions/",
+                "urlToImage": "https://techcrunch.com/wp-content/uploads/2023/03/lina-khan-image.jpg?resize=1200,795",
+                "publishedAt": "2023-03-24T17:01:51Z",
+                "content": "The Federal Trade Commission has proposed a new “click to cancel” rule that would make it easier for consumers to cancel free trials, auto-renewals and subscriptions. The proposed rule change covers … [+2710 chars]"
+            },
+            {
+                "source": {
+                    "id": "techcrunch",
+                    "name": "TechCrunch"
+                },
+                "author": "Devin Coldewey",
+                "title": "Blue Origin releases report on launch anomaly and plans to fly again 'soon'",
+                "description": "It's been 6 months since Blue Origin's 23rd launch failed, and the company has finally released the results of its investigation.",
+                "url": "https://techcrunch.com/2023/03/24/blue-origin-releases-report-on-launch-anomaly-and-plans-to-fly-again-soon/",
+                "urlToImage": "https://techcrunch.com/wp-content/uploads/2022/09/Screen-Shot-2022-09-12-at-10.40.47-AM.jpg?resize=1200,564",
+                "publishedAt": "2023-03-24T17:06:02Z",
+                "content": "It’s been nearly 6 months since Blue Origin’s 23rd suborbital launch experienced an anomaly, and the company has finally released the results of its investigation. The good news is the escape functio… [+2134 chars]"
+            },
+            {
+                "source": {
+                    "id": "techcrunch",
+                    "name": "TechCrunch"
+                },
                 "author": "Walter Thompson",
                 "title": "TechCrunch+ roundup: 20 questions VCs ask, crypto compliance tips, Indian investor survey",
                 "description": "There are a ton of barriers to launching a startup, but impostor syndrome need not be one of them.",
@@ -118,19 +144,6 @@ def fetch_articles(domain):
                     "id": "techcrunch",
                     "name": "TechCrunch"
                 },
-                "author": "Devin Coldewey",
-                "title": "Blue Origin releases report on launch anomaly and plans to fly again 'soon'",
-                "description": "It's been 6 months since Blue Origin's 23rd launch failed, and the company has finally released the results of its investigation.",
-                "url": "https://techcrunch.com/2023/03/24/blue-origin-releases-report-on-launch-anomaly-and-plans-to-fly-again-soon/",
-                "urlToImage": "https://techcrunch.com/wp-content/uploads/2022/09/Screen-Shot-2022-09-12-at-10.40.47-AM.jpg?resize=1200,564",
-                "publishedAt": "2023-03-24T17:06:02Z",
-                "content": "It’s been nearly 6 months since Blue Origin’s 23rd suborbital launch experienced an anomaly, and the company has finally released the results of its investigation. The good news is the escape functio… [+2134 chars]"
-            },
-            {
-                "source": {
-                    "id": "techcrunch",
-                    "name": "TechCrunch"
-                },
                 "author": "jkopeck",
                 "title": "Just 7 days until the TC Early Stage early bird flies away",
                 "description": "Book your TC Early Stage pass before April 1 and save up to $200 before early bird pricing closes.",
@@ -138,19 +151,6 @@ def fetch_articles(domain):
                 "urlToImage": "https://techcrunch.com/wp-content/uploads/2023/03/TC22_EarlyStage2023_Early-Bird_7-days_1200x628.png?w=1200",
                 "publishedAt": "2023-03-24T17:01:58Z",
                 "content": "Budget-minded entrepreneurs and early-stage startup founders take heed this is no time to procrastinate. We have only 7 days left of early-bird pricing to TechCrunch Early Stage 2023 in Boston on Apr… [+2451 chars]"
-            },
-            {
-                "source": {
-                    "id": "techcrunch",
-                    "name": "TechCrunch"
-                },
-                "author": "Aisha Malik",
-                "title": "FTC proposes new rule to make it easier to cancel free trials and subscriptions",
-                "description": "The Federal Trade Commission has proposed a new rule that would make it easier for consumers to cancel free trials and subscriptions.",
-                "url": "https://techcrunch.com/2023/03/24/ftc-proposes-rule-easier-cancel-free-trials-subscriptions/",
-                "urlToImage": "https://techcrunch.com/wp-content/uploads/2023/03/lina-khan-image.jpg?resize=1200,795",
-                "publishedAt": "2023-03-24T17:01:51Z",
-                "content": "The Federal Trade Commission has proposed a new “click to cancel” rule that would make it easier for consumers to cancel free trials, auto-renewals and subscriptions. The proposed rule change covers … [+2710 chars]"
             }
         ]
         return articles
