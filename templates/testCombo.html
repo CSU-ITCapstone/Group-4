@@ -6,10 +6,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"
-        integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5/Qzj62A4s8ti6G2wn30S2l35F2y935J2F3fUjD/" crossorigin="anonymous" />
-    <style>
+    integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous" />
+        <style>
         body {
             background-image: url('https://your-background-image-url.com');
             background-repeat: no-repeat;
@@ -180,7 +178,7 @@
             var savedButton = document.getElementById(articleTitle);
             savedButton.disabled = true;
             savedButton.value = "Saved";
-            savedButton.classList.remove("btn-primary");
+            savedButton.classList.remove("btn-info");
             savedButton.classList.add("btn-success");
         };
     </script>
@@ -195,7 +193,7 @@
                 if (savedButton !== null) {
                 savedButton.disabled = true;
                 savedButton.value = "Saved";
-                savedButton.classList.remove("btn-primary");
+                savedButton.classList.remove("btn-info");
                 savedButton.classList.add("btn-success");
                 };
             });
@@ -322,12 +320,12 @@
                 link.classList.add("card-link", "btn", "btn-primary");
                 link.href = article.url;
                 link.target = "_blank";
-                link.innerText = "Link";
-                input.classList.add("card-link", "btn", "btn-primary");
+                link.innerText = "Go to Link";
+                input.classList.add("card-link", "btn", "btn-info", "float-end");
                 input.type = "button";
                 input.id = article.title;
                 input.onclick = function () { saveArticle(article.title, article.url) };
-                input.value = "Save Article";
+                input.value = "Save for later";
 
                 // Append card elements to parent
                 cardBody.appendChild(title);

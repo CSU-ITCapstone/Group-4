@@ -72,11 +72,17 @@
             }
             localStorage.setItem("savedArticles", JSON.stringify(savedArticles));
 
-            var savedButton = document.getElementById(articleTitle);
-            savedButton.disabled = true;
-            savedButton.value = "Removed";
-            savedButton.classList.remove("btn-primary");
-            savedButton.classList.add("btn-success");
+
+            var savedCard = document.getElementById(articleTitle);
+            savedCard.classList.add("opacity-50");
+
+            var linkButton = savedCard.querySelector(".article-link");
+            linkButton.innerText = "Last chance";
+
+            var removeButton = savedCard.querySelector(".article-remove");
+            removeButton.disabled = true;
+            removeButton.value = "Removed";
+
         };
     </script>
 
@@ -133,19 +139,17 @@
                 cardCol.classList.add("col-md-8");
                 card.classList.add("card", "mb-3");
                 cardBody.classList.add("card-body");
-
+                cardBody.id = article.title;
                 // Set card content
                 title.innerText = article.title;
-                link.classList.add("card-link", "btn", "btn-primary");
+                link.classList.add("card-link", "btn", "btn-primary", "article-link");
                 link.href = article.url;
                 link.target = "_blank";
-                link.innerText = "Link";
-                input.classList.add("card-link", "btn", "btn-primary");
+                link.innerText = "Go to Link";
+                input.classList.add("card-link", "btn", "btn-warning", "float-end", "article-remove");
                 input.type = "button";
-                input.id = article.title;
                 input.onclick = function () { unsaveArticle(article.title) };
                 input.value = "Remove Article";
-
                 // Append card elements to parent
                 cardBody.appendChild(title);
                 cardBody.appendChild(link);
