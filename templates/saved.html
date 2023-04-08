@@ -65,7 +65,11 @@
 
     <script>
         function unsaveArticle(articleTitle) {
+<<<<<<< HEAD
             var savedArticles = JSON.parse(localStorage.getItem("savedArticles"));
+=======
+            var savedArticles = JSON.parse(localStorage.getItem('savedArticles'));
+>>>>>>> 3bd55699cf135a5076df3168704ddc54eb475542
             for (var i = savedArticles.length - 1; i >= 0; i--) {
                 if (savedArticles[i].title === articleTitle) {
                     savedArticles.splice(i, 1);
@@ -73,9 +77,23 @@
             }
             localStorage.setItem("savedArticles", JSON.stringify(savedArticles));
 
+<<<<<<< HEAD
             var savedButton = document.getElementById(articleTitle);
             savedButton.disabled = true;
             savedButton.value = "Removed";
+=======
+
+            var savedCard = document.getElementById(articleTitle);
+            savedCard.classList.add("opacity-50");
+
+            var linkButton = savedCard.querySelector(".article-link");
+            linkButton.innerText = "Last chance";
+
+            var removeButton = savedCard.querySelector(".article-remove");
+            removeButton.disabled = true;
+            removeButton.value = "Removed";
+
+>>>>>>> 3bd55699cf135a5076df3168704ddc54eb475542
         };
     </script>
 
@@ -96,8 +114,12 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item">
+<<<<<<< HEAD
                                 <a class="nav-link active" aria-current="page"
                                     href="http://127.0.0.1:5000/">Home</a>
+=======
+                                <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5000/">Home</a>
+>>>>>>> 3bd55699cf135a5076df3168704ddc54eb475542
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="http://127.0.0.1:5000/saved">Saved Articles</a>
@@ -111,9 +133,55 @@
                 </div>
             </nav>
         </div>
+<<<<<<< HEAD
     </div>
     <div class="container" id="card-container">
 
+=======
+        <div class="row" id="card-container">
+
+        </div>
+        <!--Loads all the saved articles-->
+        <script>
+            const saved = JSON.parse(localStorage.getItem("savedArticles")) || [];
+            // Generate HTML code for the saved card
+            const articleBody = document.querySelector("#card-container");
+            // Loop through data and create cards
+            saved.forEach((article) => {
+                // Create card elements
+                const cardCol = document.createElement("div");
+                const card = document.createElement("div");
+                const cardBody = document.createElement("div");
+                const title = document.createElement("h5");
+                const link = document.createElement("a");
+                const input = document.createElement("input");
+
+                // Set card classes
+                cardCol.classList.add("col-md-8");
+                card.classList.add("card", "mb-3");
+                cardBody.classList.add("card-body");
+                cardBody.id = article.title;
+                // Set card content
+                title.innerText = article.title;
+                link.classList.add("card-link", "btn", "btn-primary", "article-link");
+                link.href = article.url;
+                link.target = "_blank";
+                link.innerText = "Go to Link";
+                input.classList.add("card-link", "btn", "btn-warning", "float-end", "article-remove");
+                input.type = "button";
+                input.onclick = function () { unsaveArticle(article.title) };
+                input.value = "Remove Article";
+                // Append card elements to parent
+                cardBody.appendChild(title);
+                cardBody.appendChild(link);
+                cardBody.appendChild(input);
+
+                card.appendChild(cardBody);
+                cardCol.appendChild(card);
+                articleBody.appendChild(cardCol);
+            });
+        </script>
+>>>>>>> 3bd55699cf135a5076df3168704ddc54eb475542
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"

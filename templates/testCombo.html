@@ -6,10 +6,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+<<<<<<< HEAD
         integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"
         integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5/Qzj62A4s8ti6G2wn30S2l35F2y935J2F3fUjD/" crossorigin="anonymous" />
     <style>
+=======
+    integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous" />
+        <style>
+>>>>>>> 3bd55699cf135a5076df3168704ddc54eb475542
         body {
             background-image: url('https://your-background-image-url.com');
             background-repeat: no-repeat;
@@ -98,7 +103,12 @@
         }
 
         .card-text {
+<<<<<<< HEAD
             height: 4.3em; /* 3 lines of text with 1.4em line height */
+=======
+            height: 4.3em;
+            /* 3 lines of text with 1.4em line height */
+>>>>>>> 3bd55699cf135a5076df3168704ddc54eb475542
             overflow: hidden;
         }
 
@@ -159,6 +169,12 @@
             transform: translateY(2px);
         }
     </style>
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 3bd55699cf135a5076df3168704ddc54eb475542
     <script>
         //articleTitle = the complete, verbatim title from the article
         //articleUrl - the complete, verbatim URL of the article link
@@ -176,9 +192,38 @@
             var savedButton = document.getElementById(articleTitle);
             savedButton.disabled = true;
             savedButton.value = "Saved";
+<<<<<<< HEAD
         };
     </script>
 </head>
+=======
+            savedButton.classList.remove("btn-info");
+            savedButton.classList.add("btn-success");
+        };
+    </script>
+    <script>
+        //pulls up local storage and disables "save article" buttons
+        function checkSaved() {
+            const saved = JSON.parse(localStorage.getItem("savedArticles")) || [];
+            saved.forEach(savedItem => {
+                //looks through the saved article list for the "title"
+                //the title is used as the input button"s id
+                var savedButton = document.getElementById(savedItem.title);
+                if (savedButton !== null) {
+                savedButton.disabled = true;
+                savedButton.value = "Saved";
+                savedButton.classList.remove("btn-info");
+                savedButton.classList.add("btn-success");
+                };
+            });
+        }
+    </script>
+</head>
+<!--runs the main function when the page is loaded
+    defaulted to 'techcrunch'
+    Should it be changed to load with all domains active?
+-->
+>>>>>>> 3bd55699cf135a5076df3168704ddc54eb475542
 
 <body onload="changeDomain('techcrunch')">
     <div class="container">
@@ -223,11 +268,19 @@
             </div>
         </div>
 
+<<<<<<< HEAD
         <div class="row container align-items-stretch" id="card-container">
             <!-- This is where the cards are loaded -->                
         </div>
     </div>
     
+=======
+        <div class="row" id="card-container">
+            <!-- This is where the cards are loaded -->
+        </div>
+    </div>
+
+>>>>>>> 3bd55699cf135a5076df3168704ddc54eb475542
     <script>
         // Get the current date and
         let today = new Date();
@@ -281,6 +334,7 @@
                 const input = document.createElement("input");
 
                 // Set card classes
+<<<<<<< HEAD
                 cardCol.classList.add("col-md-4");
                 card.classList.add("card");
                 cardBody.classList.add("card-body");
@@ -304,11 +358,39 @@
 
                 // Append card elements to parent
                 cardBody.appendChild(img);
+=======
+                cardCol.classList.add("col-md-6");
+                card.classList.add("card", "mb-4");
+                cardBody.classList.add("card-body");
+                // Set card content
+                img.classList.add("card-img-top");
+                img.src = article.urlToImage;
+                img.alt = "Image not found.";
+                title.classList.add("card-title")
+                title.innerText = article.title;
+                description.classList.add("card-text")
+                description.innerText = article.description;
+                link.classList.add("card-link", "btn", "btn-primary");
+                link.href = article.url;
+                link.target = "_blank";
+                link.innerText = "Go to Link";
+                input.classList.add("card-link", "btn", "btn-info", "float-end");
+                input.type = "button";
+                input.id = article.title;
+                input.onclick = function () { saveArticle(article.title, article.url) };
+                input.value = "Save for later";
+
+                // Append card elements to parent
+>>>>>>> 3bd55699cf135a5076df3168704ddc54eb475542
                 cardBody.appendChild(title);
                 cardBody.appendChild(description);
                 cardBody.appendChild(link);
                 cardBody.appendChild(input);
                 // Append cardBody elements to card
+<<<<<<< HEAD
+=======
+                card.appendChild(img);
+>>>>>>> 3bd55699cf135a5076df3168704ddc54eb475542
                 card.appendChild(cardBody);
                 cardCol.appendChild(card);
                 // Append card elements to the main card-container div
@@ -316,6 +398,7 @@
             });
             checkSaved();
         }
+<<<<<<< HEAD
 
     </script>
     <script>
@@ -335,6 +418,10 @@
             });
         }
     </script>
+=======
+    </script>
+    
+>>>>>>> 3bd55699cf135a5076df3168704ddc54eb475542
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
