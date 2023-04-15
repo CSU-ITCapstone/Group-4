@@ -6,15 +6,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
-<<<<<<< HEAD
         integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"
-        integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5/Qzj62A4s8ti6G2wn30S2l35F2y935J2F3fUjD/" crossorigin="anonymous" />
     <style>
-=======
-    integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous" />
-        <style>
->>>>>>> 3bd55699cf135a5076df3168704ddc54eb475542
         body {
             background-image: url('https://your-background-image-url.com');
             background-repeat: no-repeat;
@@ -42,7 +35,8 @@
             transition: all 0.3s;
         }
 
-        .nav-link:hover {
+        .nav-link:hover,
+        .nav-link.active:hover {
             color: white;
             background-color: #333333;
             border: 1px solid #333333;
@@ -61,15 +55,15 @@
         .domain-box {
             width: 100%;
             display: flex;
-            justify-content: flex-end;
+            float: left;
+            justify-content: flex-start;
             align-items: center;
             flex-wrap: nowrap;
             gap: 1rem;
             position: sticky;
             top: 0;
-            background-color: white;
+            /* background-color: white; */
             padding: 1rem 0;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             z-index: 10;
         }
 
@@ -103,12 +97,8 @@
         }
 
         .card-text {
-<<<<<<< HEAD
-            height: 4.3em; /* 3 lines of text with 1.4em line height */
-=======
             height: 4.3em;
             /* 3 lines of text with 1.4em line height */
->>>>>>> 3bd55699cf135a5076df3168704ddc54eb475542
             overflow: hidden;
         }
 
@@ -168,13 +158,16 @@
         .domain-button:active {
             transform: translateY(2px);
         }
+
+        .left-aligned {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        }
     </style>
-<<<<<<< HEAD
-=======
 
 
 
->>>>>>> 3bd55699cf135a5076df3168704ddc54eb475542
     <script>
         //articleTitle = the complete, verbatim title from the article
         //articleUrl - the complete, verbatim URL of the article link
@@ -192,11 +185,6 @@
             var savedButton = document.getElementById(articleTitle);
             savedButton.disabled = true;
             savedButton.value = "Saved";
-<<<<<<< HEAD
-        };
-    </script>
-</head>
-=======
             savedButton.classList.remove("btn-info");
             savedButton.classList.add("btn-success");
         };
@@ -223,7 +211,6 @@
     defaulted to 'techcrunch'
     Should it be changed to load with all domains active?
 -->
->>>>>>> 3bd55699cf135a5076df3168704ddc54eb475542
 
 <body onload="changeDomain('techcrunch')">
     <div class="container">
@@ -236,51 +223,55 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav">
+                        <!-- <ul class="navbar-nav">
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5000/">Home</a>
-                            </li>
-                            <li class="nav-item">
+                            </li> -->
+                            <!-- <div class="col-md-6 left-aligned"> -->
+                                <!-- <div class="domain-box">
+                                    <p class="current-domain-text">Current Domain:</p>
+                                    <a class="domain-button" id="changeDomain1" onclick="changeDomain('techcrunch')">TechCrunch</a>
+                                    <a class="domain-button" id="changeDomain2" onclick="changeDomain('engadget')">Engadget</a>
+                                    <a class="domain-button" id="changeDomain3" onclick="changeDomain('gizmodo')">Gizmodo</a>
+                                </div> -->
+                            <!-- </div> -->
+                            <!-- <li class="nav-item">
                                 <a class="nav-link" href="http://127.0.0.1:5000/saved">Saved Articles</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="http://127.0.0.1:5000/options">Options</a>
                             </li>
-                        </ul>
+                        </ul> -->
+                         <div class="col-md-6 left-aligned">
+                                <div class="domain-box">
+                                    <!-- <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5000/">Home</a> -->
+                                    <!-- <p class="current-domain-text">Current Domain:</p> -->
+                                    <a class="domain-button" id="changeDomain1" onclick="changeDomain('techcrunch')">TechCrunch</a>
+                                    <a class="domain-button" id="changeDomain2" onclick="changeDomain('engadget')">Engadget</a>
+                                    <a class="domain-button" id="changeDomain3" onclick="changeDomain('gizmodo')">Gizmodo</a>
+                                    <a class="nav-link" href="http://127.0.0.1:5000/saved">Saved</a>
+                                    <a class="nav-link" href="http://127.0.0.1:5000/options">Options</a>
+                                </div>
+                        </div>
                     </div>
+                   
                 </div>
             </nav>
         </div>
-        <h2 class="text-left mt-2 mb-4 welcome">Welcome! <span class="articles-text">Articles</span></h2>
+        <h2 class="text-left mt-2 mb-4 welcome">Welcome!</h2>
         <div id="datetime" class="text-muted mb-3"></div>
         <!-- Move the domain box code here -->
-        <div class="row">
+        <div class="column">
             <div class="col-md-6">
                 <div id="datetime" class="text-muted mb-3"></div>
             </div>
-            <div class="col-md-6">
-                <div class="domain-box">
-                    <div class="current-domain-text">Current Domain:</div>
-                    <a class="domain-button" id="changeDomain1" onclick="changeDomain('techcrunch')">TechCrunch</a>
-                    <a class="domain-button" id="changeDomain2" onclick="changeDomain('engadget')">Engadget</a>
-                    <a class="domain-button" id="changeDomain3" onclick="changeDomain('gizmodo')">Gizmodo</a>
-                </div>
-            </div>
         </div>
 
-<<<<<<< HEAD
-        <div class="row container align-items-stretch" id="card-container">
-            <!-- This is where the cards are loaded -->                
-        </div>
-    </div>
-    
-=======
         <div class="row" id="card-container">
             <!-- This is where the cards are loaded -->
         </div>
     </div>
 
->>>>>>> 3bd55699cf135a5076df3168704ddc54eb475542
     <script>
         // Get the current date and
         let today = new Date();
@@ -334,31 +325,6 @@
                 const input = document.createElement("input");
 
                 // Set card classes
-<<<<<<< HEAD
-                cardCol.classList.add("col-md-4");
-                card.classList.add("card");
-                cardBody.classList.add("card-body");
-                img.classList.add("card-img-top");
-                // Set card content
-                img.src = article.urlToImage;
-                img.alt = "Image not found.";
-                title.classList.add("card-title", "text-center")
-                title.innerText = article.title;
-                description.classList.add("card-text")
-                description.innerText = article.description;
-                link.classList.add("card-link");
-                link.href = article.url;
-                link.target = "_blank";
-                link.innerText = "Link";
-                input.classList.add("save-article-button", "card-link");
-                input.type = "button";
-                input.id = article.title;
-                input.onclick = function () { saveArticle(article.title, article.url) };
-                input.value = "Save Article";
-
-                // Append card elements to parent
-                cardBody.appendChild(img);
-=======
                 cardCol.classList.add("col-md-6");
                 card.classList.add("card", "mb-4");
                 cardBody.classList.add("card-body");
@@ -374,54 +340,32 @@
                 link.href = article.url;
                 link.target = "_blank";
                 link.innerText = "Go to Link";
+                link.style.background = '#dc8cda';
                 input.classList.add("card-link", "btn", "btn-info", "float-end");
                 input.type = "button";
                 input.id = article.title;
                 input.onclick = function () { saveArticle(article.title, article.url) };
                 input.value = "Save for later";
+                input.style.background = '#dc8cdb';
+                input.style.color = '#fff';
+                
 
                 // Append card elements to parent
->>>>>>> 3bd55699cf135a5076df3168704ddc54eb475542
                 cardBody.appendChild(title);
                 cardBody.appendChild(description);
                 cardBody.appendChild(link);
                 cardBody.appendChild(input);
                 // Append cardBody elements to card
-<<<<<<< HEAD
-=======
                 card.appendChild(img);
->>>>>>> 3bd55699cf135a5076df3168704ddc54eb475542
                 card.appendChild(cardBody);
                 cardCol.appendChild(card);
-                // Append card elements to the main card-container div
+                // Append card elements to the main card-container divS
                 articleBody.appendChild(cardCol);
             });
             checkSaved();
         }
-<<<<<<< HEAD
-
-    </script>
-    <script>
-        //This is another chained function, I think there was an issue with timing.
-        //The check needs to happen after the article cards are loaded. 
-        //  This works, I'm sure its not best practice.
-        //checkSaved runs on page load
-        //pulls up local storage and disables "save article" buttons
-        function checkSaved() {
-            const saved = JSON.parse(localStorage.getItem("savedArticles")) || [];
-            saved.forEach(savedItem => {
-                //looks through the saved article list for the "title"
-                //the title is used as the input button"s id
-                var savedButton = document.getElementById(savedItem.title);
-                savedButton.disabled = true;
-                savedButton.value = "Saved";
-            });
-        }
-    </script>
-=======
     </script>
     
->>>>>>> 3bd55699cf135a5076df3168704ddc54eb475542
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
