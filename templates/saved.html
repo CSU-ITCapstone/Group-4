@@ -63,29 +63,7 @@
         }
     </style>
 
-    <script>
-        function unsaveArticle(articleTitle) {
-            var savedArticles = JSON.parse(localStorage.getItem('savedArticles'));
-            for (var i = savedArticles.length - 1; i >= 0; i--) {
-                if (savedArticles[i].title === articleTitle) {
-                    savedArticles.splice(i, 1);
-                }
-            }
-            localStorage.setItem("savedArticles", JSON.stringify(savedArticles));
-
-
-            var savedCard = document.getElementById(articleTitle);
-            savedCard.classList.add("opacity-50");
-
-            var linkButton = savedCard.querySelector(".article-link");
-            linkButton.innerText = "Last chance";
-
-            var removeButton = savedCard.querySelector(".article-remove");
-            removeButton.disabled = true;
-            removeButton.value = "Removed";
-
-        };
-    </script>
+    <script src="static/unsaveArticle.js"></script>
 
 </head>
 
@@ -165,46 +143,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
         crossorigin="anonymous"></script>
-    <!--Loads all the saved articles-->
-    <script>
-        const saved = JSON.parse(localStorage.getItem("savedArticles")) || [];
-
-        // Generate HTML code for the saved card
-        const articleBody = document.querySelector("#card-container");
-
-        // Loop through data and create cards
-        saved.forEach((article) => {
-            // Create card elements
-            const card = document.createElement("div");
-            const cardBody = document.createElement("div");
-            const title = document.createElement("h5");
-            const link = document.createElement("a");
-            const input = document.createElement("input");
-
-            // Set card classes
-            card.classList.add("card", "mb-3");
-            cardBody.classList.add("card-body");
-
-            // Set card content
-            title.innerText = article.title;
-            link.href = article.url;
-            link.target = "_blank";
-            link.innerText = "Link";
-            input.type = "button";
-            input.id = article.title;
-            input.onclick = function () { unsaveArticle(article.title) };
-            input.value = "Remove Article";
-
-            // Append card elements to parent
-            cardBody.appendChild(title);
-            cardBody.appendChild(link);
-            cardBody.appendChild(input);
-
-            card.appendChild(cardBody);
-            articleBody.appendChild(card);
-        });
-    </script>
-
 </body>
 
 </html>
