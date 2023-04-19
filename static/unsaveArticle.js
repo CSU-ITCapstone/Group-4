@@ -19,13 +19,8 @@ function unsaveArticle(articleTitle) {
     localStorage.setItem("savedArticles", JSON.stringify(savedArticles));
 
     // Update the state of the corresponding card's save button and remove button
-    var savedCard = document.getElementById(articleTitle);
-    savedCard.classList.add("opacity-50");
-
-    var linkButton = savedCard.querySelector(".article-link");
-    linkButton.innerText = "Last chance";
-
-    var removeButton = savedCard.querySelector(".article-remove");
-    removeButton.disabled = true;
-    removeButton.value = "Removed";
+    var removeButton = document.getElementById(articleTitle);
+    removeButton.value = "Save";
+    removeButton.classList.remove("btn-warning");
+    removeButton.classList.add("btn-success");
 }

@@ -38,13 +38,13 @@ function updateArticles(articles) {
         link.target = "_blank";
         link.innerText = "Go to Link";
         link.style.background = '#dc8cda';
-        input.classList.add("card-link", "btn", "btn-info", "float-end");
+        input.classList.add("card-link", "btn", "btn-success", "float-end");
         input.type = "button";
         input.id = article.title;
-        input.onclick = function () { saveArticle(article.title, article.url) };
-        input.value = "Save for later";
-        input.style.background = '#dc8cdb';
-        input.style.color = '#fff';
+        input.value = "Save";
+        input.onclick = function () { toggleButton( article.title, article.url, input.value ) };
+        //input.style.background = '#dc8cdb';
+        //input.style.color = '#fff';
 
         // Append card elements to parent
         cardBody.appendChild(title);

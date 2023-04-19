@@ -11,10 +11,9 @@ function checkSaved() {
     saved.forEach(savedItem => {
         var savedButton = document.getElementById(savedItem.title);
         if (savedButton !== null) {
-            savedButton.disabled = true;
-            savedButton.value = "Saved";
-            savedButton.classList.remove("btn-info");
-            savedButton.classList.add("btn-success");
+            savedButton.value = "Unsave";
+            savedButton.classList.remove("btn-success");
+            savedButton.classList.add("btn-warning");
         };
     });
 }

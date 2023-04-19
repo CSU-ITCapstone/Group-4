@@ -64,7 +64,9 @@
     </style>
 
     <script src="static/unsaveArticle.js"></script>
-
+    <script src="static/saveArticle.js"></script>
+    <script src="static/toggleButton.js"></script>
+    
 </head>
 
 <body>
@@ -97,8 +99,8 @@
             </nav>
         </div>
         <div class="row" id="card-container">
-
         </div>
+    
         <!--Loads all the saved articles-->
         <script>
             const saved = JSON.parse(localStorage.getItem("savedArticles")) || [];
@@ -118,7 +120,6 @@
                 cardCol.classList.add("col-md-8");
                 card.classList.add("card", "mb-3");
                 cardBody.classList.add("card-body");
-                cardBody.id = article.title;
                 // Set card content
                 title.innerText = article.title;
                 link.classList.add("card-link", "btn", "btn-primary", "article-link");
@@ -127,8 +128,10 @@
                 link.innerText = "Go to Link";
                 input.classList.add("card-link", "btn", "btn-warning", "float-end", "article-remove");
                 input.type = "button";
-                input.onclick = function () { unsaveArticle(article.title) };
-                input.value = "Remove Article";
+                input.id = article.title;
+                input.value = "Unsave";
+                input.onclick = function () { toggleButton( article.title, article.url, input.value ) };
+                
                 // Append card elements to parent
                 cardBody.appendChild(title);
                 cardBody.appendChild(link);
@@ -140,6 +143,7 @@
             });
         </script>
     </div>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
         crossorigin="anonymous"></script>

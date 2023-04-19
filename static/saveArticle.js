@@ -24,8 +24,7 @@ function saveArticle(articleTitle, articleUrl) {
 
     // Find the save button for the article and update its state
     var savedButton = document.getElementById(articleTitle);
-    savedButton.disabled = true;
-    savedButton.value = "Saved";
-    savedButton.classList.remove("btn-info");
-    savedButton.classList.add("btn-success");
+    savedButton.value = "Unsave";
+    savedButton.classList.remove("btn-success");
+    savedButton.classList.add("btn-warning");
 }
