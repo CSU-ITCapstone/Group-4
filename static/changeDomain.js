@@ -14,16 +14,4 @@ function changeDomain(newDomain) {
             button.classList.remove('selected-domain');
         }
     }
-
-    // Fetch new articles based on the selected domain
-    fetch('/fetch_articles', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: new URLSearchParams({ domain: newDomain })
-    }).then(response => response.json()).then(articles => {
-        // Update the list of articles based on the fetched data
-        updateArticles(articles);
-    });
 }

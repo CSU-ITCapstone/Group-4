@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <title>Byte Beat</title>
@@ -68,7 +68,8 @@
 
     <div class="container">
 
-        <img class="img-fluid align-top align-left" id="banner" src="http://127.0.0.1:5000/static/BB Logo.png" alt="img not found"/>
+        <img class="img-fluid align-top align-left" id="banner" src="http://127.0.0.1:5000/static/BB Logo.png"
+            alt="img not found" />
         <div class="centered-navbar">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
@@ -96,28 +97,25 @@
         <h2 class="text-left mt-2 mb-4 welcome">Welcome! <span class="articles-text">Articles</span></h2>
         <div id="datetime" class="text-muted mb-3"></div>
 
-        <!--    class="checkbox-input" is used as identifier for local storage script
-                value="option1"... is used as local storage key
-                We can add as many checkbox options as needed
-        -->
         <div class="form-check">
-            <input class="form-check-input checkbox-input" type="checkbox" value="option1" id="checkbox1" checked>
-            <label class="form-check-label" for="checkbox1">
-                Gizmodo
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="Technology" title="Lets the user select a category" checked>
+            <label class="form-check-label" for="Technology">
+                Technology
             </label>
         </div>
         <div class="form-check">
-            <input class="form-check-input checkbox-input" type="checkbox" value="option2" id="checkbox2" checked>
-            <label class="form-check-label" for="checkbox2">
-                TechCrunch
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="Entertainment" title="Lets the user select a category">
+            <label class="form-check-label" for="Entertainment">
+                Entertainment
             </label>
         </div>
         <div class="form-check">
-            <input class="form-check-input checkbox-input" type="checkbox" value="option3" id="checkbox3" checked>
-            <label class="form-check-label" for="checkbox3">
-                Engadget
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="Business" title="Lets the user select a category">
+            <label class="form-check-label" for="Business">
+                Business
             </label>
         </div>
+
     </div>
 
     <script>
@@ -137,28 +135,22 @@
         crossorigin="anonymous"></script>
 
     <script>
-        //checkboxes - looks for each .checkbox-input item
-        const checkboxes = document.querySelectorAll('.checkbox-input');
+        
+        //gets the local storage key value
+        const selectedCategory = localStorage.getItem("selectedCategory");
+        
+        //set radio button with id=selectedCategory to checked
+        document.getElementById(selectedCategory).checked = true;
+        
+        //gets the radio button elements
+        const radioButton = document.querySelectorAll('input[type="radio"]');     
 
-        //checks the local storage for checkbox values during page load
-        checkboxes.forEach(checkbox => {
-            //gets the value attribute of the checkbox, i.e. option1
-            const checkboxValue = checkbox.value;
-            //looks for the local storage object where the key=value
-            const checkboxChecked = localStorage.getItem(checkboxValue);
-            //the form checkbox will be set to the stored value, true or false
-            if (checkboxChecked !== null) {
-                checkbox.checked = JSON.parse(checkboxChecked);
-            }
-        });
-
-        //adds a listen event for each checkbox item to update local storage value
-        checkboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', event => {
-                const checkboxValue = event.target.value;
-                const checkboxChecked = event.target.checked;
-                //example:(checkboxValue, checkboxChecked) will store as (option1, true)
-                localStorage.setItem(checkboxValue, checkboxChecked);
+        //saves the radiobutton selection to local storage
+        radioButton.forEach(radio => {
+            radio.addEventListener('change', event => {
+                const radioChecked = event.target.id;
+                //sets the local storage key=value
+                localStorage.setItem("selectedCategory", radioChecked);
             });
         });
     </script>
