@@ -7,20 +7,22 @@
  * @returns {void}
  */
 function getArticles(selectedDomain) {
-    const domain = selectedDomain;
+   
     // Get the time of the last API call from local storage
     const lastApiCall = localStorage.getItem('lastApiCall');
+    
     // Get the current time
     const now = new Date();
+    
     // Calculate the time difference in milliseconds
     const oneDay = 24 * 60 * 60 * 1000; // one day in milliseconds
     const timeSinceLastApiCall = now - new Date(lastApiCall);
 
     // Check if the articles are already stored in local storage
+    // If they are not stored in local storage or if the last API call was more than a day ago,
+    // make a new API call to retrieve the articles
     if (!lastApiCall || timeSinceLastApiCall > oneDay) {
-        
-        // If the articles are not stored in local storage or if the last API call was more than a day ago,
-        // make a new API call to retrieve the articles
+        // Make a new API call to retrieve the articles
         fetch('/fetch_articles', {
             method: 'POST',
             headers: {
@@ -29,11 +31,11 @@ function getArticles(selectedDomain) {
         }).then(response => response.json()).then(articles => {
             //save articles to session storage, then update articles
             sessionStorage.setItem('articles', JSON.stringify(articles));
-            updateArticles(articles, domain);
+            updateArticles(articles, selectedDomain);
         });
     } else {
         // If the articles are already stored in local storage, retrieve them from local storage
         const savedArticles = JSON.parse(sessionStorage.getItem('articles'));
-        updateArticles(savedArticles, domain);
+        updateArticles(savedArticles, selectedDomain);
     }
 }

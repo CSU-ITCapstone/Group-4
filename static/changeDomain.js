@@ -7,6 +7,8 @@
 function changeDomain(newDomain) {
     // Get all domain buttons and update their selected state based on the new domain
     const domainButtons = document.getElementsByClassName('domain-button');
+    
+    // Update the selected domain in the domain selector
     for (let button of domainButtons) {
         if (button.innerText.toLowerCase() === newDomain) {
             button.classList.add('selected-domain');
