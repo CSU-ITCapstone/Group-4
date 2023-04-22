@@ -51,7 +51,7 @@ function updateArticles(articles) {
         input.type = "button";
         input.id = article.title;
         input.value = "Save";
-        input.onclick = function () { toggleButton(article.title, article.url, input.value) };
+        input.onclick = function () { toggleButton(article.title, article.url, article.urlToImage, input.value) };
 
         // Append card elements to parent
         cardBody.appendChild(title);

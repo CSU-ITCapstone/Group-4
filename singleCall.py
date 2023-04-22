@@ -11,7 +11,6 @@ def home():
 
 def fetch_articles( selectedCategory ):
     articles = newsapi.get_top_headlines(
-        #domains = 'techcrunch.com, engadget.com, wired.com, ign.com, indiewire.com, kotaku.com, reuters.com, bloomberg.com, marketwatch.com',
         country ='us',
         # technology, business, entertainment, general, health, science, sports
         category = selectedCategory

@@ -3,14 +3,16 @@
  *
  * @param {string} articleTitle - The title of the article.
  * @param {string} articleUrl - The URL of the article.
+ * @param {string} articleUrlToImage - The URL of the article's image.
  *
  * @returns {void}
  */
-function saveArticle(articleTitle, articleUrl) {
+function saveArticle(articleTitle, articleUrl, articleUrlToImage) {
     // Create an object to represent the article
     const articleToSave = {
         title: articleTitle,
-        url: articleUrl
+        url: articleUrl,
+        urlToImage: articleUrlToImage
     };
 
     // Retrieve the list of saved articles from local storage or create an empty array if there are none

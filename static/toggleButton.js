@@ -7,12 +7,12 @@
  * 
  * @return {void}
  */
-function toggleButton(articleTitle, articleUrl, saveState) {
+function toggleButton(articleTitle, articleUrl, articleUrlToImage, saveState) {
     if (saveState === "Unsave") {
         // If the button is in the "save" state, unsave the article
         unsaveArticle(articleTitle);
     } else if (saveState === "Save") {
         // If the button is in the "remove" state, save the article
-        saveArticle(articleTitle, articleUrl);       
+        saveArticle(articleTitle, articleUrl, articleUrlToImage);       
     }
 }
