@@ -98,19 +98,23 @@
         <div id="datetime" class="text-muted mb-3"></div>
 
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="Technology" title="Lets the user select a category" checked>
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="technology"
+                title="Lets the user select a category" checked>
             <label class="form-check-label" for="Technology">
                 Technology
             </label>
         </div>
+
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="Entertainment" title="Lets the user select a category">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="entertainment"
+                title="Lets the user select a category">
             <label class="form-check-label" for="Entertainment">
                 Entertainment
             </label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="Business" title="Lets the user select a category">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="business"
+                title="Lets the user select a category">
             <label class="form-check-label" for="Business">
                 Business
             </label>
@@ -135,15 +139,18 @@
         crossorigin="anonymous"></script>
 
     <script>
-        
+
         //gets the local storage key value
         const selectedCategory = localStorage.getItem("selectedCategory");
-        
+
         //set radio button with id=selectedCategory to checked
-        document.getElementById(selectedCategory).checked = true;
-        
+        const defaultRadio = document.getElementById(selectedCategory);
+        if (defaultRadio !== null) {
+            defaultRadio.checked = true;
+        };
+
         //gets the radio button elements
-        const radioButton = document.querySelectorAll('input[type="radio"]');     
+        const radioButton = document.querySelectorAll('input[type="radio"]');
 
         //saves the radiobutton selection to local storage
         radioButton.forEach(radio => {

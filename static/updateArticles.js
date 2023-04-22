@@ -2,69 +2,71 @@
  * Update the list of articles displayed in the DOM
  * It is followed by a call to function checkSaved()
  * @param {Array} articles - An array of article objects, each with title, description, url, and urlToImage properties
- * @param {string} selectedDomain - The name of the domain to select. 
  * @returns {void}
  */
-function updateArticles(articles, selectedDomain) {
+function updateArticles(articles) {
     // Get the container for the articles
     const articleBody = document.querySelector("#card-container");
-    
+
     // Clear out the container
     articleBody.innerHTML = "";
 
     // Loop through data and create cards
     articles.forEach((article) => {
-        // Check if the article is from the selected domain
-        if (article.source.name == selectedDomain) {
-            // Create card elements
-            const cardCol = document.createElement("div");
-            const card = document.createElement("div");
-            const cardBody = document.createElement("div");
-            const img = document.createElement("img");
-            const title = document.createElement("h5");
-            const description = document.createElement("p");
-            const link = document.createElement("a");
-            const input = document.createElement("input");
 
-            // Set card classes
-            cardCol.classList.add("col-md-6");
-            card.classList.add("card", "mb-4");
-            cardBody.classList.add("card-body");
+        // Create card elements
+        const cardCol = document.createElement("div");
+        const card = document.createElement("div");
+        const cardBody = document.createElement("div");
+        const img = document.createElement("img");
+        const title = document.createElement("h5");
+        const description = document.createElement("p");
+        const link = document.createElement("a");
+        const input = document.createElement("input");
 
-            // Set card content
-            img.classList.add("card-img-top");
+        // Set card classes
+        cardCol.classList.add("col-md-6");
+        card.classList.add("card", "mb-4");
+        cardBody.classList.add("card-body");
+
+        // Set card content
+        img.classList.add("card-img-top");
+        // add a placeholder image if the article does not have an image
+        if (article.urlToImage == null || article.urlToImage == "null") {
+            img.src = "http://127.0.0.1:5000/static/placeholder.png";
+        } else {
             img.src = article.urlToImage;
-            img.alt = "Image not found.";
-            title.classList.add("card-title")
-            title.innerText = article.title;
-            description.classList.add("card-text")
-            description.innerText = article.description;
-            link.classList.add("card-link", "btn", "btn-primary");
-            link.href = article.url;
-            link.target = "_blank";
-            link.innerText = "Go to Link";
-            link.style.background = '#dc8cda';
-            input.classList.add("card-link", "btn", "btn-success", "float-end");
-            input.type = "button";
-            input.id = article.title;
-            input.value = "Save";
-            input.onclick = function () { toggleButton(article.title, article.url, input.value) };
+        };
+        img.alt = "Image not found.";
+        title.classList.add("card-title")
+        title.innerText = article.title;
+        description.classList.add("card-text")
+        description.innerText = article.description;
+        link.classList.add("card-link", "btn", "btn-primary");
+        link.href = article.url;
+        link.target = "_blank";
+        link.innerText = "Go to Link";
+        link.style.background = '#dc8cda';
+        input.classList.add("card-link", "btn", "btn-success", "float-end");
+        input.type = "button";
+        input.id = article.title;
+        input.value = "Save";
+        input.onclick = function () { toggleButton(article.title, article.url, input.value) };
 
-            // Append card elements to parent
-            cardBody.appendChild(title);
-            cardBody.appendChild(description);
-            cardBody.appendChild(link);
-            cardBody.appendChild(input);
+        // Append card elements to parent
+        cardBody.appendChild(title);
+        cardBody.appendChild(description);
+        cardBody.appendChild(link);
+        cardBody.appendChild(input);
 
-            // Append cardBody elements to card
-            card.appendChild(img);
-            card.appendChild(cardBody);
-            cardCol.appendChild(card);
+        // Append cardBody elements to card
+        card.appendChild(img);
+        card.appendChild(cardBody);
+        cardCol.appendChild(card);
 
-            // Append card elements to the main card-container divS
-            articleBody.appendChild(cardCol);
-        }
+        // Append card elements to the main card-container divS
+        articleBody.appendChild(cardCol);
     });
-    
+
     checkSaved();
 }
