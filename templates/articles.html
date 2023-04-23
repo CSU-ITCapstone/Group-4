@@ -21,17 +21,30 @@
         }
 
         .navbar {
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            background-color: white !important;
+            width: 100%;
+            display: flex;
+            float: left;
+            justify-content: flex-start;
+            align-items: center;
+            flex-wrap: nowrap;
+            gap: 1rem;
+            position: sticky;
+            top: 0;
+            /* background-color: white; */
+            padding: 1rem 0;
+            z-index: 10;
         }
 
         .nav-link {
+            cursor: pointer;
+            /* Add this to show a hand with a finger(selector) when hovering over the buttons */
             font-size: 1.25rem;
             color: #333333;
             background-color: white;
             padding: 10px 15px;
             border-radius: 5px;
             border: 1px solid transparent;
+            text-decoration: none;
             transition: all 0.3s;
         }
 
@@ -51,41 +64,7 @@
             font-size: 1.5rem;
             color: #333333;
         }
-
-        .domain-box {
-            width: 100%;
-            display: flex;
-            float: left;
-            justify-content: flex-start;
-            align-items: center;
-            flex-wrap: nowrap;
-            gap: 1rem;
-            position: sticky;
-            top: 0;
-            /* background-color: white; */
-            padding: 1rem 0;
-            z-index: 10;
-        }
-
-        .domain-button {
-            cursor: pointer;
-            /* Add this to show a hand with a finger(selector) when hovering over the buttons */
-            font-size: 1.25rem;
-            color: #333333;
-            background-color: white;
-            padding: 10px 15px;
-            border-radius: 5px;
-            border: 1px solid transparent;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-
-        .domain-button:hover {
-            color: white;
-            background-color: #333333;
-            border: 1px solid #333333;
-        }
-
+        
         .current-domain {
             background-color: blue;
             color: white;
@@ -149,16 +128,6 @@
             margin-bottom: 10px;
         }
 
-        .selected-domain {
-            background-color: #1193d4;
-            color: white;
-            border: 1px solid #333333;
-        }
-
-        .domain-button:active {
-            transform: translateY(2px);
-        }
-
         .left-aligned {
             display: flex;
             flex-direction: column;
@@ -188,12 +157,8 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <div class="col-md-6 left-aligned">
                             <div class="navbar">
-                                <a class="nav-item" href="http://127.0.0.1:5000/saved">Saved</a>
-                                <a class="nav-item" href="http://127.0.0.1:5000/options">Options</a>
-                            </div>
-                            <div class="domain-box" id="domain-box">
-                                <!-- The nav bar for the domains of the selected catergory are added here
-                                by the script updateNavbar.js -->
+                                <a class="nav-item" href="http://127.0.0.1:5000/saved">Saved Articles</a>
+                                <a class="nav-item" href="http://127.0.0.1:5000/">Change Category</a>
                             </div>
                         </div>
                     </div>

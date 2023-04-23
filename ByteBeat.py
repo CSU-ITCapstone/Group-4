@@ -6,7 +6,7 @@ newsapi = NewsApiClient(api_key='a7ce5af704c4493584f1068248f3b540')
 
 @app.route('/')
 def home():
-    return render_template('singleCall.html')
+    return render_template('main.html')
 
 
 def fetch_articles( selectedCategory ):
@@ -29,9 +29,9 @@ def fetch_articles_route():
     return jsonify( articles )
 
 
-@ app.route("/options")
-def options():
-    return render_template('options.html')
+@ app.route("/articles")
+def articles():
+    return render_template('articles.html')
 
 
 @ app.route("/saved")
