@@ -51,7 +51,26 @@ function getArticles() {
             localStorage.setItem( 'articles' + selectedCategory, JSON.stringify( articles ) );
             updateArticles( articles );
         } );
-    } else {
+    } else if ( !localStorage.getItem( 'articles' + selectedCategory ) ){
+        // If the articles are not stored in local storage, make a new API call to retrieve the articles
+        // add category to params to be sent to server
+        const categoryParams = new URLSearchParams( );
+        categoryParams.append( 'category', selectedCategory );
+
+        // Make a new API call to retrieve the articles
+        fetch( '/fetch_articles', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: categoryParams
+        } ).then(response => response.json()).then(articles => {
+            //save articles to session storage, then update articles
+            localStorage.setItem( 'articles' + selectedCategory, JSON.stringify( articles ) );
+            updateArticles( articles );
+        } );
+    }
+    else {
         // If the articles are already stored in local storage, retrieve them from local storage
         const savedArticles = JSON.parse( localStorage.getItem( 'articles' + selectedCategory ) );
         updateArticles( savedArticles );
