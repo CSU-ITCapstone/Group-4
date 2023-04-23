@@ -26,7 +26,8 @@ function getArticles() {
     // Calculate the time difference in milliseconds
     const oneDay = 24 * 60 * 60 * 1000; // one day in milliseconds
     const timeSinceLastApiCall = now - new Date( lastApiCall );
-
+    console.log( timeSinceLastApiCall );
+    console.log( oneDay );
     // Check if the articles are already stored in local storage
     // If they are not stored in local storage or if the last API call was more than a day ago,
     // make a new API call to retrieve the articles
@@ -47,12 +48,12 @@ function getArticles() {
             body: categoryParams
         } ).then(response => response.json()).then(articles => {
             //save articles to session storage, then update articles
-            sessionStorage.setItem( 'articles' + selectedCategory, JSON.stringify( articles ) );
+            localStorage.setItem( 'articles' + selectedCategory, JSON.stringify( articles ) );
             updateArticles( articles );
         } );
     } else {
         // If the articles are already stored in local storage, retrieve them from local storage
-        const savedArticles = JSON.parse( sessionStorage.getItem( 'articles' + selectedCategory ) );
+        const savedArticles = JSON.parse( localStorage.getItem( 'articles' + selectedCategory ) );
         updateArticles( savedArticles );
     }
 }
