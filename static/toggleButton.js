@@ -1,5 +1,5 @@
 /**
- *Toggles the functionality of a button between saving and unsaving an article.
+ * Toggles the functionality of a button between saving and unsaving an article.
  *
  * @param {string} articleTitle - The title of the article to be saved or unsaved.
  * @param {string} articleUrl - The URL of the article to be saved.
