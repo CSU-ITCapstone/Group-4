@@ -10,6 +10,7 @@ function checkSaved() {
     // Loop through each saved article and update its save button's state
     saved.forEach(savedItem => {
         var savedButton = document.getElementById(savedItem.title);
+        // If the article has been saved, update the button's text and style
         if (savedButton !== null) {
             savedButton.value = "Unsave";
             savedButton.classList.remove("btn-success");

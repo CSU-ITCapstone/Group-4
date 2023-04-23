@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify, request, session
+from flask import Flask, render_template, jsonify, request
 from newsapi import NewsApiClient
 
 app = Flask(__name__)
