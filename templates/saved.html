@@ -184,10 +184,12 @@
                 link.href = article.url;
                 link.target = "_blank";
                 link.innerText = "Go to Link";
+                link.style.background = '#dc8cda';
                 input.classList.add("card-link", "btn", "btn-warning", "float-end", "article-remove");
                 input.type = "button";
                 input.id = article.title;
                 input.value = "Unsave";
+                input.style.background = '#dc8cda';
                 input.onclick = function () { toggleButton(article.title, article.url, article.urlToImage, input.value) };
 
                 // Append card elements to parent
