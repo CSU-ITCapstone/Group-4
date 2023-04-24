@@ -44,7 +44,7 @@ function updateArticles(articles) {
         title.innerText = article.title;
         description.classList.add("card-text");
         description.innerText = article.description;
-        link.classList.add("card-link", "btn", "btn-primary");
+        link.classList.add("card-link", "btn", "btn-secondary");
         link.href = article.url;
         link.target = "_blank";
         link.innerText = "Go to Link";
