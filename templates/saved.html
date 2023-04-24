@@ -8,31 +8,21 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous" />
     <style>
-        body {
-            background-image: url("https://your-background-image-url.com");
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-
         #banner {
             width: 25%;
             object-fit: contain;
         }
 
-        .centered-navbar {
-            display: flex;
-            justify-content: center;
-        }
-
         .card {
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: all 0.3s;
+            flex: 1 1 0;
+            margin: 10px;
         }
 
-        .card-text {
-            height: 4.3em;
-            /* 3 lines of text with 1.4em line height */
-            overflow: hidden;
+        .card-group {
+            display: flex;
+            flex-wrap: wrap;
         }
 
         .card-img-top {
@@ -46,66 +36,58 @@
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
         }
 
-        .card-url {
-            background-color: #333333;
-            color: white;
+        .card-link {
             border: none;
             padding: 10px 20px;
             border-radius: 5px;
             transition: all 0.3s;
         }
 
-        .card-url:hover {
-            background-color: #666666;
+        .card-link:hover {
+            filter: brightness(125%);
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
         }
 
-        .centered-navbar {
+        .container {
             display: flex;
+            flex-direction: column;
             justify-content: center;
-        }
-
-        .centered-title {
-            display: flex;
-            justify-content: center;
+            align-items: center;
         }
 
         .navbar {
-            margin: 0 auto;
-            max-width: 800px;
-            /* You can adjust this value according to your preference */
+            display: flex;
+            gap: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 9999;
         }
 
-        .nav-item {
-            margin-left: 15px;
-            margin-right: 15px;
+        .navbar-btn {
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
         }
 
-        .nav-link {
-            font-size: 1.25rem;
-            color: #333333;
-            /* Light black color */
-            background-color: white;
-            padding: 10px 15px;
-            border-radius: 5px;
-            border: 1px solid #333333;
+        .navbar-btn:hover {
+            background-color: #0062cc;
+            cursor: pointer;
         }
 
-        .welcome {
-            font-size: 2rem;
-            color: #333333;
-            /* Light black color */
-        }
-
-        #datetime {
-            font-size: 1.5rem;
-            color: #333333;
-            /* Light black color */
-        }
     </style>
 
     <script src="static/unsaveArticle.js"></script>
     <script src="static/saveArticle.js"></script>
     <script src="static/toggleButton.js"></script>
+    <script src="static/darkMode.js"></script>
 
 </head>
 
@@ -114,82 +96,79 @@
 
         <img class="img-fluid align-top align-left" id="banner" src="http://127.0.0.1:5000/static/BB LOGO.jpeg"
             alt="img not found" />
-        <div class="centered-navbar">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5000/">Back to Main</a>
-                            </li>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </div>
-        
+
+        <nav class="navbar">
+            <div class="btn-group">
+                <a class="btn navbar-btn" href="http://127.0.0.1:5000/">Back</a>
+                <button type="button" class="btn navbar-btn" data-bs-theme-value="light"
+                    aria-label="Switch to light mode">Light</button>
+                <button type="button" class="btn navbar-btn" data-bs-theme-value="dark"
+                    aria-label="Switch to dark mode">Dark</button>
+            </div>
+        </nav>
+
         <div class="row" id="card-container">
+            <!--Loads all the saved articles-->
+            <script>
+                const saved = JSON.parse(localStorage.getItem("savedArticles")) || [];
+                // Generate HTML code for the saved card
+                const articleBody = document.querySelector("#card-container");
+                // Loop through data and create cards
+                saved.forEach((article) => {
+                    // Create card elements
+                    const cardCol = document.createElement("div");
+                    const card = document.createElement("div");
+                    const cardBody = document.createElement("div");
+                    const img = document.createElement("img");
+                    const title = document.createElement("h5");
+                    const cardBottom = document.createElement("div");
+                    const link = document.createElement("a");
+                    const input = document.createElement("input");
+
+                    // Set card classes
+                    cardCol.classList.add("card-group", "d-flex", "flex-wrap", "justify-content-center", "col-md-6");
+                    card.classList.add("card", "mb-6");
+                    cardBody.classList.add("card-body", "d-flex", "flex-column");
+                    cardBottom.classList.add("mt-auto");
+
+                    // Set card content
+                    img.classList.add("card-img-top");
+                    // add a placeholder image if the article does not have an image
+                    if (article.urlToImage == null || article.urlToImage == "null") {
+                        img.src = "http://127.0.0.1:5000/static/placeholder.png";
+                    } else {
+                        img.src = article.urlToImage;
+                    };
+                    img.alt = "Image not found.";
+                    title.innerText = article.title;
+                    link.classList.add("card-link", "btn", "btn-primary", "article-link");
+                    link.href = article.url;
+                    link.target = "_blank";
+                    link.innerText = "Go to Link";
+                    input.classList.add("card-link", "btn", "btn-warning", "float-end", "article-remove");
+                    input.type = "button";
+                    input.id = article.title;
+                    input.value = "Unsave";
+                    input.onclick = function () { toggleButton(article.title, article.url, article.urlToImage, input.value) };
+
+                    // Append card elements to parent
+                    cardBody.appendChild(title);
+                    // Append buttons to card bottom
+                    cardBottom.appendChild(link);
+                    cardBottom.appendChild(input);
+                    // Append card bottom to card body
+                    cardBody.appendChild(cardBottom);
+
+                    // Append card to parent
+                    card.appendChild(img);
+                    card.appendChild(cardBody);
+                    cardCol.appendChild(card);
+
+                    // Append card to parent
+                    articleBody.appendChild(cardCol);
+                });
+            </script>
         </div>
-
-        <!--Loads all the saved articles-->
-        <script>
-            const saved = JSON.parse(localStorage.getItem("savedArticles")) || [];
-            // Generate HTML code for the saved card
-            const articleBody = document.querySelector("#card-container");
-            // Loop through data and create cards
-            saved.forEach((article) => {
-                // Create card elements
-                const cardCol = document.createElement("div");
-                const card = document.createElement("div");
-                const cardBody = document.createElement("div");
-                const img = document.createElement("img");
-                const title = document.createElement("h5");
-                const link = document.createElement("a");
-                const input = document.createElement("input");
-
-                // Set card classes
-                cardCol.classList.add("col-md-6");
-                card.classList.add("card", "mb-4");
-                cardBody.classList.add("card-body");
-                // Set card content
-                img.classList.add("card-img-top");
-                // add a placeholder image if the article does not have an image
-                if (article.urlToImage == null || article.urlToImage == "null") {
-                    img.src = "http://127.0.0.1:5000/static/placeholder.png";
-                } else {
-                    img.src = article.urlToImage;
-                };
-                img.alt = "Image not found.";
-                title.innerText = article.title;
-                link.classList.add("card-link", "btn", "btn-primary", "article-link");
-                link.href = article.url;
-                link.target = "_blank";
-                link.innerText = "Go to Link";
-                input.classList.add("card-link", "btn", "btn-warning", "float-end", "article-remove");
-                input.type = "button";
-                input.id = article.title;
-                input.value = "Unsave";
-                input.onclick = function () { toggleButton(article.title, article.url, article.urlToImage, input.value) };
-
-                // Append card elements to parent
-                cardBody.appendChild(title);
-                cardBody.appendChild(link);
-                cardBody.appendChild(input);
-                
-                // Append card to parent
-                card.appendChild(img);
-                card.appendChild(cardBody);
-                cardCol.appendChild(card);
-
-                // Append card to parent
-                articleBody.appendChild(cardCol);
-            });
-        </script>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"

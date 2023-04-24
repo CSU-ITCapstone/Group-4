@@ -1,6 +1,7 @@
 from flask import Flask, render_template, jsonify, request
 from newsapi import NewsApiClient
 
+# Init app and newsapi client object
 app = Flask(__name__)
 newsapi = NewsApiClient(api_key='a7ce5af704c4493584f1068248f3b540')
 

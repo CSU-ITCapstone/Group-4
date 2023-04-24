@@ -8,77 +8,21 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous" />
     <style>
-        body {
-            background-image: url('https://your-background-image-url.com');
-            background-repeat: no-repeat;
-            background-size: cover;
-            font-family: Arial, sans-serif;
-        }
-
         #banner {
             width: 25%;
             object-fit: contain;
         }
 
-        .navbar {
-            width: 100%;
-            display: flex;
-            float: left;
-            justify-content: flex-start;
-            align-items: center;
-            flex-wrap: nowrap;
-            gap: 1rem;
-            position: sticky;
-            top: 0;
-            /* background-color: white; */
-            padding: 1rem 0;
-            z-index: 10;
-        }
-
-        .nav-link {
-            cursor: pointer;
-            /* Add this to show a hand with a finger(selector) when hovering over the buttons */
-            font-size: 1.25rem;
-            color: #333333;
-            background-color: white;
-            padding: 10px 15px;
-            border-radius: 5px;
-            border: 1px solid transparent;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-
-        .nav-link:hover,
-        .nav-link.active:hover {
-            color: white;
-            background-color: #333333;
-            border: 1px solid #333333;
-        }
-
-        .welcome {
-            font-size: 2rem;
-            color: #333333;
-        }
-
-        #datetime {
-            font-size: 1.5rem;
-            color: #333333;
-        }
-        
-        .current-domain {
-            background-color: blue;
-            color: white;
-        }
-
         .card {
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: all 0.3s;
+            flex: 1 1 0;
+            margin: 10px;
         }
 
-        .card-text {
-            height: 4.3em;
-            /* 3 lines of text with 1.4em line height */
-            overflow: hidden;
+        .card-group {
+            display: flex;
+            flex-wrap: wrap;
         }
 
         .card-img-top {
@@ -92,47 +36,52 @@
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
         }
 
-        .card-url {
-            background-color: #333333;
-            color: white;
+        .card-link {
             border: none;
             padding: 10px 20px;
             border-radius: 5px;
             transition: all 0.3s;
         }
 
-        .card-url:hover {
-            background-color: #666666;
+        .card-link:hover {
+            filter: brightness(125%);
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
         }
 
-        .save-article-button {
-            background-color: #333333;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .save-article-button:hover {
-            background-color: #666666;
-        }
-
-        .articles-text {
-            font-weight: bold;
-        }
-
-        .current-domain-text {
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .left-aligned {
+        .container {
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
+            justify-content: center;
+            align-items: center;
         }
+
+        .navbar {
+            display: flex;
+            gap: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 9999;
+        }
+
+        .navbar-btn {
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar-btn:hover {
+            background-color: #0062cc;
+            cursor: pointer;
+        }
+        
     </style>
     <!--Load the Functions needed for page-->
     <script src="static/saveArticle.js"></script>
@@ -141,55 +90,31 @@
     <script src="static/updateArticles.js"></script>
     <script src="static/toggleButton.js"></script>
     <script src="static/getArticles.js"></script>
+    <script src="static/darkMode.js"></script>
 
 </head>
 
 <body onload="getArticles()">
     <div class="container">
-        <div class="centered-navbar">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
-                    <img class="img-fluid align-top rounded me-3" id="banner" src="http://127.0.0.1:5000/static/BB Logo.jpeg" alt="Image not found."/>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <div class="col-md-6 left-aligned">
-                            <div class="navbar">
-                                <a class="nav-link" href="http://127.0.0.1:5000/">Change Category</a>
-                                <a class="nav-link" href="http://127.0.0.1:5000/saved">Saved Articles</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-        </div>
-        <h2 class="text-left mt-2 mb-4 welcome">Welcome!</h2>
-        <div id="datetime" class="text-muted mb-3"></div>
+
+        <img class="img-fluid align-top rounded me-3" id="banner" src="http://127.0.0.1:5000/static/BB Logo.jpeg"
+            alt="Image not found." />
+
+        <nav class="navbar">
+            <div class="btn-group">
+                <a class="btn navbar-btn" href="http://127.0.0.1:5000/">Back</a>
+                <button type="button" class="btn navbar-btn" data-bs-theme-value="light"
+                    aria-label="Switch to light mode">Light</button>
+                <button type="button" class="btn navbar-btn" data-bs-theme-value="dark"
+                    aria-label="Switch to dark mode">Dark</button>
+            </div>
+        </nav>
 
         <div class="row" id="card-container">
             <!-- This is where the cards are loaded -->
         </div>
 
-        <div class="column">
-            <div class="col-md-6">
-                <div id="datetime" class="text-muted mb-3"></div>
-            </div>
-        </div>
     </div>
-
-    <script>
-        // Get the current date and
-        let today = new Date();
-        // Format the date and time to display
-        let date = today.toLocaleDateString();
-        let time = today.toLocaleTimeString();
-
-        // Display the date and time
-        let datetime = document.getElementById('datetime');
-        datetime.innerHTML = `${date} ${time}`;
-    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
