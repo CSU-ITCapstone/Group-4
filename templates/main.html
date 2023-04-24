@@ -1,125 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <title>Byte Beat</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
     <style>
-        body {
-            background-image: url('https://your-background-image-url.com');
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
+    body {
+    background-image: url('https://your-background-image-url.com');
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: 'Poppins', sans-serif;
+    }
 
-        #banner {
-            width: 25%;
-            object-fit: contain;
-        }
+    #banner {
+    width: 25%;
+    object-fit: contain;
+    }
 
-        .centered-navbar {
+
+    .centered-title {
+        display: flex;
+        justify-content: center;
+    }
+
+    .navbar {
+            width: 100%;
             display: flex;
             justify-content: center;
-        }
-
-        .centered-title {
-            display: flex;
-            justify-content: center;
-        }
-
-        .navbar {
-            margin: 0 auto;
-            max-width: 800px;
-            /* You can adjust this value according to your preference */
-        }
-
-        .nav-item {
-            margin-left: 15px;
-            margin-right: 15px;
+            align-items: center;
+            flex-wrap: nowrap;
+            gap: 1rem;
+            top: 0;
+            padding: 1rem 0;
+            z-index: 10;
+            border-bottom: 1px solid #333333;
         }
 
         .nav-link {
+            cursor: pointer;
             font-size: 1.25rem;
             color: #333333;
-            /* Light black color */
             background-color: white;
             padding: 10px 15px;
             border-radius: 5px;
-            border: 1px solid #333333;
+            border: 1px solid transparent;
+            text-decoration: none;
+            transition: all 0.3s;
         }
 
-        .welcome {
-            font-size: 2rem;
-            color: #333333;
-            /* Light black color */
+    .nav-link:hover,
+    .nav-link.active:hover {
+        color: white;
+        background-color: #237dbd;
+        border: 1px solid #333333;
+    }
+
+    .welcome {
+        font-size: 2rem;
+        color: #333333;
+        font-weight: bold;
+    }
+
+    #datetime {
+        font-size: 1.5rem;
+        color: #333333;
+    }
+    .btn-primary {
+    background-color: #237dbd; 
+    border: none;
+    color: #ffffff; 
+    border-radius: 5px;
+    padding: 15px 30px;
+    font-size: 1.25rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-primary:hover,
+    .btn-primary:focus {
+    background-color: #3c4562; /* Updated hover background color */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    outline: none; /* Remove outline on focus */
         }
 
-        #datetime {
-            font-size: 1.5rem;
-            color: #333333;
-            /* Light black color */
-        }
-    </style>
+    .footer {
+        font-size: 0.875rem;
+        color: #333333;
+        background-color: #f8f9fa;
+    }
 
-    <script src="static/setCategory.js"></script>
+    .text-muted {
+        font-weight: 500;
+    }
+
+    #logo {
+            height: 100px;
+            object-fit: contain;
+        }
+
+</style>
+
+<script src="static/setCategory.js"></script>
 </head>
-
 <body>
-
     <div class="container">
-
-        <img class="img-fluid align-top align-left" id="banner" src="http://127.0.0.1:5000/static/BB LOGO.jpeg"
-            alt="img not found" />
-        <div class="centered-navbar">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <nav class="navbar navbar-expand-lg navbar-light">
                 <div class="container-fluid">
+                    <img class="img-fluid align-top rounded me-3" id="logo" src="http://127.0.0.1:5000/static/BB Logo.jpeg" alt="Byte Beat"/>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="http://127.0.0.1:5000/saved">Saved Articles</a>
-                            </li>
-                        </ul>
+                    <ul class="navbar-nav">
+                    <li class="nav-item">
+                    <a class="nav-link" href="http://127.0.0.1:5000/saved">Saved Articles</a>
+                    </li>
+                    </ul>
+                    </div>
+                    </div>
+                    </nav>
+                    <h2 class="text-left mt-2 mb-4 welcome">Welcome!</h2>
+                    <div id="datetime" class="text-muted mb-3"></div>
+                    <h3 class="text-center mb-4">Select a Category to Get Started:</h3>
+                    <div class="d-grid gap-2 col-6 mx-auto">
+                    <button class="btn btn-primary" type="button" id="business" onclick="setCategory('business')">Business</button>
+                    <button class="btn btn-primary" type="button" id="entertainment" onclick="setCategory('entertainment')">Entertainment</button>
+                    <button class="btn btn-primary" type="button" id="general" onclick="setCategory('general')">General</button>
+                    <button class="btn btn-primary" type="button" id="health" onclick="setCategory('health')">Health</button>
+                    <button class="btn btn-primary" type="button" id="science" onclick="setCategory('science')">Science</button>
+                    <button class="btn btn-primary" type="button" id="sports" onclick="setCategory('sports')">Sports</button>
+                    <button class="btn btn-primary" type="button" id="technology" onclick="setCategory('technology')">Technology</button>
                     </div>
                 </div>
-            </nav>
-        </div>
-        <h2 class="text-left mt-2 mb-4 welcome">Welcome!</h2>
-        <div id="datetime" class="text-muted mb-3"></div>
 
-        <div class="d-grid gap-2 col-6 mx-auto">
-            <button class="btn btn-primary" type="button" id="business" onclick="setCategory('business')">Business</button>
-            <button class="btn btn-primary" type="button" id="entertainment" onclick="setCategory('entertainment')">Entertainment</button>
-            <button class="btn btn-primary" type="button" id="general" onclick="setCategory('general')">General</button>
-            <button class="btn btn-primary" type="button" id="health" onclick="setCategory('health')">Health</button>
-            <button class="btn btn-primary" type="button" id="science" onclick="setCategory('science')">Science</button>
-            <button class="btn btn-primary" type="button" id="sports" onclick="setCategory('sports')">Sports</button>
-            <button class="btn btn-primary" type="button" id="technology" onclick="setCategory('technology')">Technology</button>
-        </div>
-
-    </div>
-
-    <script>
-        // Get the current date and time
-        let today = new Date();
-
-        // Format the date and time to display
-        let date = today.toLocaleDateString();
-        let time = today.toLocaleTimeString();
-
-        // Display the date and time
-        let datetime = document.getElementById('datetime');
-        datetime.innerHTML = `${date} ${time}`;
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
-        crossorigin="anonymous"></script>
-
-</body>
-
-</html>
+                <script>
+                    // Get the current date and time
+                    let today = new Date();
+                
+                    // Format the date and time to display
+                    let date = today.toLocaleDateString();
+                    let time = today.toLocaleTimeString();
+                
+                    // Display the date and time
+                    let datetime = document.getElementById('datetime');
+                    datetime.innerHTML = `${date} ${time}`;
+                </script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+                    integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+                    crossorigin="anonymous"></script>
+                <div style="height: 50px;"></div>
+                <footer class="footer mt-auto py-3 bg-light">
+                    <div class="container">
+                        <span class="text-muted">Byte Beat &copy; 2023</span>
+                    </div>
+                </footer>
+            </body>
+            </html>                    
