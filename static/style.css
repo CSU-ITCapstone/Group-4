@@ -4,21 +4,20 @@
 }
 
 /* Category Buttons */
-.btn-primary {
+.btn-lg {
+    background-color: #007bff;
+    color: #fff;
     width: 200px;
     height: 60px;
-    padding: 10px;
     margin: 10px;
-    box-sizing: border-box;
-    font-size: 16px;
-    font-weight: bold;
     text-transform: uppercase;
     text-decoration: none;
     transition: background-color 0.3s ease;
 }
 
-.btn-primary:hover {
+.btn-lg:hover {
     background-color: #0062cc;
+    color: #d0ce9e;
     cursor: pointer;
 }
 
@@ -42,7 +41,6 @@
 
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
 .card-link {
@@ -53,9 +51,7 @@
 }
 
 .card-link:hover {
-    filter: brightness(125%);
     transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
 .container {
@@ -64,6 +60,17 @@
     justify-content: center;
     align-items: center;
 }
+
+[mode="light"] {
+    /* styles for light mode */
+    filter: brightness(100%);
+}
+
+[mode="dark"] {
+    /* styles for dark mode */
+    filter: brightness(75%);
+}
+
 
 .navbar {
     display: flex;
@@ -88,5 +95,6 @@
 
 .navbar-btn:hover {
     background-color: #0062cc;
+    color: #d0ce9e;
     cursor: pointer;
 }

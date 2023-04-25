@@ -1,77 +1,41 @@
 /*!
- * Color mode toggler for Bootstrap's docs (https://getbootstrap.com/)
- * Copyright 2011-2023 The Bootstrap Authors
- * Licensed under the Creative Commons Attribution 3.0 Unported License.
+ * Gets the current theme from local storage and sets the mode of the page to the theme
+ * On first load, the theme is set to light by default
+ * 
  */
 
-(() => {
-    'use strict'
+// Get current theme from local storage
+const theme = localStorage.getItem('theme');
 
-    const storedTheme = localStorage.getItem('theme')
+// If the current theme in local storage is null, set it to light by default and set theme to light
+// Else, set the theme to the current theme in local storage (dark or light)
+// If the current theme in local storage is not dark or light, set it to light by default and set theme to light
+if (!theme || theme === 'light') {
+    localStorage.setItem('theme', 'light')
+    document.documentElement.setAttribute('mode', 'light')
+} else if (theme === 'dark') {
+    document.documentElement.setAttribute('mode', 'dark')   
+} else {
+    localStorage.setItem('theme', 'light')
+    document.documentElement.setAttribute('mode', 'light')
+}
 
-    const getPreferredTheme = () => {
-        if (storedTheme) {
-            return storedTheme
-        }
+/**
+ * Toggle the mode of the page between light and dark mode
+ * 
+ * @returns {void}
+ */
+function toggleMode() {
+    // Get the current theme from local storage
+    const currentTheme = localStorage.getItem('theme');
 
-        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+    // If the current theme is light, set it to dark and set theme to dark
+    if (currentTheme === 'light') {
+        localStorage.setItem('theme', 'dark')
+        document.documentElement.setAttribute('mode', 'dark')
+    } else {
+        // If the current theme is dark, set it to light and set theme to light
+        localStorage.setItem('theme', 'light')
+        document.documentElement.setAttribute('mode', 'light')
     }
-
-    const setTheme = function (theme) {
-        if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            document.documentElement.setAttribute('data-bs-theme', 'dark')
-        } else {
-            document.documentElement.setAttribute('data-bs-theme', theme)
-        }
-    }
-
-    setTheme(getPreferredTheme())
-
-    const showActiveTheme = (theme, focus = false) => {
-        const themeSwitcher = document.querySelector('#bd-theme')
-
-        if (!themeSwitcher) {
-            return
-        }
-
-        const themeSwitcherText = document.querySelector('#bd-theme-text')
-        const activeThemeIcon = document.querySelector('.theme-icon-active use')
-        const btnToActive = document.querySelector(`[data-bs-theme-value="${theme}"]`)
-        const svgOfActiveBtn = btnToActive.querySelector('svg use').getAttribute('href')
-
-        document.querySelectorAll('[data-bs-theme-value]').forEach(element => {
-            element.classList.remove('active')
-            element.setAttribute('aria-pressed', 'false')
-        })
-
-        btnToActive.classList.add('active')
-        btnToActive.setAttribute('aria-pressed', 'true')
-        activeThemeIcon.setAttribute('href', svgOfActiveBtn)
-        const themeSwitcherLabel = `${themeSwitcherText.textContent} (${btnToActive.dataset.bsThemeValue})`
-        themeSwitcher.setAttribute('aria-label', themeSwitcherLabel)
-
-        if (focus) {
-            themeSwitcher.focus()
-        }
-    }
-
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-        if (storedTheme !== 'light' || storedTheme !== 'dark') {
-            setTheme(getPreferredTheme())
-        }
-    })
-
-    window.addEventListener('DOMContentLoaded', () => {
-        showActiveTheme(getPreferredTheme())
-
-        document.querySelectorAll('[data-bs-theme-value]')
-            .forEach(toggle => {
-                toggle.addEventListener('click', () => {
-                    const theme = toggle.getAttribute('data-bs-theme-value')
-                    localStorage.setItem('theme', theme)
-                    setTheme(theme)
-                    showActiveTheme(theme, true)
-                })
-            })
-    })
-})()
+};

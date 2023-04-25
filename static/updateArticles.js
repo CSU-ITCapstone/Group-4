@@ -26,10 +26,10 @@ function updateArticles(articles) {
         const input = document.createElement("input");
 
         // Set card classes
-        cardCol.classList.add("card-group", "d-flex", "flex-wrap", "justify-content-center", "col-md-6");
-        card.classList.add("card", "mb-6");
-        cardBody.classList.add("card-body", "d-flex", "flex-column");
-        cardBottom.classList.add("mt-auto");
+        cardCol.classList.add("card-group", "d-flex", "justify-content-center", "col-md-6");
+        card.classList.add("card");
+        cardBody.classList.add("card-body", "d-flex", "flex-column"); // 
+        cardBottom.classList.add("mt-auto"); // mt-auto is margin top auto, which pushes the link and button to the bottom of the card
 
         // Set card content
         img.classList.add("card-img-top");
@@ -46,8 +46,8 @@ function updateArticles(articles) {
         description.innerText = article.description;
         link.classList.add("card-link", "btn", "btn-secondary");
         link.href = article.url;
-        link.target = "_blank";
-        link.innerText = "Go to Link";
+        link.target = "_blank"; // This opens the link in a new tab
+        link.innerText = "Go to Link"; 
         input.classList.add("card-link", "btn", "btn-success", "float-end");
         input.type = "button";
         input.id = article.title;
@@ -56,7 +56,9 @@ function updateArticles(articles) {
 
         // Append card elements to parent
         cardBody.appendChild(title);
-        cardBody.appendChild(description);
+        if (article.description != null){
+            cardBody.appendChild(description);
+        };
         // Append cardBottom elements to cardBody
         cardBottom.appendChild(link);
         cardBottom.appendChild(input);

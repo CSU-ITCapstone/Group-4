@@ -20,16 +20,13 @@
 <body>
 
     <div class="container">
-        <img class="img-fluid align-top align-center col-md-6 mx-auto" id="banner"
+        <img class="img-fluid rounded" id="banner"
             src="http://127.0.0.1:5000/static/BB LOGO.jpeg" alt="img not found" />
 
         <nav class="navbar">
             <div class="btn-group">
                 <a class="btn navbar-btn" href="http://127.0.0.1:5000/saved">Saved Articles</a>
-                <button type="button" class="btn navbar-btn" data-bs-theme-value="light"
-                    aria-label="Switch to light mode">Light</button>
-                <button type="button" class="btn navbar-btn" data-bs-theme-value="dark"
-                    aria-label="Switch to dark mode">Dark</button>
+                <button type="button" class="btn navbar-btn" onclick="toggleMode()" id="modeButton">Toggle Mode</button>
             </div>
         </nav>
 
@@ -38,36 +35,34 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <button class="btn btn-lg rounded-pill btn-primary" type="button" id="business"
+                    <button class="btn btn-lg rounded-pill" type="button" id="business"
                         onclick="setCategory('business')">Business</button>
                 </div>
                 <div class="col-md-6">
-                    <button class="btn btn-lg rounded-pill btn-primary" type="button" id="entertainment"
+                    <button class="btn btn-lg rounded-pill" type="button" id="entertainment"
                         onclick="setCategory('entertainment')">Entertainment</button>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <button class="btn btn-lg rounded-pill btn-primary" type="button" id="health"
+                    <button class="btn btn-lg rounded-pill" type="button" id="health"
                         onclick="setCategory('health')">Health</button>
                 </div>
                 <div class="col-md-6">
-                    <button class="btn btn-lg rounded-pill btn-primary" type="button" id="science"
+                    <button class="btn btn-lg rounded-pill" type="button" id="science"
                         onclick="setCategory('science')">Science</button>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <button class="btn btn-lg rounded-pill btn-primary" type="button" id="sports"
+                    <button class="btn btn-lg rounded-pill" type="button" id="sports"
                         onclick="setCategory('sports')">Sports</button>
                 </div>
                 <div class="col-md-6">
-                    <button class="btn btn-lg rounded-pill btn-primary" type="button" id="technology"
+                    <button class="btn btn-lg rounded-pill" type="button" id="technology"
                         onclick="setCategory('technology')">Technology</button>
                 </div>
             </div>
-
-
         </div>
 
     </div>

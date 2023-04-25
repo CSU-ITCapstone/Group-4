@@ -25,16 +25,13 @@
 <body onload="getArticles()">
     <div class="container">
 
-        <img class="img-fluid align-top rounded me-3" id="banner" src="http://127.0.0.1:5000/static/BB Logo.jpeg"
+        <img class="img-fluid align-top rounded" id="banner" src="http://127.0.0.1:5000/static/BB Logo.jpeg"
             alt="Image not found." />
 
         <nav class="navbar">
             <div class="btn-group">
                 <a class="btn navbar-btn" href="http://127.0.0.1:5000/">Back</a>
-                <button type="button" class="btn navbar-btn" data-bs-theme-value="light"
-                    aria-label="Switch to light mode">Light</button>
-                <button type="button" class="btn navbar-btn" data-bs-theme-value="dark"
-                    aria-label="Switch to dark mode">Dark</button>
+                <button type="button" class="btn navbar-btn" onclick="toggleMode()" id="modeButton">Toggle Mode</button>
             </div>
         </nav>
 
