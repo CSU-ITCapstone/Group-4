@@ -54,6 +54,15 @@
     transform: translateY(-5px);
 }
 
+#categoryLabel {
+    font-size: 32px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    margin: 10px;
+
+}
+
 .container {
     display: flex;
     flex-direction: column;

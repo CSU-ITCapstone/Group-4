@@ -35,6 +35,14 @@
             </div>
         </nav>
 
+        <label id="categoryLabel">
+            <script>
+                // Get the selected category from local storage and display it
+                const selectedCategory = localStorage.getItem("selectedCategory");
+                document.getElementById("categoryLabel").innerHTML = selectedCategory;
+            </script>
+        </label>
+
         <div class="row" id="card-container">
             <!-- This is where the cards are loaded -->
         </div>
