@@ -5,6 +5,11 @@
  * @returns {void}
  */
 function updateArticles(articles) {
+
+    const category = localStorage.getItem('selectedCategory');
+    updateWelcomeMessage(category);
+
+    updateWelcomeMessage(category);
     // Get the container for the articles
     const articleBody = document.querySelector("#card-container");
 
@@ -70,4 +75,16 @@ function updateArticles(articles) {
     });
 
     checkSaved();
+}
+
+
+function updateWelcomeMessage(category) {
+    const welcomeMessage = document.getElementById("welcome-message");
+    const categoryName = category.charAt(0).toUpperCase() + category.slice(1);
+    welcomeMessage.textContent = `${categoryName}`;
+}
+
+function setCategory(category) {
+    localStorage.setItem('selectedCategory', category);
+    getArticles();
 }
