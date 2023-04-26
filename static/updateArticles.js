@@ -7,9 +7,18 @@
 function updateArticles(articles) {
 
     const category = localStorage.getItem('selectedCategory');
-    updateWelcomeMessage(category);
 
-    updateWelcomeMessage(category);
+    // Set the Article page title 
+    if (category === 'search') {
+        // Get the search term from the search box on the previous page
+        const searchTerm = localStorage.getItem('searchParameter');
+        // make the search term title case, each word capitalized
+        const searchTermTitleCase = searchTerm.toLowerCase().split(' ').map((s) => s.charAt(0).toUpperCase() + s.substring(1)).join(' ');
+        document.getElementById('category-title').innerText = "Search results for: " + searchTermTitleCase;
+    } else {    
+        document.getElementById('category-title').innerText = category.charAt(0).toUpperCase() + category.slice(1);
+    }
+
     // Get the container for the articles
     const articleBody = document.querySelector("#card-container");
 
@@ -75,16 +84,4 @@ function updateArticles(articles) {
     });
 
     checkSaved();
-}
-
-
-function updateWelcomeMessage(category) {
-    const welcomeMessage = document.getElementById("welcome-message");
-    const categoryName = category.charAt(0).toUpperCase() + category.slice(1);
-    welcomeMessage.textContent = `${categoryName}`;
-}
-
-function setCategory(category) {
-    localStorage.setItem('selectedCategory', category);
-    getArticles();
 }

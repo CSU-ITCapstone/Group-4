@@ -10,6 +10,12 @@ function getArticles() {
 
     // get the selected category from local storage and set to a variable
     var selectedCategory = localStorage.getItem('selectedCategory');
+    
+    // if the category is search, call searchArticles() instead
+    if (selectedCategory === 'search') {
+        searchArticles();
+        return;
+    }
 
     // If no domain is selected, selected category will be Technology by default
     if (!selectedCategory) {  // if no category is selected
@@ -26,8 +32,7 @@ function getArticles() {
     // Calculate the time difference in milliseconds
     const oneDay = 24 * 60 * 60 * 1000; // one day in milliseconds
     const timeSinceLastApiCall = now - new Date(lastApiCall);
-    console.log(timeSinceLastApiCall);
-    console.log(oneDay);
+    
     // Check if the articles are already stored in local storage
     // If they are not stored in local storage or if the last API call was more than a day ago,
     // make a new API call to retrieve the articles
