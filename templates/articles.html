@@ -48,6 +48,13 @@
             </div>
         </nav>
         <h2 class="text-left mt-2 mb-4 welcome" id="welcome-message">Welcome!</h2>
+        <script>
+            // Set welcome message
+            var categoryMessage = document.getElementById("welcome-message");
+            var categoryText = "Here are the latest articles from the " + localStorage.getItem("selectedCategory") + " category.";
+            categoryMessage.innerHTML = categoryText;
+        </script>
+
         <div id="datetime" class="text-muted mb-3"></div>
 
         <div class="row" id="card-container">
