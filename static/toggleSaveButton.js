@@ -7,7 +7,7 @@
  * 
  * @return {void}
  */
-function toggleButton(articleTitle, articleUrl, articleUrlToImage, saveState) {
+function toggleSaveButton(articleTitle, articleUrl, articleUrlToImage, saveState) {
     if (saveState === "Unsave") {
         // If the button is in the "save" state, unsave the article
         unsaveArticle(articleTitle);

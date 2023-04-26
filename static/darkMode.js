@@ -1,41 +1,54 @@
-/*!
- * Gets the current theme from local storage and sets the mode of the page to the theme
- * On first load, the theme is set to light by default
- * 
- */
-
-// Get current theme from local storage
+// When the script is loaded, set the theme to the current theme in local storage
 const theme = localStorage.getItem('theme');
+if (!theme) {   // If the current theme in local storage is null, set it to light by default
+    setModeToTheme('light');
+} else {        // Else, set the theme to the current theme in local storage (dark or light)
+    setModeToTheme(theme);
+};
 
-// If the current theme in local storage is null, set it to light by default and set theme to light
-// Else, set the theme to the current theme in local storage (dark or light)
-// If the current theme in local storage is not dark or light, set it to light by default and set theme to light
-if (!theme || theme === 'light') {
-    localStorage.setItem('theme', 'light')
-    document.documentElement.setAttribute('mode', 'light')
-} else if (theme === 'dark') {
-    document.documentElement.setAttribute('mode', 'dark')   
-} else {
-    localStorage.setItem('theme', 'light')
-    document.documentElement.setAttribute('mode', 'light')
+
+/**
+ * Set the mode of the page to the theme
+ * @param {string} currentTheme The current theme of the page
+ * @returns {void}
+ */
+function setModeToTheme(currentTheme) {
+    // Set the current theme in local storage
+    localStorage.setItem('theme', currentTheme)
+
+    // add tag to <HTML> to change theme, theme='dark-mode'
+    const html = document.querySelector('html');
+    if (currentTheme === 'dark') {
+        html.setAttribute('theme', 'dark-mode');
+    } else {
+        html.removeAttribute('theme');
+    }
+
+    /*
+    // Set all elements with the mode attribute to the current theme
+    const modeElements = document.querySelectorAll('[mode]');
+    
+    // Set all elements with the mode attribute to the current theme
+    modeElements.forEach(element => {
+        element.setAttribute('mode', currentTheme);
+    });
+    */
 }
 
 /**
  * Toggle the mode of the page between light and dark mode
- * 
+ * @param {string} currentTheme The current theme of the page
  * @returns {void}
  */
 function toggleMode() {
-    // Get the current theme from local storage
+    // Get the current theme in local storage
     const currentTheme = localStorage.getItem('theme');
-
-    // If the current theme is light, set it to dark and set theme to dark
-    if (currentTheme === 'light') {
-        localStorage.setItem('theme', 'dark')
-        document.documentElement.setAttribute('mode', 'dark')
-    } else {
-        // If the current theme is dark, set it to light and set theme to light
-        localStorage.setItem('theme', 'light')
-        document.documentElement.setAttribute('mode', 'light')
-    }
+    
+    if (currentTheme === 'light') {     // If the current theme is light, set it to dark and set theme to dark
+        setModeToTheme('dark');
+    } else if (currentTheme === 'dark') {// Else, set it to light and set theme to light
+        setModeToTheme('light');
+    } else {                            // If the current theme in local storage is not dark or light, default to light
+        setModeToTheme('light');
+    };
 };
