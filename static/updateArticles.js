@@ -8,15 +8,19 @@ function updateArticles(articles) {
 
     const category = localStorage.getItem('selectedCategory');
 
-    // Set the Article page title 
-    if (category === 'search') {
-        // Get the search term from the search box on the previous page
-        const searchTerm = localStorage.getItem('searchParameter');
-        // make the search term title case, each word capitalized
-        const searchTermTitleCase = searchTerm.toLowerCase().split(' ').map((s) => s.charAt(0).toUpperCase() + s.substring(1)).join(' ');
-        document.getElementById('category-title').innerText = "Search results for: " + searchTermTitleCase;
-    } else {    
-        document.getElementById('category-title').innerText = category.charAt(0).toUpperCase() + category.slice(1);
+    // Set the category title on the Articles page 
+    // if its the /saved page, do nothing because there is no category title
+    if (document.getElementById('category-title')) {
+        // Set the Article page title 
+        if (category === 'search') {
+            // Get the search term from the search box on the previous page
+            const searchTerm = localStorage.getItem('searchParameter');
+            // make the search term title case, each word capitalized
+            const searchTermTitleCase = searchTerm.toLowerCase().split(' ').map((s) => s.charAt(0).toUpperCase() + s.substring(1)).join(' ');
+            document.getElementById('category-title').innerText = "Search results for: " + searchTermTitleCase;
+        } else {
+            document.getElementById('category-title').innerText = category.charAt(0).toUpperCase() + category.slice(1);
+        }
     }
 
     // Get the container for the articles
@@ -66,11 +70,13 @@ function updateArticles(articles) {
         input.id = article.title;
         input.value = "Save";
         input.style.background = '#dc8cda';
-        input.onclick = function () { toggleButton(article.title, article.url, article.urlToImage, input.value) };
+        input.onclick = function () { toggleSaveButton(article.title, article.url, article.urlToImage, input.value) };
 
         // Append card elements to parent
         cardBody.appendChild(title);
-        cardBody.appendChild(description);
+        if (article.description != null) {
+            cardBody.appendChild(description);
+        };
         cardBody.appendChild(link);
         cardBody.appendChild(input);
 
@@ -83,5 +89,4 @@ function updateArticles(articles) {
         articleBody.appendChild(cardCol);
     });
 
-    checkSaved();
 }

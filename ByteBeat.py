@@ -13,7 +13,7 @@ def home():
 @ app.route('/fetch_articles', methods=['POST'])
 def fetch_articles_route():
     # get the category from the form
-    category = request.form.get('category')
+    category = request.form.get('search_term')
     # fetch the articles
     articles = fetch_articles(category)
     # return the articles
