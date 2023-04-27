@@ -27,8 +27,8 @@ function toggleSaveButton(articleTitle, articleUrl, articleUrlToImage, saveState
         // Update the state of the corresponding card's save button and remove button
         var removeButton = document.getElementById(articleTitle);
         removeButton.value = "Save";
-        removeButton.classList.remove("btn-warning");
-        removeButton.classList.add("btn-success");
+        //removeButton.classList.remove("btn-warning");
+        //removeButton.classList.add("btn-success");
 
     } else if (saveState === "Save") {
         // Create an object to represent the article
@@ -50,7 +50,7 @@ function toggleSaveButton(articleTitle, articleUrl, articleUrlToImage, saveState
         // Find the save button for the article and update its state
         var savedButton = document.getElementById(articleTitle);
         savedButton.value = "Unsave";
-        savedButton.classList.remove("btn-success");
-        savedButton.classList.add("btn-warning");
+        //savedButton.classList.remove("btn-success");
+        //savedButton.classList.add("btn-warning");
     }
 }

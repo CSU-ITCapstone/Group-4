@@ -1,7 +1,7 @@
 /* styles.css */
 
   body {
-    background-color: var(--background-color);
+    background-color: #ffffffe2;
     color: var(--text-color);
     background-image: url('https://your-background-image-url.com');
     background-repeat: no-repeat;

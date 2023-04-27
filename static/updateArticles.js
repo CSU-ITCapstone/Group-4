@@ -39,13 +39,14 @@ function updateArticles(articles) {
         const img = document.createElement("img");
         const title = document.createElement("h5");
         const description = document.createElement("p");
+        const cardBottom = document.createElement("div");
         const link = document.createElement("a");
         const input = document.createElement("input");
 
-        // Set card classes
-        cardCol.classList.add("col-md-6");
-        card.classList.add("card", "mb-4");
-        cardBody.classList.add("card-body");
+        cardCol.classList.add("card-group", "d-flex", "justify-content-center", "col-md-6", "mb-4");
+        card.classList.add("card");
+        cardBody.classList.add("card-body", "d-flex", "flex-column"); // 
+        cardBottom.classList.add("mt-auto"); // mt-auto is margin top auto, which pushes the link and button to the bottom of the card
 
         // Set card content
         img.classList.add("card-img-top");
@@ -60,12 +61,12 @@ function updateArticles(articles) {
         title.innerText = article.title;
         description.classList.add("card-text")
         description.innerText = article.description;
-        link.classList.add("card-link", "btn", "btn-primary");
+        link.classList.add("card-url", "btn");
         link.href = article.url;
         link.target = "_blank";
         link.innerText = "Go to Link";
         link.style.background = '#dc8cda';
-        input.classList.add("card-link", "btn", "btn-success", "float-end");
+        input.classList.add("save-article-button", "btn", "float-end");
         input.type = "button";
         input.id = article.title;
         input.value = "Save";
@@ -77,8 +78,9 @@ function updateArticles(articles) {
         if (article.description != null) {
             cardBody.appendChild(description);
         };
-        cardBody.appendChild(link);
-        cardBody.appendChild(input);
+        cardBottom.appendChild(link);
+        cardBottom.appendChild(input);
+        cardBody.appendChild(cardBottom);
 
         // Append cardBody elements to card
         card.appendChild(img);

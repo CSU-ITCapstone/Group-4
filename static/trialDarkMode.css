@@ -1,0 +1,23 @@
+/* Dark Mode Style*/
+html {
+    transition: color 300ms, background-color 300ms;
+}
+
+html[theme='dark-mode'] {
+    filter: invert(1) hue-rotate(180deg);
+
+}
+
+html[theme='dark-mode'] img {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+html[theme='dark-mode'] .png {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+html[theme='dark-mode'] .jpg {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+/* End of Dark Mode Style*/
