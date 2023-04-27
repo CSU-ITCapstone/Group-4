@@ -17,6 +17,29 @@
 
 
     <style>
+        /* Dark Mode Style*/
+html {
+    transition: color 300ms, background-color 300ms;
+}
+
+html[theme='dark-mode'] {
+    filter: invert(1) hue-rotate(180deg);
+    
+}
+
+html[theme='dark-mode'] img {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+html[theme='dark-mode'] .png {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+html[theme='dark-mode'] .jpg {
+    filter: invert(1) hue-rotate(180deg);
+}
+/* End of Dark Mode Style*/
+        
         body {
             background-image: url('https://your-background-image-url.com');
             background-repeat: no-repeat;
@@ -115,6 +138,10 @@
         }
     </style>
 
+    <!--Testing Dark Mode-->
+    <style src="static/trialDarkMode.css"></style>
+    <script src="static/darkMode.js"></script>
+
     <script src="static/setCategory.js"></script>
 
 </head>
@@ -134,7 +161,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <!-- <button id="theme-toggle-button">Toggle Light/Dark Mode</button> -->
+                            <button id="theme-toggle-button" onclick="toggleMode()" value>Toggle Light/Dark Mode</button>
                             <a class="nav-link" href="http://127.0.0.1:5000/saved">Saved Articles</a>
                         </li>
                     </ul>
