@@ -7,72 +7,192 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous" />
+    <style>
+        body {
+            background-image: url('https://your-background-image-url.com');
+            background-repeat: no-repeat;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+        }
 
-    <!--Load the Stylesheet-->
-    <link rel="stylesheet" href="static/styleArticles.css">
+        #banner {
+            width: 25%;
+            object-fit: contain;
+        }
 
+        .navbar {
+            width: 100%;
+            display: flex;
+            float: left;
+            justify-content: flex-start;
+            align-items: center;
+            flex-wrap: nowrap;
+            gap: 1rem;
+            position: sticky;
+            top: 0;
+            /* background-color: white; */
+            padding: 1rem 0;
+            z-index: 10;
+        }
+
+        .nav-link {
+            cursor: pointer;
+            /* Add this to show a hand with a finger(selector) when hovering over the buttons */
+            font-size: 1.25rem;
+            color: #333333;
+            background-color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            border: 1px solid transparent;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .nav-link:hover,
+        .nav-link.active:hover {
+            color: white;
+            background-color: #333333;
+            border: 1px solid #333333;
+        }
+
+        .welcome {
+            font-size: 2rem;
+            color: #333333;
+        }
+
+        #datetime {
+            font-size: 1.5rem;
+            color: #333333;
+        }
+        
+        .current-domain {
+            background-color: blue;
+            color: white;
+        }
+
+        .card {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .card-text {
+            height: 4.3em;
+            /* 3 lines of text with 1.4em line height */
+            overflow: hidden;
+        }
+
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-url {
+            background-color: #333333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .card-url:hover {
+            background-color: #666666;
+        }
+
+        .save-article-button {
+            background-color: #333333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .save-article-button:hover {
+            background-color: #666666;
+        }
+
+        .articles-text {
+            font-weight: bold;
+        }
+
+        .current-domain-text {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .left-aligned {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    </style>
     <!--Load the Functions needed for page-->
-    <script src="static/getArticles.js"></script> <!--Get articles from API or Local Storage-->
-    <script src="static/darkMode.js"></script> <!--Set Mode, toggleMode()-->
-
-    <script src="static/updateArticles.js"></script> <!--Generates Article Cards to #card-container-->
-    <script src="static/toggleSaveButton.js"></script> <!--'If' logic for Onclick Save/Unsave-->
-    <script src="static/saveArticle.js"></script> <!--Adds article to savedArticles-->
-    <script src="static/unsaveArticle.js"></script> <!--Removes article from savedArticles-->
-    <script src="static/checkSaved.js"></script> <!--Sets status of Save/Unsave button-->
+    <script src="static/saveArticle.js"></script>
+    <script src="static/unsaveArticle.js"></script>
+    <script src="static/checkSaved.js"></script>
+    <script src="static/updateArticles.js"></script>
+    <script src="static/toggleButton.js"></script>
+    <script src="static/getArticles.js"></script>
 
 </head>
 
 <body onload="getArticles()">
-
     <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <div class="container-fluid">
-                <a href="http://127.0.0.1:5000/">
-                    <img class="img-fluid align-top rounded me-3" id="logo"
-                        src="http://127.0.0.1:5000/static/BB Logo.jpeg" alt="Byte Beat">
-                </a> <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <div class="col-md-4">
-                        <div class="navbarNoBorder">
-                            <a class="nav-link" href="http://127.0.0.1:5000/">Change Category</a>
-                            <a class="nav-link" href="http://127.0.0.1:5000/saved">Saved Articles</a>
-                            <a class="nav-link" id="theme-toggle-button" onclick="toggleMode()">Toggle Light/Dark
-                                Mode</a>
+        <div class="centered-navbar">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <img class="img-fluid align-top rounded me-3" id="banner" src="http://127.0.0.1:5000/static/BB Logo.jpeg" alt="Image not found."/>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <div class="col-md-6 left-aligned">
+                            <div class="navbar">
+                                <a class="nav-link" href="http://127.0.0.1:5000/">Change Category</a>
+                                <a class="nav-link" href="http://127.0.0.1:5000/saved">Saved Articles</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </nav>
-        <h2 class="text-left mt-2 mb-4 welcome" id="welcome-message">Welcome!</h2>
-        <script>
-            // Set welcome message
-            var categoryMessage = document.getElementById("welcome-message");
-            var categoryText = "Here are the latest articles from the " + localStorage.getItem("selectedCategory") + " category.";
-            categoryMessage.innerHTML = categoryText;
-        </script>
-
+            </nav>
+        </div>
+        <h2 class="text-left mt-2 mb-4 welcome">Welcome!</h2>
         <div id="datetime" class="text-muted mb-3"></div>
 
         <div class="row" id="card-container">
             <!-- This is where the cards are loaded -->
+            <script> 
+                updateArticles( getArticles() );    // First, get articles from the API and update the page
+                checkSaved();                       // Then, checked saved articles to toggle the save button
+            </script>
         </div>
 
     </div>
 
+    <script>
+        // Get the current date and
+        let today = new Date();
+        // Format the date and time to display
+        let date = today.toLocaleDateString();
+        let time = today.toLocaleTimeString();
+
+        // Display the date and time
+        let datetime = document.getElementById('datetime');
+        datetime.innerHTML = `${date} ${time}`;
+    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
         crossorigin="anonymous"></script>
-
-    <footer class="footer mt-auto py-3 bg-light">
-        <div class="container">
-            <span class="text-muted">Byte Beat &copy; 2023</span>
-        </div>
-    </footer>
-
 </body>
 
 
