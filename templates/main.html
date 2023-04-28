@@ -145,8 +145,11 @@
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
-                <img class="img-fluid align-top rounded me-3" id="logo" src="http://127.0.0.1:5000/static/BB Logo.jpeg"
-                    alt="Byte Beat">
+                <a href="http://127.0.0.1:5000/">
+                    <img class="img-fluid align-top rounded me-3" id="logo"
+                        src="http://127.0.0.1:5000/static/BB Logo.jpeg" alt="Byte Beat">
+                </a>
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -171,11 +174,15 @@
                             onclick="setCategory('customSearch', goToArticles)">Search</button>
                     </form>
                 </div>
+                
 
             </div>
         </nav>
+
         <h2 class="text-left mt-2 mb-4 welcome">Welcome!</h2>
+
         <div id="datetime" class="text-muted mb-3"></div>
+
         <h3 class="text-left mb-4">Start Here:</h3>
 
         <div class="container">
@@ -184,33 +191,33 @@
                 <div class="d-flex align-items-start me-2">
                     <div class="d-grid gap-2 btn-group">
 
-                        <button class="btn-primary d-flex align-items-center" type="button"
-                            id="business" onclick="setCategory('business', goToArticles)">
+                        <button class="btn-primary d-flex align-items-center" type="button" id="business"
+                            onclick="setCategory('business', goToArticles)">
                             <i class="fas fa-briefcase me-2"></i>
                             <span class="d-none d-md-inline">Business</span>
                         </button>
-                        <button class="btn-primary d-flex align-items-center" type="button"
-                            id="entertainment" onclick="setCategory('entertainment', goToArticles)">
+                        <button class="btn-primary d-flex align-items-center" type="button" id="entertainment"
+                            onclick="setCategory('entertainment', goToArticles)">
                             <i class="fas fa-film me-2"></i>
                             <span class="d-none d-md-inline">Entertainment</span>
                         </button>
-                        <button class="btn-primary d-flex align-items-center" type="button"
-                            id="health" onclick="setCategory('health', goToArticles)">
+                        <button class="btn-primary d-flex align-items-center" type="button" id="health"
+                            onclick="setCategory('health', goToArticles)">
                             <i class="fas fa-heartbeat me-2"></i>
                             <span class="d-none d-md-inline">Health</span>
                         </button>
-                        <button class="btn-primary d-flex align-items-center" type="button"
-                            id="science" onclick="setCategory('science', goToArticles)">
+                        <button class="btn-primary d-flex align-items-center" type="button" id="science"
+                            onclick="setCategory('science', goToArticles)">
                             <i class="fas fa-flask me-2"></i>
                             <span class="d-none d-md-inline">Science</span>
                         </button>
-                        <button class="btn-primary d-flex align-items-center" type="button"
-                            id="sports" onclick="setCategory('sports', goToArticles)">
+                        <button class="btn-primary d-flex align-items-center" type="button" id="sports"
+                            onclick="setCategory('sports', goToArticles)">
                             <i class="fas fa-football-ball me-2"></i>
                             <span class="d-none d-md-inline">Sports</span>
                         </button>
-                        <button class="btn-primary d-flex align-items-center" type="button"
-                            id="technology" onclick="setCategory('technology', goToArticles)">
+                        <button class="btn-primary d-flex align-items-center" type="button" id="technology"
+                            onclick="setCategory('technology', goToArticles)">
                             <i class="fas fa-laptop-code me-2"></i>
                             <span class="d-none d-md-inline">Technology</span>
                         </button>
@@ -248,32 +255,17 @@
         let datetime = document.getElementById('datetime');
         datetime.innerHTML = `${date} ${time}`;
     </script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
-        crossorigin="anonymous"></script>
-    <!--
-    <script>
-        const themeToggleButton = document.getElementById('theme-toggle-button');
-
-        themeToggleButton.addEventListener('click', () => {
-            const htmlElement = document.documentElement;
-            const currentTheme = htmlElement.getAttribute('data-theme');
-
-            if (currentTheme === 'light') {
-                htmlElement.setAttribute('data-theme', 'dark');
-            } else {
-                htmlElement.setAttribute('data-theme', 'light');
-            }
-        });
-    </script>
--->
-    <div style="height: 50px;"></div>
+        integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous">
+        </script>
 
     <footer class="footer mt-auto py-3 bg-light">
         <div class="container">
             <span class="text-muted">Byte Beat &copy; 2023</span>
         </div>
     </footer>
+
 </body>
 
 </html>
