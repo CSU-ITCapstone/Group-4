@@ -8,13 +8,13 @@
  * @returns {Array} articles - An array of article objects, each with title, description, url, and urlToImage properties
  * 
  */
-function getArticles() {
+function getArticles(callback) {
 
     // get the selected category from local storage and set to a variable
     var selectedCategory = localStorage.getItem('selectedCategory');
     
     // set a new var to a searchterm. if the selected category is search, set the search term to the search parameter from local storage. else set it to the selected category
-    var searchTerm = selectedCategory === 'search' ? localStorage.getItem('newSearchParameter') : selectedCategory;
+    var searchTerm = selectedCategory === 'customSearch' ? localStorage.getItem('searchParameter') : selectedCategory;
 
     // If no domain is selected, selected category will be Technology by default
     if (!selectedCategory) {  // if there is no selected category
@@ -36,7 +36,7 @@ function getArticles() {
     // If they are not stored in local storage or if the last API call was more than a day ago,
     // Or if category is search and the search term has changed
     // make a new API call to retrieve the articles
-    if (!lastApiCall || timeSinceLastApiCall > oneDay || !localStorage.getItem('articles' + selectedCategory) || (selectedCategory === 'search' && localStorage.getItem('searchParameter') !== searchTerm)) {
+    if (!lastApiCall || timeSinceLastApiCall > oneDay || !localStorage.getItem('articles' + selectedCategory) || (selectedCategory === 'customSearch')) {
         // set the time of the last API call to now in local storage
         localStorage.setItem('lastApiCall' + selectedCategory, now);
 
@@ -45,7 +45,7 @@ function getArticles() {
         categoryParams.append('search_term', searchTerm);
 
         // Make a new API call to retrieve the articles. if the selected category is search, make a search call. else make a category call
-        fetch('/' + (selectedCategory === 'search' ? 'search_articles' : 'fetch_articles'), {
+        fetch('/' + (selectedCategory === 'customSearch' ? 'search_articles' : 'fetch_articles'), {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -54,17 +54,15 @@ function getArticles() {
         }).then(response => response.json()).then(articles => {
             //save articles to session storage, then update articles
             localStorage.setItem('articles' + selectedCategory, JSON.stringify(articles));
-            // if new search, save the search term to local storage
-            if (selectedCategory === 'search') {
-                localStorage.setItem('searchParameter', searchTerm);
-            }
             
-            return(articles);
+//return the articles to the callback function
+            callback(articles);
+
         });
     } else {
         // If the articles are already stored in local storage, retrieve them from local storage
         const savedArticles = JSON.parse(localStorage.getItem('articles' + selectedCategory));
         
-        return(savedArticles);
+        callback(savedArticles);
     }
 }

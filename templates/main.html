@@ -14,7 +14,8 @@
 
     <link rel="stylesheet" href="static/styles.css">
     
-    <!-- <style>
+<!--
+    <style>
         body {
             background-image: url('https://your-background-image-url.com');
             background-repeat: no-repeat;
@@ -127,12 +128,17 @@
     }
     </style> -->
 
+
+    
     <!--Testing Dark Mode-->
     <link rel="stylesheet" href="static/trialDarkMode.css">
     <script src="static/darkMode.js"></script>
 
     <script src="static/setCategory.js"></script>
-
+    <script src="static/getArticles.js"></script>
+    <script src="static/updateArticles.js"></script>
+    <script src="static/toggleSaveButton.js"></script>
+    <script src="static/checkSaved.js"></script>
 </head>
 
 <body>
@@ -157,11 +163,10 @@
                 </div>
 
                 <div class="container-fluid">
-                    <form class="d-flex" role="search" method="get" action="/search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
-                            id="search-input">
+                    <form class="d-flex input-group" role="search" onsubmit="setCategory('customSearch', goToArticles); return false;">
+                        <input id="search-input" class="form-control" type="text" placeholder="Search">
                         <button class="btn btn-outline-primary" type="button"
-                            onclick="setCategory('search')">Search</button>
+                            onclick="setCategory('customSearch', goToArticles)">Search</button>
                     </form>
                 </div>
 
@@ -170,36 +175,51 @@
         <h2 class="text-left mt-2 mb-4 welcome">Welcome!</h2>
         <div id="datetime" class="text-muted mb-3"></div>
         <h3 class="text-center mb-4">Select a Category to Get Started:</h3>
-        <div class="d-grid gap-2 col-6 mx-auto">
+        <div class="d-grid gap-2 col-6 mx-auto mb-5">
             <button class="btn btn-primary d-flex align-items-center justify-content-center" type="button" id="business"
-                onclick="setCategory('business')">
+                onclick="setCategory('business', goToArticles)">
                 <i class="fas fa-briefcase me-2"></i>Business
             </button>
             <button class="btn btn-primary d-flex align-items-center justify-content-center" type="button"
-                id="entertainment" onclick="setCategory('entertainment')">
+                id="entertainment" onclick="setCategory('entertainment', goToArticles)">
                 <i class="fas fa-theater-masks me-2"></i>Entertainment
             </button>
             <button class="btn btn-primary d-flex align-items-center justify-content-center" type="button" id="general"
-                onclick="setCategory('general')">
+                onclick="setCategory('general', goToArticles)">
                 <i class="fas fa-newspaper me-2"></i>General
             </button>
             <button class="btn btn-primary d-flex align-items-center justify-content-center" type="button" id="health"
-                onclick="setCategory('health')">
+                onclick="setCategory('health', goToArticles)">
                 <i class="fas fa-heartbeat me-2"></i>Health
             </button>
             <button class="btn btn-primary d-flex align-items-center justify-content-center" type="button" id="science"
-                onclick="setCategory('science')">
+                onclick="setCategory('science', goToArticles)">
                 <i class="fas fa-flask me-2"></i>Science
             </button>
             <button class="btn btn-primary d-flex align-items-center justify-content-center" type="button" id="sports"
-                onclick="setCategory('sports')">
+                onclick="setCategory('sports', goToArticles)">
                 <i class="fas fa-football-ball me-2"></i>Sports
             </button>
             <button class="btn btn-primary d-flex align-items-center justify-content-center" type="button"
-                id="technology" onclick="setCategory('technology')"">
+                id="technology" onclick="setCategory('technology', goToArticles)">
                 <i class=" fas fa-microchip me-2"></i>Technology
             </button>
         </div>
+
+        <div class="row" id="card-container">
+            <!-- This is where the cards are loaded -->
+            <script>
+                localStorage.setItem('selectedCategory', 'general');
+                
+                getArticles(updateArticles);
+                checkSaved();
+
+
+
+
+            </script>
+        </div>
+
     </div>
 
     <script>

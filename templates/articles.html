@@ -55,8 +55,11 @@
         <div class="row" id="card-container">
             <!-- This is where the cards are loaded -->
             <script>
-                updateArticles(getArticles());    // First, get articles from the API and update the page
-                checkSaved();                       // Then, checked saved articles to toggle the save button
+                
+                
+                getArticles(updateArticles);
+                checkSaved();
+                      // Then, checked saved articles to toggle the save button
             </script>
         </div>
 
