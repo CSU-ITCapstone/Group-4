@@ -8,7 +8,7 @@
  * @returns {Array} articles - An array of article objects, each with title, description, url, and urlToImage properties
  * 
  */
-function getArticles() {
+function getArticles(callback) {
 
     // get the selected category from local storage and set to a variable
     var selectedCategory = localStorage.getItem('selectedCategory');
@@ -59,12 +59,14 @@ function getArticles() {
                 localStorage.setItem('searchParameter', searchTerm);
             }
             
-            return(articles);
+//return the articles to the callback function
+            callback(articles);
+
         });
     } else {
         // If the articles are already stored in local storage, retrieve them from local storage
         const savedArticles = JSON.parse(localStorage.getItem('articles' + selectedCategory));
         
-        return(savedArticles);
+        callback(savedArticles);
     }
 }
