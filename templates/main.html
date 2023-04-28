@@ -13,8 +13,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
     <link rel="stylesheet" href="static/styles.css">
-
-    <!--
+    
+<!--
     <style>
         body {
             background-image: url('https://your-background-image-url.com');
@@ -35,17 +35,22 @@
         }
 
         .navbar {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: nowrap;
-            gap: 1rem;
-            top: 0;
-            padding: 1rem 0;
-            z-index: 10;
-            border-bottom: 1px solid #333333;
+        width: 100%;
+        display: flex;
+        justify-content: space-between; /* changed from center to space-between */
+        align-items: center;
+        flex-wrap: nowrap;
+        gap: 1rem;
+        top: 0;
+        padding: 1rem 0;
+        z-index: 10;
+        border-bottom: 1px solid #333333;
         }
+
+        .form-control {
+            width: 250px; /* added to limit search bar width */
+        }
+
 
         .nav-link {
             cursor: pointer;
@@ -112,9 +117,16 @@
             height: 100px;
             object-fit: contain;
         }
-    </style>
 
--->
+        .container-fluid {
+        display: flex;
+        justify-content: flex-end;
+        }
+
+        .logo-container {
+        margin-right: 1rem; /* adjust this value as per your needs */
+    }
+    </style> -->
 
     <!--Testing Dark Mode-->
     <link rel="stylesheet" href="static/trialDarkMode.css">
@@ -131,21 +143,18 @@
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
-                <a href="http://127.0.0.1:5000/">
-                    <img class="img-fluid align-top rounded me-3" id="logo"
-                        src="http://127.0.0.1:5000/static/BB Logo.jpeg" alt="Byte Beat">
-                </a>
-
+                <img class="img-fluid align-top rounded me-3" id="logo" src="http://127.0.0.1:5000/static/BB Logo.jpeg" alt="Byte Beat">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
+                    <ul class="navbar-nav d-flex flex-row">
                         <li class="nav-item">
-                            <a class="nav-link" id="theme-toggle-button" onclick="toggleMode()" value>Toggle Light/Dark
-                                Mode</a>
+                            <a class="nav-link" id="theme-toggle-button" onclick="toggleMode()" value>Light/Dark</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="http://127.0.0.1:5000/saved">Saved Articles</a>
                         </li>
                     </ul>
