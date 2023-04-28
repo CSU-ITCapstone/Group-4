@@ -19,7 +19,7 @@ function setCategory(category, callGoToArticles) {
         localStorage.setItem('searchParameter', query);
     }
 
-    // call the callback function
+    // call the callback function to updateArticles()
     callGoToArticles();
 }
 

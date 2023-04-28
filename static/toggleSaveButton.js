@@ -18,6 +18,7 @@ function toggleSaveButton(articleTitle, articleUrl, articleUrlToImage, saveState
         for (var i = savedArticles.length - 1; i >= 0; i--) {
             if (savedArticles[i].title === articleTitle) {
                 savedArticles.splice(i, 1);
+                break;
             }
         }
 
