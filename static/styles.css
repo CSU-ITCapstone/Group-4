@@ -58,15 +58,15 @@
   .navbar {
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between; /* changed from center to space-between */
     align-items: center;
     flex-wrap: nowrap;
     gap: 1rem;
     top: 0;
     padding: 1rem 0;
     z-index: 10;
-    border-bottom: 1px solid var(--navbar-border-color);
-  }
+    border-bottom: 1px solid #333333;
+    }
   
   .nav-item {
     margin-left: 15px;
@@ -104,9 +104,10 @@
     }
     
     #logo {
-    height: 100px;
-    object-fit: contain;
-    margin-right: 15px;
+      height: 100px;
+      object-fit: contain;
+      margin-right: 15px;
+      border-radius: 10px; /* Add this line to give the logo rounded corners */
     }
     
     .btn-primary {
@@ -143,4 +144,17 @@
     font-weight: bold;
     margin-bottom: 10px;
     }
+
+    .form-control {
+      width: 250px; /* added to limit search bar width */
+  }
+
+  .logo-container {
+    margin-right: 1rem; /* adjust this value as per your needs */
+}
+
+.container-fluid {
+  display: flex;
+  justify-content: flex-end;
+  }
   
