@@ -13,8 +13,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
     <link rel="stylesheet" href="static/styles.css">
-    
-<!--
+
+    <!--
     <style>
         body {
             background-image: url('https://your-background-image-url.com');
@@ -192,6 +192,16 @@
                 <i class=" fas fa-microchip me-2"></i>Technology
             </button>
         </div>
+
+        <div class="row" id="card-container">
+            <!-- This is where the cards are loaded -->
+            <script>
+                localStorage.setItem('category', 'general');
+                updateArticles(getArticles());    // First, get articles from the API and update the page
+                checkSaved();                     // Then, checked saved articles to toggle the save button
+            </script>
+        </div>
+
     </div>
 
     <script>
