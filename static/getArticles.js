@@ -17,7 +17,7 @@ function getArticles() {
     var searchTerm = selectedCategory === 'search' ? localStorage.getItem('newSearchParameter') : selectedCategory;
 
     // If no domain is selected, selected category will be Technology by default
-    if (!selectedCategory || !searchTerm) {  // if there is no selected category or search term
+    if (!selectedCategory) {  // if there is no selected category
         localStorage.setItem('selectedCategory', 'technology');  // set the selected category to technology
         searchTerm = 'technology';  // set the search term to technology
     }
