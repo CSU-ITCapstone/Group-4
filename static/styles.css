@@ -40,6 +40,9 @@ body {
   /* height of the footer */
 }
 
+.container {
+  max-width: 94%;
+}
 
 #banner {
   width: 25%;
@@ -140,7 +143,8 @@ body {
   height: 100px;
   object-fit: contain;
   margin-right: 15px;
-  border-radius: 10px;
+  border-radius: 20%;
+  min-width: 140px;
   /* Add this line to give the logo rounded corners */
 }
 
