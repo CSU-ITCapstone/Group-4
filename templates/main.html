@@ -163,7 +163,7 @@
                 </div>
 
                 <div class="container-fluid">
-                    <form class="d-flex" role="search" onsubmit="setCategory('customSearch', goToArticles); return false;">
+                    <form class="d-flex input-group" role="search" onsubmit="setCategory('customSearch', goToArticles); return false;">
                         <input id="search-input" class="form-control" type="text" placeholder="Search">
                         <button class="btn btn-outline-primary" type="button"
                             onclick="setCategory('customSearch', goToArticles)">Search</button>
@@ -175,7 +175,7 @@
         <h2 class="text-left mt-2 mb-4 welcome">Welcome!</h2>
         <div id="datetime" class="text-muted mb-3"></div>
         <h3 class="text-center mb-4">Select a Category to Get Started:</h3>
-        <div class="d-grid gap-2 col-6 mx-auto">
+        <div class="d-grid gap-2 col-6 mx-auto mb-5">
             <button class="btn btn-primary d-flex align-items-center justify-content-center" type="button" id="business"
                 onclick="setCategory('business', goToArticles)">
                 <i class="fas fa-briefcase me-2"></i>Business
