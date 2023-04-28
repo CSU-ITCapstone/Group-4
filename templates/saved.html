@@ -51,6 +51,10 @@
             <!--Loads all the saved articles-->
             <script>
                 const saved = JSON.parse(localStorage.getItem("savedArticles")) || [];
+                //if saved is empty, then change welcome to "You have no saved articles"
+                if (saved.length == 0) {
+                    document.querySelector(".welcome").innerHTML = "You have no saved articles.";
+                }
                 updateArticles(saved);
                 checkSaved();
             </script>
