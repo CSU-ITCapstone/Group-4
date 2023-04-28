@@ -1,6 +1,6 @@
 /* Dark Mode Style*/
 html {
-    transition: color 300ms, background-color 300ms;
+    transition: color 600ms, background-color 600ms;
 }
 
 html[theme='dark-mode'] {
