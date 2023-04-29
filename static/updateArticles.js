@@ -65,12 +65,10 @@ function updateArticles(articles) {
         link.href = article.url;
         link.target = "_blank";
         link.innerText = "Go to Link";
-        link.style.background = '#dc8cda';
         input.classList.add("save-article-button", "btn", "float-end");
         input.type = "button";
         input.id = article.title;
         input.value = "Save";
-        input.style.background = '#dc8cda';
         input.onclick = function () { toggleSaveButton(article.title, article.url, article.urlToImage, input.value) };
 
         // Append card elements to parent
