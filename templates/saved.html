@@ -13,7 +13,6 @@
 
     <link rel="stylesheet" href="static/styles.css">
 
-    <!--Testing Dark Mode-->
     <link rel="stylesheet" href="static/trialDarkMode.css">
     <script src="static/darkMode.js"></script>
 
@@ -62,10 +61,8 @@
         <h2 class="text-left mt-2 mb-4 welcome">Here are Your Saved Articles:</h2>
 
         <div class="row" id="card-container">
-            <!--Loads all the saved articles-->
             <script>
                 const saved = JSON.parse(localStorage.getItem("savedArticles")) || [];
-                //if saved is empty, then change welcome to "You have no saved articles"
                 if (saved.length == 0) {
                     document.querySelector(".welcome").innerHTML = "You have no saved articles.";
                 }

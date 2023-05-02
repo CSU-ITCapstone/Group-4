@@ -64,7 +64,7 @@ function updateArticles(articles) {
         link.classList.add("card-url", "btn");
         link.href = article.url;
         link.target = "_blank";
-        link.innerText = "Go to Link";
+        link.innerText = "Visit";
         input.classList.add("save-article-button", "btn", "float-end");
         input.type = "button";
         input.id = article.title;

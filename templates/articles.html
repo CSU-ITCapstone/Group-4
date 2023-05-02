@@ -13,11 +13,11 @@
 
     <link rel="stylesheet" href="static/styles.css">
 
-    <!--Testing Dark Mode-->
+
     <link rel="stylesheet" href="static/trialDarkMode.css">
     <script src="static/darkMode.js"></script>
 
-    <!--Load the Functions needed for page-->
+
     <script src="static/setCategory.js"></script>
     <script src="static/getArticles.js"></script>
     <script src="static/updateArticles.js"></script>
@@ -67,7 +67,7 @@
         <div id="datetime" class="text-muted mb-3"></div>
 
         <div class="row" id="card-container">
-            <!-- This is where the cards are loaded -->
+
             <script>
                 getArticles(updateArticles);
                 checkSaved();
@@ -77,14 +77,13 @@
     </div>
 
     <script>
-        // Get the current date and
+
         let today = new Date();
 
-        // Format the date and time to display
         let date = today.toLocaleDateString();
         let time = today.toLocaleTimeString();
 
-        // Display the date and time
+
         let datetime = document.getElementById('datetime');
         datetime.innerHTML = `${date} ${time}`;
     </script>
