@@ -1,0 +1,20 @@
+/* Dark Mode Style */
+html {
+    transition: color 1000ms, background-color 1000ms;
+}
+
+html[theme='dark-mode'] {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+html[theme='dark-mode'] img:not(#logo) {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+/* Add this new hover effect rule for the dark mode */
+[data-theme="dark"] .nav-link:hover {
+    color: #ffffff; /* White text color */
+    border: 1px solid #ffffff; /* White border */
+}
+
+/* End of Dark Mode Style */

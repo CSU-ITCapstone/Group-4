@@ -12,7 +12,7 @@ function updateArticles(articles) {
     // if its the /saved page, do nothing because there is no category title
     if (document.getElementById('category-title')) {
         // Set the Article page title 
-        if (category === 'search') {
+        if (category === 'customSearch') {
             // Get the search term from the search box on the previous page
             const searchTerm = localStorage.getItem('searchParameter');
             // make the search term title case, each word capitalized
@@ -43,8 +43,7 @@ function updateArticles(articles) {
         const link = document.createElement("a");
         const input = document.createElement("input");
 
-        // Set card classes
-        cardCol.classList.add("card-group", "d-flex", "justify-content-center", "col-md-6");
+        cardCol.classList.add("card-group", "d-flex", "justify-content-center", "col-md-6", "mb-4");
         card.classList.add("card");
         cardBody.classList.add("card-body", "d-flex", "flex-column"); // 
         cardBottom.classList.add("mt-auto"); // mt-auto is margin top auto, which pushes the link and button to the bottom of the card
@@ -62,21 +61,24 @@ function updateArticles(articles) {
         title.innerText = article.title;
         description.classList.add("card-text");
         description.innerText = article.description;
-        link.classList.add("card-link", "btn", "btn-secondary");
+        link.classList.add("card-url", "btn");
         link.href = article.url;
-        link.target = "_blank"; // This opens the link in a new tab
-        link.innerText = "Go to Link"; 
-        input.classList.add("card-link", "btn", "btn-success", "float-end");
+        link.target = "_blank";
+        link.innerText = "Visit";
+        input.classList.add("save-article-button", "btn", "float-end");
         input.type = "button";
         input.id = article.title;
         input.value = "Save";
-        input.onclick = function () { toggleButton(article.title, article.url, article.urlToImage, input.value) };
+        input.onclick = function () { toggleSaveButton(article.title, article.url, article.urlToImage, input.value) };
 
         // Append card elements to parent
         cardBody.appendChild(title);
-        cardBody.appendChild(description);
-        cardBody.appendChild(link);
-        cardBody.appendChild(input);
+        if (article.description != null) {
+            cardBody.appendChild(description);
+        };
+        cardBottom.appendChild(link);
+        cardBottom.appendChild(input);
+        cardBody.appendChild(cardBottom);
 
         // Append cardBody elements to card
         card.appendChild(img);

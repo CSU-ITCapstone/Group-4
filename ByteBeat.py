@@ -43,11 +43,17 @@ def search_articles_route():
 
 
 def search_articles(search_term):
+    # fetch the articles
+    if search_term == "general":
+        numberOfArticles =12
+    else: 
+        numberOfArticles = 20
+    
     articles = newsapi.get_everything(
         q=search_term,
         language='en',
         sort_by='relevancy',
-        page_size=20
+        page_size=numberOfArticles
     )
     # return the articles
     return articles['articles']

@@ -1,9 +1,31 @@
+// toggleMode() toggles the mode of the page between light and dark mode
+// setModeToTheme(currentTheme) sets the mode of the page to the theme
+
 // When the script is loaded, set the theme to the current theme in local storage
 const theme = localStorage.getItem('theme');
 if (!theme) {   // If the current theme in local storage is null, set it to light by default
     setModeToTheme('light');
 } else {        // Else, set the theme to the current theme in local storage (dark or light)
     setModeToTheme(theme);
+};
+
+
+/**
+ * Toggle the mode of the page between light and dark mode
+ * @param {string} currentTheme The current theme of the page
+ * @returns {void}
+ */
+function toggleMode() {
+    // Get the current theme in local storage
+    const currentTheme = localStorage.getItem('theme');
+
+    if (currentTheme === 'light') {     // If the current theme is light, set it to dark and set theme to dark
+        setModeToTheme('dark');
+    } else if (currentTheme === 'dark') {// Else, set it to light and set theme to light
+        setModeToTheme('light');
+    } else {                            // If the current theme in local storage is not dark or light, default to light
+        setModeToTheme('light');
+    };
 };
 
 
@@ -23,32 +45,4 @@ function setModeToTheme(currentTheme) {
     } else {
         html.removeAttribute('theme');
     }
-
-    /*
-    // Set all elements with the mode attribute to the current theme
-    const modeElements = document.querySelectorAll('[mode]');
-    
-    // Set all elements with the mode attribute to the current theme
-    modeElements.forEach(element => {
-        element.setAttribute('mode', currentTheme);
-    });
-    */
 }
-
-/**
- * Toggle the mode of the page between light and dark mode
- * @param {string} currentTheme The current theme of the page
- * @returns {void}
- */
-function toggleMode() {
-    // Get the current theme in local storage
-    const currentTheme = localStorage.getItem('theme');
-    
-    if (currentTheme === 'light') {     // If the current theme is light, set it to dark and set theme to dark
-        setModeToTheme('dark');
-    } else if (currentTheme === 'dark') {// Else, set it to light and set theme to light
-        setModeToTheme('light');
-    } else {                            // If the current theme in local storage is not dark or light, default to light
-        setModeToTheme('light');
-    };
-};

@@ -7,22 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous" />
-    <style>
-        body {
-            background-image: url("https://your-background-image-url.com");
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 
-        #banner {
-            width: 25%;
-            object-fit: contain;
-        }
+    <link rel="stylesheet" href="static/styles.css">
 
-        .centered-navbar {
-            display: flex;
-            justify-content: center;
-        }
+    <link rel="stylesheet" href="static/trialDarkMode.css">
+    <script src="static/darkMode.js"></script>
 
         .card {
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -59,20 +51,22 @@
             background-color: #666666;
         }
 
-        .centered-navbar {
-            display: flex;
-            justify-content: center;
-        }
-
         .centered-title {
             display: flex;
             justify-content: center;
         }
 
         .navbar {
-            margin: 0 auto;
-            max-width: 800px;
-            /* You can adjust this value according to your preference */
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: nowrap;
+            gap: 1rem;
+            top: 0;
+            padding: 1rem 0;
+            z-index: 10;
+            border-bottom: 1px solid #333333;
         }
 
         .nav-item {
@@ -81,12 +75,21 @@
         }
 
         .nav-link {
+            cursor: pointer;
             font-size: 1.25rem;
             color: #333333;
-            /* Light black color */
             background-color: white;
             padding: 10px 15px;
             border-radius: 5px;
+            border: 1px solid transparent;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .nav-link:hover,
+        .nav-link.active:hover {
+            color: white;
+            background-color: #237dbd;
             border: 1px solid #333333;
         }
 
@@ -101,16 +104,57 @@
             color: #333333;
             /* Light black color */
         }
+
+        #logo {
+            height: 100px;
+            object-fit: contain;
+            margin-right: 15px;
+        }
     </style>
 
-    <script src="static/unsaveArticle.js"></script>
-    <script src="static/saveArticle.js"></script>
-    <script src="static/toggleButton.js"></script>
+    <script src="static/toggleSaveButton.js"></script>
+    <script src="static/updateArticles.js"></script>
+    <script src="static/checkSaved.js"></script>
 
 </head>
 
 <body>
-    <div class="container">
+    <div class="container wrapper content">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+                <a href="http://127.0.0.1:5000/">
+                    <img class="img-fluid align-top rounded me-3" id="logo"
+                        src="http://127.0.0.1:5000/static/image.png" alt="Byte Beat">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav d-flex flex-row">
+                        <li class="nav-item">
+                            <a class="nav-link" id="theme-toggle-button" onclick="toggleMode()" value>Light/Dark</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://127.0.0.1:5000/saved">Saved</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="container-fluid">
+                    <form class="d-flex input-group" role="search"
+                        onsubmit="setCategory('customSearch', goToArticles); return false;">
+                        <input id="search-input" class="form-control" type="text" placeholder="Search">
+                        <button class="btn-primary" type="button"
+                            onclick="setCategory('customSearch', goToArticles)">Search</button>
+                    </form>
+                </div>
+
+            </div>
+        </nav>
+
+        <h2 class="text-left mt-2 mb-4 welcome">Here are Your Saved Articles:</h2>
 
         <img class="img-fluid align-top align-left" id="banner" src="http://127.0.0.1:5000/static/BB LOGO.jpeg"
             alt="img not found" />
@@ -134,6 +178,14 @@
         </div>
         
         <div class="row" id="card-container">
+            <script>
+                const saved = JSON.parse(localStorage.getItem("savedArticles")) || [];
+                if (saved.length == 0) {
+                    document.querySelector(".welcome").innerHTML = "You have no saved articles.";
+                }
+                updateArticles(saved);
+                checkSaved();
+            </script>
         </div>
 
         <!--Loads all the saved articles-->
@@ -193,8 +245,8 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
-        crossorigin="anonymous"></script>
+        integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous">
+        </script>
 
     <footer class="footer mt-auto py-3 bg-light">
         <div class="container">
