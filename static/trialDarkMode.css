@@ -1,23 +1,20 @@
-/* Dark Mode Style*/
+/* Dark Mode Style */
 html {
-    transition: color 600ms, background-color 600ms;
+    transition: color 1000ms, background-color 1000ms;
 }
 
 html[theme='dark-mode'] {
     filter: invert(1) hue-rotate(180deg);
-
 }
 
-html[theme='dark-mode'] img {
+html[theme='dark-mode'] img:not(#logo) {
     filter: invert(1) hue-rotate(180deg);
 }
 
-html[theme='dark-mode'] .png {
-    filter: invert(1) hue-rotate(180deg);
+/* Add this new hover effect rule for the dark mode */
+[data-theme="dark"] .nav-link:hover {
+    color: #ffffff; /* White text color */
+    border: 1px solid #ffffff; /* White border */
 }
 
-html[theme='dark-mode'] .jpg {
-    filter: invert(1) hue-rotate(180deg);
-}
-
-/* End of Dark Mode Style*/
+/* End of Dark Mode Style */

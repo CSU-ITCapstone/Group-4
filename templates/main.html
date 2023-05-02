@@ -14,123 +14,6 @@
 
     <link rel="stylesheet" href="static/styles.css">
 
-    <!--
-    <style>
-        body {
-            background-image: url('https://your-background-image-url.com');
-            background-repeat: no-repeat;
-            background-size: cover;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        #banner {
-            width: 25%;
-            object-fit: contain;
-        }
-
-
-        .centered-title {
-            display: flex;
-            justify-content: center;
-        }
-
-        .navbar {
-        width: 100%;
-        display: flex;
-        justify-content: space-between; /* changed from center to space-between */
-        align-items: center;
-        flex-wrap: nowrap;
-        gap: 1rem;
-        top: 0;
-        padding: 1rem 0;
-        z-index: 10;
-        border-bottom: 1px solid #333333;
-        }
-
-        .form-control {
-            width: 250px; /* added to limit search bar width */
-        }
-
-
-        .nav-link {
-            cursor: pointer;
-            font-size: 1.25rem;
-            color: #333333;
-            background-color: white;
-            padding: 10px 15px;
-            border-radius: 5px;
-            border: 1px solid transparent;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-
-        .nav-link:hover,
-        .nav-link.active:hover {
-            color: white;
-            background-color: #237dbd;
-            border: 1px solid #333333;
-        }
-
-        .welcome {
-            font-size: 2rem;
-            color: #333333;
-            font-weight: bold;
-        }
-
-        #datetime {
-            font-size: 1.5rem;
-            color: #333333;
-        }
-
-        .btn-primary {
-            background-color: #237dbd;
-            border: none;
-            color: #ffffff;
-            border-radius: 5px;
-            padding: 15px 30px;
-            font-size: 1.25rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn-primary:hover,
-        .btn-primary:focus {
-            background-color: #3c4562;
-            /* Updated hover background color */
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
-            outline: none;
-            /* Remove outline on focus */
-        }
-
-        .footer {
-            font-size: 0.875rem;
-            color: #333333;
-            background-color: #f8f9fa;
-        }
-
-        .text-muted {
-            font-weight: 500;
-        }
-
-        #logo {
-            height: 100px;
-            object-fit: contain;
-        }
-
-        .container-fluid {
-        display: flex;
-        justify-content: flex-end;
-        }
-
-        .logo-container {
-        margin-right: 1rem; /* adjust this value as per your needs */
-    }
-    </style> -->
-
-
-
-    <!--Testing Dark Mode-->
     <link rel="stylesheet" href="static/trialDarkMode.css">
     <script src="static/darkMode.js"></script>
 
@@ -145,8 +28,10 @@
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
-                <img class="img-fluid align-top rounded me-3" id="logo" src="http://127.0.0.1:5000/static/BB Logo.jpeg"
-                    alt="Byte Beat">
+                <a href="http://127.0.0.1:5000/">
+                    <img class="img-fluid align-top rounded me-3" id="logo"
+                        src="http://127.0.0.1:5000/static/image.png" alt="Byte Beat">
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -167,7 +52,7 @@
                     <form class="d-flex input-group" role="search"
                         onsubmit="setCategory('customSearch', goToArticles); return false;">
                         <input id="search-input" class="form-control" type="text" placeholder="Search">
-                        <button class="btn btn-outline-primary" type="button"
+                        <button class="btn-primary" type="button"
                             onclick="setCategory('customSearch', goToArticles)">Search</button>
                     </form>
                 </div>
@@ -221,7 +106,6 @@
                 <div class="d-flex align-items-start container-fluid col-md-10 d-none d-sm-block">
 
                     <div class="row" id="card-container">
-                        <!-- This is where the cards are loaded -->
                         <script>
                             localStorage.setItem('selectedCategory', 'general');
                             getArticles(updateArticles);
@@ -237,36 +121,17 @@
     </div>
 
     <script>
-        // Get the current date and time
         let today = new Date();
 
-        // Format the date and time to display
         let date = today.toLocaleDateString();
         let time = today.toLocaleTimeString();
 
-        // Display the date and time
         let datetime = document.getElementById('datetime');
         datetime.innerHTML = `${date} ${time}`;
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
         crossorigin="anonymous"></script>
-    <!--
-    <script>
-        const themeToggleButton = document.getElementById('theme-toggle-button');
-
-        themeToggleButton.addEventListener('click', () => {
-            const htmlElement = document.documentElement;
-            const currentTheme = htmlElement.getAttribute('data-theme');
-
-            if (currentTheme === 'light') {
-                htmlElement.setAttribute('data-theme', 'dark');
-            } else {
-                htmlElement.setAttribute('data-theme', 'light');
-            }
-        });
-    </script>
--->
     <div style="height: 50px;"></div>
 
     <footer class="footer mt-auto py-3 bg-light">
@@ -274,6 +139,7 @@
             <span class="text-muted">Byte Beat &copy; 2023</span>
         </div>
     </footer>
+    
 </body>
 
 </html>

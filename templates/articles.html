@@ -18,10 +18,11 @@
     <script src="static/darkMode.js"></script>
 
     <!--Load the Functions needed for page-->
+    <script src="static/setCategory.js"></script>
     <script src="static/getArticles.js"></script>
     <script src="static/updateArticles.js"></script>
-    <script src="static/checkSaved.js"></script>
     <script src="static/toggleSaveButton.js"></script>
+    <script src="static/checkSaved.js"></script>
 
 </head>
 
@@ -31,20 +32,31 @@
             <div class="container-fluid">
                 <a href="http://127.0.0.1:5000/">
                     <img class="img-fluid align-top rounded me-3" id="logo"
-                        src="http://127.0.0.1:5000/static/BB Logo.jpeg" alt="Byte Beat">
-                </a> 
-                
+                        src="http://127.0.0.1:5000/static/image.png" alt="Byte Beat">
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <div class="col-md-6">
-                        <div class="navbarNoBorder">
+                    <ul class="navbar-nav d-flex flex-row">
+                        <li class="nav-item">
+                            <a class="nav-link" id="theme-toggle-button" onclick="toggleMode()" value>Light/Dark</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="http://127.0.0.1:5000/saved">Saved</a>
-                        </div>
-                    </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="container-fluid">
+                    <form class="d-flex input-group" role="search"
+                        onsubmit="setCategory('customSearch', goToArticles); return false;">
+                        <input id="search-input" class="form-control" type="text" placeholder="Search">
+                        <button class="btn-primary" type="button"
+                            onclick="setCategory('customSearch', goToArticles)">Search</button>
+                    </form>
                 </div>
 
             </div>
