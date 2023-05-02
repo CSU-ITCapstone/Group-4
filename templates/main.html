@@ -25,7 +25,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container wrapper content">
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
                 <a href="http://127.0.0.1:5000/">
@@ -56,11 +56,15 @@
                             onclick="setCategory('customSearch', goToArticles)">Search</button>
                     </form>
                 </div>
+                
 
             </div>
         </nav>
+
         <h2 class="text-left mt-2 mb-4 welcome">Welcome!</h2>
+
         <div id="datetime" class="text-muted mb-3"></div>
+
         <h3 class="text-left mb-4">Start Here:</h3>
 
         <div class="container">
@@ -69,33 +73,33 @@
                 <div class="d-flex align-items-start me-2">
                     <div class="d-grid gap-2 btn-group">
 
-                        <button class="btn-primary d-flex align-items-center" type="button"
-                            id="business" onclick="setCategory('business', goToArticles)">
+                        <button class="btn-primary d-flex align-items-center" type="button" id="business"
+                            onclick="setCategory('business', goToArticles)">
                             <i class="fas fa-briefcase me-2"></i>
                             <span class="d-none d-md-inline">Business</span>
                         </button>
-                        <button class="btn-primary d-flex align-items-center" type="button"
-                            id="entertainment" onclick="setCategory('entertainment', goToArticles)">
+                        <button class="btn-primary d-flex align-items-center" type="button" id="entertainment"
+                            onclick="setCategory('entertainment', goToArticles)">
                             <i class="fas fa-film me-2"></i>
                             <span class="d-none d-md-inline">Entertainment</span>
                         </button>
-                        <button class="btn-primary d-flex align-items-center" type="button"
-                            id="health" onclick="setCategory('health', goToArticles)">
+                        <button class="btn-primary d-flex align-items-center" type="button" id="health"
+                            onclick="setCategory('health', goToArticles)">
                             <i class="fas fa-heartbeat me-2"></i>
                             <span class="d-none d-md-inline">Health</span>
                         </button>
-                        <button class="btn-primary d-flex align-items-center" type="button"
-                            id="science" onclick="setCategory('science', goToArticles)">
+                        <button class="btn-primary d-flex align-items-center" type="button" id="science"
+                            onclick="setCategory('science', goToArticles)">
                             <i class="fas fa-flask me-2"></i>
                             <span class="d-none d-md-inline">Science</span>
                         </button>
-                        <button class="btn-primary d-flex align-items-center" type="button"
-                            id="sports" onclick="setCategory('sports', goToArticles)">
+                        <button class="btn-primary d-flex align-items-center" type="button" id="sports"
+                            onclick="setCategory('sports', goToArticles)">
                             <i class="fas fa-football-ball me-2"></i>
                             <span class="d-none d-md-inline">Sports</span>
                         </button>
-                        <button class="btn-primary d-flex align-items-center" type="button"
-                            id="technology" onclick="setCategory('technology', goToArticles)">
+                        <button class="btn-primary d-flex align-items-center" type="button" id="technology"
+                            onclick="setCategory('technology', goToArticles)">
                             <i class="fas fa-laptop-code me-2"></i>
                             <span class="d-none d-md-inline">Technology</span>
                         </button>
@@ -129,6 +133,7 @@
         let datetime = document.getElementById('datetime');
         datetime.innerHTML = `${date} ${time}`;
     </script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
         crossorigin="anonymous"></script>

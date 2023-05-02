@@ -12,7 +12,7 @@ function updateArticles(articles) {
     // if its the /saved page, do nothing because there is no category title
     if (document.getElementById('category-title')) {
         // Set the Article page title 
-        if (category === 'search') {
+        if (category === 'customSearch') {
             // Get the search term from the search box on the previous page
             const searchTerm = localStorage.getItem('searchParameter');
             // make the search term title case, each word capitalized
@@ -65,12 +65,10 @@ function updateArticles(articles) {
         link.href = article.url;
         link.target = "_blank";
         link.innerText = "Go to Link";
-        link.style.background = '#dc8cda';
         input.classList.add("save-article-button", "btn", "float-end");
         input.type = "button";
         input.id = article.title;
         input.value = "Save";
-        input.style.background = '#dc8cda';
         input.onclick = function () { toggleSaveButton(article.title, article.url, article.urlToImage, input.value) };
 
         // Append card elements to parent
