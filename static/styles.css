@@ -9,7 +9,7 @@ html[theme='dark-mode'] {
   filter: invert(1) hue-rotate(180deg);
 }
 
-html[theme='dark-mode'] img{
+html[theme='dark-mode'] img {
   filter: invert(1) hue-rotate(180deg);
 }
 
@@ -45,8 +45,6 @@ body {
   font-size: 0.875rem;
 }
 
-
-
 #banner {
   width: 25%;
   object-fit: contain;
@@ -58,7 +56,9 @@ body {
 }
 
 .card-text {
-  height: 4.3em;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
@@ -87,6 +87,10 @@ body {
 .save-article-button:hover {
   background-color: #d446d0da;
   transform: scale3d(1.05, 1.05, 1.05);
+}
+
+.save-article-button[value="Unsave"] {
+  background-color: #6e46d4da;
 }
 
 .centered-title {
@@ -145,12 +149,14 @@ body {
 }
 
 .btn-primary {
+
   background-color: #237dbd;
   border: none;
   color: #ffffff;
+  align-items: center;
   border-radius: 5px;
-  padding: 15px 30px;
-  font-size: 1.25rem;
+  padding: 20px;
+  font-size: 1.1rem;
   font-weight: 600;
   transition: all 0.3s ease;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -162,7 +168,6 @@ body {
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
   outline: none;
   transform: scale3d(1.02, 1.02, 1.02);
-
 }
 
 .btn-primary:hover .fas {

@@ -13,7 +13,11 @@ function updateArticles(articles) {
             const searchTerm = localStorage.getItem('searchParameter');
             const searchTermTitleCase = searchTerm.toLowerCase().split(' ').map((s) => s.charAt(0).toUpperCase() + s.substring(1)).join(' ');
             document.getElementById('category-title').innerText = "Search results for: " + searchTermTitleCase;
-        } else {
+        } else if (category === 'entertainment') {
+            document.getElementById('category-title').innerText = "Media";
+        }
+
+        else {
             document.getElementById('category-title').innerText = category.charAt(0).toUpperCase() + category.slice(1);
         }
     }
@@ -36,7 +40,7 @@ function updateArticles(articles) {
 
         cardCol.classList.add("card-group", "d-flex", "justify-content-center", "col-md-6", "mb-4");
         card.classList.add("card");
-        cardBody.classList.add("card-body", "d-flex", "flex-column"); // 
+        cardBody.classList.add("card-body", "d-flex", "flex-column");
         cardBottom.classList.add("mt-auto"); 
 
         img.classList.add("card-img-top");
