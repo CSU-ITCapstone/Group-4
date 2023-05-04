@@ -21,9 +21,15 @@ def fetch_articles_route():
 # @param selectedCategory: the category of articles to fetch
 # @return: a list of articles
 def fetch_articles(selectedCategory):
+    if selectedCategory == "general":
+        numberOfArticles =12
+    else: 
+        numberOfArticles = 18
+    
     articles = newsapi.get_top_headlines(
-        country='us',
-        category=selectedCategory
+        country = 'us',
+        category = selectedCategory,
+        page_size = numberOfArticles
     )
 
     return articles['articles']
@@ -41,18 +47,12 @@ def search_articles_route():
 # search articles by search term
 # @param search_term: the search term to search for
 # @return: a list of articles
-def search_articles(search_term):
-    # if the search term is general, return 12 articles, otherwise return 20
-    if search_term == "general":
-        numberOfArticles =12
-    else: 
-        numberOfArticles = 20
-    
+def search_articles(search_term): 
     articles = newsapi.get_everything(
-        q=search_term,
-        language='en',
-        sort_by='relevancy',
-        page_size=numberOfArticles
+        q = search_term,
+        language = 'en',
+        sort_by = 'relevancy',
+        page_size = 18
     )
 
     return articles['articles']

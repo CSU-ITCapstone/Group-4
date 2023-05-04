@@ -66,7 +66,7 @@ function updateArticles(articles) {
 
         cardBody.appendChild(title);
         if (article.description != null) {
-            cardBody.appendChild(description);
+            cardBottom.appendChild(description);
         };
         cardBottom.appendChild(link);
         cardBottom.appendChild(input);
