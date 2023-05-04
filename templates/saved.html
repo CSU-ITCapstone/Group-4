@@ -13,9 +13,7 @@
 
     <link rel="stylesheet" href="static/styles.css">
 
-    <link rel="stylesheet" href="static/trialDarkMode.css">
     <script src="static/darkMode.js"></script>
-
     <script src="static/toggleSaveButton.js"></script>
     <script src="static/updateArticles.js"></script>
     <script src="static/checkSaved.js"></script>
@@ -27,8 +25,8 @@
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
                 <a href="http://127.0.0.1:5000/">
-                    <img class="img-fluid align-top rounded me-3" id="logo"
-                        src="http://127.0.0.1:5000/static/image.png" alt="Byte Beat">
+                    <img class="img-fluid align-top rounded me-3" id="logo" src="http://127.0.0.1:5000/static/image.png"
+                        alt="Byte Beat">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,12 +60,13 @@
 
         <div class="row" id="card-container">
             <script>
-                const saved = JSON.parse(localStorage.getItem("savedArticles")) || [];
-                if (saved.length == 0) {
+                const savedArticles = JSON.parse(localStorage.getItem("savedArticles")) || [];
+                if (savedArticles.length == 0) {
                     document.querySelector(".welcome").innerHTML = "You have no saved articles.";
+                } else {
+                    updateArticles(savedArticles);
+                    checkSaved();
                 }
-                updateArticles(saved);
-                checkSaved();
             </script>
         </div>
 

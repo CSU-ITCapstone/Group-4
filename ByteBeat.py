@@ -9,40 +9,40 @@ newsapi = NewsApiClient(api_key='a7ce5af704c4493584f1068248f3b540')
 def home():
     return render_template('main.html')
 
-
+# calls the fetch_articles function and returns the articles as a json object
 @ app.route('/fetch_articles', methods=['POST'])
 def fetch_articles_route():
-    # get the category from the form
     category = request.form.get('search_term')
-    # fetch the articles
     articles = fetch_articles(category)
-    # return the articles
+
     return jsonify(articles)
 
-
+# fetch articles by category
+# @param selectedCategory: the category of articles to fetch
+# @return: a list of articles
 def fetch_articles(selectedCategory):
     articles = newsapi.get_top_headlines(
         country='us',
-        # technology, business, entertainment, general, health, science, sports
         category=selectedCategory
     )
-    # return the articles
+
     return articles['articles']
 
 
-# search articles by search term
+# search articles by user input search term
 @ app.route('/search_articles', methods=['POST'])
 def search_articles_route():
-    # get the search term from the form
     search_term = request.form.get('search_term')
-    # fetch the articles
     articles = search_articles(search_term)
-    # return the articles
+
     return jsonify(articles)
 
 
+# search articles by search term
+# @param search_term: the search term to search for
+# @return: a list of articles
 def search_articles(search_term):
-    # fetch the articles
+    # if the search term is general, return 12 articles, otherwise return 20
     if search_term == "general":
         numberOfArticles =12
     else: 
@@ -54,7 +54,7 @@ def search_articles(search_term):
         sort_by='relevancy',
         page_size=numberOfArticles
     )
-    # return the articles
+
     return articles['articles']
 
 
