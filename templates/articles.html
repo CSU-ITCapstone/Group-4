@@ -52,7 +52,7 @@
                     <form class="d-flex input-group" role="search"
                         onsubmit="setCategory('customSearch', goToArticles); return false;">
                         <input id="search-input" class="form-control" type="text" placeholder="Search">
-                        <button class="btn-primary" type="button"
+                        <button class="btn btn-secondary" type="button"
                             onclick="setCategory('customSearch', goToArticles)">Search</button>
                     </form>
                 </div>
@@ -63,7 +63,6 @@
         <h2 class="text-left my-5 welcome" id="category-title"></h2>
 
         <div class="row" id="card-container">
-
             <script>
                 getArticles(updateArticles);
                 checkSaved();

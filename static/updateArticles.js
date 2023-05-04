@@ -6,12 +6,12 @@
  */
 function updateArticles(articles) {
 
-    const category = localStorage.getItem('selectedCategory');
+    let category = localStorage.getItem('selectedCategory');
 
     if (document.getElementById('category-title')) {
         if (category === 'customSearch') {
-            const searchTerm = localStorage.getItem('searchParameter');
-            const searchTermTitleCase = searchTerm.toLowerCase().split(' ').map((s) => s.charAt(0).toUpperCase() + s.substring(1)).join(' ');
+            let searchTerm = localStorage.getItem('searchParameter');
+            let searchTermTitleCase = searchTerm.toLowerCase().split(' ').map((s) => s.charAt(0).toUpperCase() + s.substring(1)).join(' ');
             document.getElementById('category-title').innerText = "Search results for: " + searchTermTitleCase;
         } else if (category === 'entertainment') {
             document.getElementById('category-title').innerText = "Media";
@@ -41,7 +41,7 @@ function updateArticles(articles) {
         cardCol.classList.add("card-group", "d-flex", "justify-content-center", "col-md-6", "mb-4");
         card.classList.add("card");
         cardBody.classList.add("card-body", "d-flex", "flex-column");
-        cardBottom.classList.add("mt-auto"); 
+        cardBottom.classList.add("mt-auto");
 
         img.classList.add("card-img-top");
         if (article.urlToImage == null || article.urlToImage == "null") {
@@ -79,4 +79,7 @@ function updateArticles(articles) {
         articleBody.appendChild(cardCol);
     });
 
+    if (articles.length == 0) {
+        document.getElementById('category-title').innerText = "No results found";
+    }
 }
