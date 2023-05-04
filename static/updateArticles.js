@@ -38,7 +38,7 @@ function updateArticles(articles) {
         const link = document.createElement("a");
         const input = document.createElement("input");
 
-        cardCol.classList.add("card-group", "d-flex", "justify-content-center", "col-md-6", "mb-4");
+        cardCol.classList.add("card-group", "d-flex", "justify-content-center", "col-md-6", "col-lg-4", "mb-4");
         card.classList.add("card");
         cardBody.classList.add("card-body", "d-flex", "flex-column");
         cardBottom.classList.add("mt-auto");
