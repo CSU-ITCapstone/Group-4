@@ -1,1 +1,1 @@
-web: gunicorn ByteBeat.py
+web: gunicorn ByteBeat:application
