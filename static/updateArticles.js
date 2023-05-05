@@ -21,6 +21,7 @@ function updateArticles(articles) {
             document.getElementById('category-title').innerText = category.charAt(0).toUpperCase() + category.slice(1);
         }
     }
+    
 
     const articleBody = document.querySelector("#card-container");
 

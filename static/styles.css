@@ -208,7 +208,7 @@ body {
 }
 
 .nav-margin{
-  margin-bottom: 30px;
+  margin-bottom: 60px;
 }
 
 .custom-dropdown-toggle:focus {
@@ -221,3 +221,13 @@ body {
   border: none; /* Remove border */
   background-color: transparent; /* Make background transparent */
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+#card-container {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
