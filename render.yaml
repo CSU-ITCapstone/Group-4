@@ -7,12 +7,12 @@ services:
     staticPublishPath: ./static
     healthCheckPath: /healthcheck
     routes:
-      - type: redirect
+      - type: rewrite
         source: /main.html
         destination: /
-      - type: redirect
+      - type: rewrite
         source: /articles.html
         destination: /articles
-      - type: redirect
+      - type: rewrite
         source: /saved.html
         destination: /saved
