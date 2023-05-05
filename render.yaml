@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: bytebeat
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn ByteBeat:app
+    env:
+      PYTHONUNBUFFERED: 1
+    healthCheckPath: /healthcheck
+    routes:
+      - path: /
+        targetService: bytebeat
+        headers:
+          - name: X-Frame-Options
+            value: sameorigin
+      - path: /favicon.ico
+        targetService: bytebeat
+      - path: /healthcheck
+        type: bypass
