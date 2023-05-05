@@ -6,12 +6,12 @@ services:
     env: static
     healthCheckPath: /healthcheck
     routes:
-      - type: static
+      - type: redirect
         source: /main.html
         destination: /
-      - type: static
+      - type: redirect
         source: /articles.html
         destination: /articles
-      - type: static
+      - type: redirect
         source: /saved.html
         destination: /saved
