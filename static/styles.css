@@ -206,3 +206,18 @@ body {
   display: flex;
   justify-content: flex-end;
 }
+
+.nav-margin{
+  margin-bottom: 30px;
+}
+
+.custom-dropdown-toggle:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0); /* Transparent box shadow */
+}
+
+.custom-dropdown-toggle {
+  padding: 0; /* Remove padding */
+  border: none; /* Remove border */
+  background-color: transparent; /* Make background transparent */
+}
