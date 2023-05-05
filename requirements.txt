@@ -1,5 +1,4 @@
-Flask==2.0.1
+pip==23.1.2
+Flask==2.3.2
 gunicorn==20.1.0
-newsapi==0.1.1
-newsapi-python==0.2.7
-NewsApiClient==0.2.3
+newsapi==2.4.1
