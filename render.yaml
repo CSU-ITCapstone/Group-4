@@ -6,9 +6,12 @@ services:
     env: static
     healthCheckPath: /healthcheck
     routes:
-      - path: /
-        targetService: main.html
-      - path: /articles
-        targetService: articles.html
-      - path: /saved
-        targetService: saved.html
+      - type: static
+        source: /main.html
+        destination: /
+      - type: static
+        source: /articles.html
+        destination: /articles
+      - type: static
+        source: /saved.html
+        destination: /saved
