@@ -4,7 +4,7 @@ services:
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn ByteBeat:app
     env: static
-    staticPublishPath: ./build
+    staticPublishPath: ./static
     healthCheckPath: /healthcheck
     routes:
       - type: redirect
