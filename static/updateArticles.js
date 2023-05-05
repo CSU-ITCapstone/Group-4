@@ -45,7 +45,7 @@ function updateArticles(articles) {
 
         img.classList.add("card-img-top");
         if (article.urlToImage == null || article.urlToImage == "null") {
-            img.src = "http://127.0.0.1:5000/static/placeholder.png";
+            img.src = "https://byte-beat-the-news-aggregator.onrender.com/static/placeholder.png";
         } else {
             img.src = article.urlToImage;
         };
