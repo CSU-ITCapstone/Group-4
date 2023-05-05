@@ -3,16 +3,12 @@ services:
     name: bytebeat
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn ByteBeat:app
-    env:
-      PYTHONUNBUFFERED: 1
+    env: static
     healthCheckPath: /healthcheck
     routes:
       - path: /
-        targetService: bytebeat
-        headers:
-          - name: X-Frame-Options
-            value: sameorigin
-      - path: /favicon.ico
-        targetService: bytebeat
-      - path: /healthcheck
-        type: bypass
+        targetService: main.html
+      - path: /articles
+        targetService: articles.html
+      - path: /saved
+        targetService: saved.html
