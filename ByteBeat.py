@@ -23,7 +23,8 @@ def fetch_articles_route():
 def fetch_articles(selectedCategory):
     articles = newsapi.get_top_headlines(
         country='us',
-        category=selectedCategory
+        category=selectedCategory,
+        page_size = 18
     )
 
     return articles['articles']
@@ -46,7 +47,7 @@ def search_articles(search_term):
     if search_term == "general":
         numberOfArticles =12
     else: 
-        numberOfArticles = 20
+        numberOfArticles = 18
     
     articles = newsapi.get_everything(
         q=search_term,
