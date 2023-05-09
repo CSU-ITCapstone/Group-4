@@ -35,6 +35,8 @@ python ByteBeat.py
 
 Visit Byte Beat, currently deployed using [Render.com](https://byte-beat-the-news-aggregator.onrender.com).
 
+**If you experience issues with the newsapi check which version of python it is installed under and make that version the active directory**
+
 ## Contributing Members
 
 1. Karim Yunis
