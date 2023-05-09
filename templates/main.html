@@ -30,8 +30,9 @@
                 <div class="dropdown">
                     <button class="btn custom-dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                         <img class="rounded" id="logo" src="https://byte-beat-the-news-aggregator.onrender.com/static/image.png"
-                            alt="Byte Beat">
-                    </button>                    
+                            alt="Byte Beat" loading="eager">
+                    </button>
+                    
                     <ul class="dropdown-menu"  aria-labelledby="dropdownMenuButton">
                         <li><a class="dropdown-item" href="#" onclick="setCategory('business', goToArticles)">Business</a></li>
                         <li><a class="dropdown-item" href="#" onclick="setCategory('health', goToArticles)">Health</a></li>
@@ -71,6 +72,9 @@
             </div>
         </nav>
 
+        <div class="quote-container text-center">
+            <h2 class="quote-text">Your News, One Byte at a Time</h2>
+        </div>        
         
 
         <div class="row mx-1" id="card-container">
