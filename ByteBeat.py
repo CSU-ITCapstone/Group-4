@@ -10,6 +10,8 @@ def home():
     return render_template('main.html')
 
 # calls the fetch_articles function and returns the articles as a json object
+
+
 @ app.route('/fetch_articles', methods=['POST'])
 def fetch_articles_route():
     category = request.form.get('search_term')
@@ -20,11 +22,13 @@ def fetch_articles_route():
 # fetch articles by category
 # @param selectedCategory: the category of articles to fetch
 # @return: a list of articles
+
+
 def fetch_articles(selectedCategory):
     articles = newsapi.get_top_headlines(
         country='us',
         category=selectedCategory,
-        page_size = 18
+        page_size=18
     )
 
     return articles['articles']
@@ -43,17 +47,11 @@ def search_articles_route():
 # @param search_term: the search term to search for
 # @return: a list of articles
 def search_articles(search_term):
-    # if the search term is general, return 12 articles, otherwise return 20
-    if search_term == "general":
-        numberOfArticles =12
-    else: 
-        numberOfArticles = 18
-    
     articles = newsapi.get_everything(
         q=search_term,
         language='en',
         sort_by='relevancy',
-        page_size=numberOfArticles
+        page_size=18
     )
 
     return articles['articles']
